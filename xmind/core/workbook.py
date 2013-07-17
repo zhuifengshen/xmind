@@ -19,6 +19,7 @@ from . import const
 
 from .mixin import WorkbookMixinElement
 from .sheet import SheetElement
+from .topic import TopicElement
 
 from .. import utils
 
@@ -141,6 +142,12 @@ class WorkbookDocument(Document):
 
     def getWorkbookElement(self):
         return self._workbook_element
+
+    def createTopic(self):
+        """ Creat new `TopicElement` object and return. Please notice that
+        this topic haven't been add to workbook.
+        """
+        return TopicElement(None, self)
 
     def getSheets(self):
         """ List all sheets under workook, if not sheets then return
