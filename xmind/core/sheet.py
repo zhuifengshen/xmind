@@ -17,6 +17,7 @@ from . import const
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
 from .title import TitleElement
+from .relationship import RelationshipsElement
 
 
 class SheetElement(WorkbookMixinElement):
@@ -42,19 +43,27 @@ class SheetElement(WorkbookMixinElement):
 
         return root_topic
 
+    def addRelationships(self, rel):
+        _rel = self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
+        owner_workbook = self.getOwnerWorkbook()
+
+        rels = RelationshipsElement(_rel, owner_workbook)
+
+        if not _rel:
+            self.appendChild(rels)
+
+        rels.appendChild(rel)
+
     def getRootTopic(self):
         return self._root_topic
-
-    def getID(self):
-        return self.getAttribute(const.ATTR_ID)
 
     def _get_title(self):
         return self.getFirstChildNodeByTagName(const.TAG_TITLE)
 
     def getTitle(self):
-        _title = self._get_title()
-        if _title:
-            title = TitleElement(_title, self.getOwnerWorkbook())
+        title = self._get_title()
+        if title:
+            title = TitleElement(title, self.getOwnerWorkbook())
             return title.getTextContent()
 
     def setTitle(self, text):

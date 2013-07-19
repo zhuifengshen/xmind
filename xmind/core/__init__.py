@@ -164,6 +164,9 @@ class Document(Node):
         if element:
             element.setAttribute("version", version)
 
+    def getElementById(self, id):
+        return self._node.getElementById(id)
+
 
 class Element(Node):
     TAG_NAME = ""
@@ -172,7 +175,9 @@ class Element(Node):
         tag_name = self.TAG_NAME.decode("utf8")
         self._node = node or self._elementConstructor(tag_name)
 
-    def _elementConstructor(self, tag_name, namespaceURI=None, prefix=None, localName=None):
+    def _elementConstructor(self, tag_name,
+                            namespaceURI=None,
+                            prefix=None, localName=None):
         element = DOM.Element(tag_name, namespaceURI, prefix, localName)
 
         prefix = self.getPrefix(tag_name)
@@ -220,8 +225,9 @@ class Element(Node):
         None and attribute with specified ``attr_name`` is exist,
         attribute will be removed.
         """
-        if not attr_value is None:
-            self._node.setAttribute(attr_name, str(attr_value))
+        if attr_value is not None:
+            self._node.setAttribute(attr_name,
+                                    str(attr_value).decode("utf8"))
         elif self._node.hasAttribute(attr_name):
             self._node.removeAttribute(attr_name)
 

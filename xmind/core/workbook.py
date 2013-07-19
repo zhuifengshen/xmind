@@ -20,6 +20,7 @@ from . import const
 from .mixin import WorkbookMixinElement
 from .sheet import SheetElement
 from .topic import TopicElement, PlainNotesContent
+from .relationship import RelationshipElement
 
 from .. import utils
 
@@ -63,7 +64,7 @@ class WorkbookElement(WorkbookMixinElement):
         return sheets[index]
 
     def createSheet(self):
-        sheet = SheetElement(ownerWorkbook=self.getOwnerWorkbook())
+        sheet = SheetElement(None, self.getOwnerWorkbook())
         return sheet
 
     def addSheet(self, sheet, index=None):
@@ -142,6 +143,29 @@ class WorkbookDocument(Document):
 
     def getWorkbookElement(self):
         return self._workbook_element
+
+    def _create_relationship(self):
+        return RelationshipElement(None, self)
+
+    def createRelationship(self, end1, end2):
+        """ Create relationship with two topics. Pass two
+        `TopicElement` object and retuen `RelationshipElement` object
+        """
+        sheet1 = end1.getOwnerSheet()
+        sheet2 = end2.getOwnerSheet()
+
+        if sheet1 and sheet2:
+            if sheet1.getImplementation() == sheet2.getImplementation():
+
+                rel = self._create_relationship()
+                rel.setEnd1ID(end1.getID())
+                rel.setEnd2ID(end2.getID())
+
+                sheet1.addRelationships(rel)
+
+                return rel
+
+        raise Exception("Topics not on the same sheet!")
 
     def createTopic(self):
         """ Creat new `TopicElement` object and return. Please notice that

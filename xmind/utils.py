@@ -111,7 +111,7 @@ def generate_id():
 
     id = timestamp[19:] + lotter[:13]
 
-    return id
+    return id.decode("utf8")
 
 
 ############################        Decorator       ###########################

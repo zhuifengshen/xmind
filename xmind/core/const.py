@@ -36,6 +36,8 @@ TAG_TITLE = "title"
 TAG_POSITION = "position"
 TAG_CHILDREN = "children"
 TAG_NOTES = "notes"
+TAG_RELATIONSHIP = "relationship"
+TAG_RELATIONSHIPS = "relationships"
 
 ATTR_VERSION = "version"
 ATTR_ID = "id"
@@ -47,6 +49,8 @@ ATTR_Y = "svg:y"
 ATTR_HREF = "xlink:href"
 ATTR_BRANCH = "branch"
 ATTR_TYPE = "type"
+ATTR_END1 = "end1"
+ATTR_END2 = "end2"
 
 NS_URI = "http://www.w3.org/1999/xhtml"
 

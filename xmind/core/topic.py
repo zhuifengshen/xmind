@@ -12,7 +12,6 @@
 __author__ = "woody@xmind.net <Woody Ai>"
 
 from . import const
-# from . import Element
 
 from .mixin import WorkbookMixinElement, TopicMixinElement
 from .title import TitleElement
@@ -42,8 +41,22 @@ class TopicElement(WorkbookMixinElement):
         self.setAttribute(const.ATTR_HREF, hyperlink)
         #self.updateModifiedTime()
 
-    def getID(self):
-        return self.getAttribute(const.ATTR_ID)
+    def getOwnerSheet(self):
+        parent = self.getParentNode()
+
+        while parent and parent.tagName != const.TAG_SHEET:
+            parent = parent.parentNode
+
+        if not parent:
+            return
+
+        owner_workbook = self.getOwnerWorkbook()
+        if not owner_workbook:
+            return
+
+        for sheet in owner_workbook.getSheets():
+            if parent is sheet.getImplementation():
+                return sheet
 
     def getTitle(self):
         title = self._get_title()
@@ -165,7 +178,6 @@ class TopicElement(WorkbookMixinElement):
                         before given index.
         """
         ownerWorkbook = self.getOwnerWorkbook()
-        topic = topic or self.__class__(ownerWorkbook=ownerWorkbook)
 
         topic_children = self._get_children()
         if not topic_children:
