@@ -29,7 +29,7 @@ class WorkbookSaver(object):
         content_path = utils.join_path(self._temp_dir, const.CONTENT_XML)
 
         with open(content_path, "w") as f:
-            f.write(self._workbook.output())
+            self._workbook.output(f)
 
         return content_path
 

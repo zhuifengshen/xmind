@@ -130,8 +130,11 @@ class Node(object):
         child_node = child_node.getImplementation()
         self._node.removeChild(child_node)
 
-    def output(self):
-        return self._node.toxml(encoding="utf-8")
+    def output(self, output_stream):
+        return self._node.writexml(output_stream,
+                                   addindent="  ",
+                                   newl="\n",
+                                   encoding="utf-8")
 
 
 class Document(Node):
@@ -172,7 +175,7 @@ class Element(Node):
     TAG_NAME = ""
 
     def __init__(self, node=None):
-        tag_name = self.TAG_NAME.decode("utf8")
+        tag_name = self.TAG_NAME.encode("utf8")
         self._node = node or self._elementConstructor(tag_name)
 
     def _elementConstructor(self, tag_name,
@@ -218,7 +221,7 @@ class Element(Node):
                 return self.getAttribute(localName)
             return
 
-        return self._node.getAttribute(attr_name)
+        return self._node.getAttribute(attr_name).decode("utf8")
 
     def setAttribute(self, attr_name, attr_value=None):
         """Set attribute to element. Please notice that if ``attr_value`` is
@@ -227,7 +230,7 @@ class Element(Node):
         """
         if attr_value is not None:
             self._node.setAttribute(attr_name,
-                                    str(attr_value).decode("utf8"))
+                                    str(attr_value).encode("utf8"))
         elif self._node.hasAttribute(attr_name):
             self._node.removeAttribute(attr_name)
 
@@ -262,13 +265,13 @@ class Element(Node):
         text = []
         for node in self._node.childNodes:
             if node.nodeType == DOM.Node.TEXT_NODE:
-                text.append(node.data.encode("utf8"))
+                text.append(node.data.decode("utf8"))
 
         if not len(text) > 0:
             return
 
         text = "\n".join(text)
-        return text.decode("utf8")
+        return text
 
     def setTextContent(self, data):
         for node in self._node.childNodes:
@@ -276,7 +279,7 @@ class Element(Node):
                 self._node.removeChild(node)
 
         text = DOM.Text()
-        text.data = data.decode("utf8")
+        text.data = data.encode("utf8")
 
         self._node.appendChild(text)
 
