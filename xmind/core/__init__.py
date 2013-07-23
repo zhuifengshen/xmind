@@ -107,6 +107,9 @@ class Node(object):
         """
         child_nodes = []
         for node in self._node.childNodes:
+            if node.nodeType == node.TEXT_NODE:
+                continue
+
             if node.tagName == tag_name:
                 child_nodes.append(node)
 

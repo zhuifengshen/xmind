@@ -130,14 +130,15 @@ class WorkbookDocument(Document):
         self._path = path
         # Initialize WorkbookDocument to make sure that contains
         # WorkbookElement as root.
-        _workbook_element = self.getChildNodesByTagName(const.TAG_WORKBOOK)
+        _workbook_element = self.getFirstChildNodeByTagName(
+            const.TAG_WORKBOOK)
+
+        self._workbook_element = WorkbookElement(
+            _workbook_element,
+            self)
+
         if not _workbook_element:
-            self._workbook_element = WorkbookElement(ownerWorkbook=self)
             self.appendChild(self._workbook_element)
-        else:
-            self._workbook_element = WorkbookElement(
-                self.documentElement,
-                self)
 
         self.setVersion(const.VERSION)
 
