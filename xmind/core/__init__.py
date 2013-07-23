@@ -126,6 +126,9 @@ class Node(object):
 
     def iterChildNodesByTagName(self, tag_name):
         for node in self._node.childNodes:
+            if node.nodeType == node.TEXT_NODE:
+                continue
+
             if node.tagName == tag_name:
                 yield node
 
@@ -135,8 +138,8 @@ class Node(object):
 
     def output(self, output_stream):
         return self._node.writexml(output_stream,
-                                   addindent="  ",
-                                   newl="\n",
+                                   addindent="",
+                                   newl="",
                                    encoding="utf-8")
 
 
