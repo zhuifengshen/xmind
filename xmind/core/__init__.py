@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
     xmind.core
@@ -181,8 +182,8 @@ class Element(Node):
     TAG_NAME = ""
 
     def __init__(self, node=None):
-        tag_name = self.TAG_NAME.encode("utf8")
-        self._node = node or self._elementConstructor(tag_name)
+        self._node = node or self._elementConstructor(
+            self.TAG_NAME.encode("utf8"))
 
     def _elementConstructor(self, tag_name,
                             namespaceURI=None,
@@ -227,7 +228,7 @@ class Element(Node):
                 return self.getAttribute(localName)
             return
 
-        return self._node.getAttribute(attr_name).decode("utf8")
+        return self._node.getAttribute(attr_name)
 
     def setAttribute(self, attr_name, attr_value=None):
         """Set attribute to element. Please notice that if ``attr_value`` is
@@ -271,7 +272,7 @@ class Element(Node):
         text = []
         for node in self._node.childNodes:
             if node.nodeType == DOM.Node.TEXT_NODE:
-                text.append(node.data.decode("utf8"))
+                text.append(node.data)
 
         if not len(text) > 0:
             return

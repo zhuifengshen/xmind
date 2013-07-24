@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
     xmind.core.workbook
@@ -19,7 +20,7 @@ from . import const
 
 from .mixin import WorkbookMixinElement
 from .sheet import SheetElement
-from .topic import TopicElement, PlainNotesContent
+from .topic import TopicElement
 from .relationship import RelationshipElement
 
 from .. import utils
@@ -174,19 +175,6 @@ class WorkbookDocument(Document):
         """
         return TopicElement(None, self)
 
-    def createNotesContent(self, format=const.PLAIN_FORMAT_NOTE):
-        """ Create notes content. Notes content support two format, one is
-        plain text and another is html, plain text by default.
-        """
-        content_format = (const.PLAIN_FORMAT_NOTE, const.HTML_FORMAT_NOTE)
-
-        if format not in content_format:
-            raise Exception("Unrecognized notes content format")
-        elif format == const.PLAIN_FORMAT_NOTE:
-            return PlainNotesContent()
-        else:
-            pass
-
     def getSheets(self):
         """ List all sheets under workook, if not sheets then return
         empty list
@@ -218,7 +206,7 @@ class WorkbookDocument(Document):
     def removeSheet(self, sheet):
         """ Remove sheet from workbook
 
-        :param sheet:   remove passed `SheetElement` object want to removed
+        :param sheet:   remove passed `SheetElement` object
         """
         self._workbook_element.removeSheet(sheet)
 

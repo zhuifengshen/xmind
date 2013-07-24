@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
     xmind.core.topic
@@ -13,11 +14,26 @@ __author__ = "woody@xmind.net <Woody Ai>"
 
 from . import const
 
-from .mixin import WorkbookMixinElement, TopicMixinElement
+from .mixin import WorkbookMixinElement
 from .title import TitleElement
 from .position import PositionElement
+from .notes import NotesElement, PlainNotes
 
 from .. import utils
+
+
+def split_hyperlink(hyperlink):
+    colon = hyperlink.find(":")
+    if colon < 0:
+        protocol = None
+    else:
+        protocol = hyperlink[:colon]
+
+    hyperlink = hyperlink[colon + 1:]
+    while hyperlink.startswith("/"):
+        hyperlink = hyperlink[1:]
+
+    return (protocol, hyperlink)
 
 
 class TopicElement(WorkbookMixinElement):
@@ -253,32 +269,38 @@ class TopicElement(WorkbookMixinElement):
         self._set_hyperlink(url)
 
     def getNotes(self):
+        """ Return `NotesElement` object` and invoke
+        `NotesElement.getContent()` to get notes content.
+        """
+
         notes = self.getFirstChildNodeByTagName(const.TAG_NOTES)
-        if notes:
+
+        if notes is not None:
             return NotesElement(notes, self)
 
-    def setNotes(self, content):
-        """ Set notes to topic. Please notice that only support plain txt
-        format right now.
-
-        :param content: sub-object of `NotesContent`. Only support palin txt
-                        format and accept pass `PlainNotesContent` object
-
-            from xmind.core.topic.import PlainNotesContent, TopicElement
-
-            topic = TopicElement()
-            plain_content = PlainNotesContent()
-            plain_content.setContent("Test plain note")
-
-            topic.setNotes(plain_content)
-        """
+    def _set_notes(self):
         notes = self.getNotes()
+
         if notes is None:
-            notes = NotesElement(None, self)
-            notes.setContent(content)
+            notes = NotesElement(ownerTopic=self)
             self.appendChild(notes)
-        else:
-            notes.setContent(content)
+
+        return notes
+
+    def setPlainNotes(self, content):
+        """ Set plain text notes to topic
+
+        :param content: utf8 plain text
+
+        """
+        notes = self._set_notes()
+        new = PlainNotes(content, None, self)
+
+        old = notes.getFirstChildNodeByTagName(new.getFormat())
+        if old is not None:
+            notes.getImplementation().removeChild(old)
+
+        notes.appendChild(new)
 
 
 class ChildrenElement(WorkbookMixinElement):
@@ -322,79 +344,6 @@ class TopicsElement(WorkbookMixinElement):
             return sub_topics
 
         return sub_topics[index]
-
-
-class NotesElement(TopicMixinElement):
-    TAG_NAME = const.TAG_NOTES
-
-    def __init__(self, node, owner_topic):
-        super(NotesElement, self).__init__(node, owner_topic)
-
-    def getParent(self):
-        return self.getOwnerTopic()
-
-    def getContent(self, format=const.PLAIN_FORMAT_NOTE):
-        """Get note content in specified format, plain text in default
-        """
-        content = self.getFirstChildNodeByTagName(format)
-        if content is None:
-            return
-
-        ownerWorkbook = self.getOwnerWorkbook()
-        return NotesContentElement(content, ownerWorkbook)
-
-    def setContent(self, content):
-        """ Set note content in specified format
-        """
-        content_format = content.getFormat()
-        if not content_format:
-            return
-
-        default_format = (const.HTML_FORMAT_NOTE, const.PLAIN_FORMAT_NOTE)
-        if content_format not in default_format:
-            return
-
-        for format in default_format:
-            old_content = self.getContent(format)
-            if old_content is not None:
-                self.removeChild(old_content)
-
-        self.appendChild(content)
-        # self.updateModifiedTime()
-
-
-class NotesContentElement(WorkbookMixinElement):
-    def __init__(self, node=None, ownerWorkbook=None):
-        super(NotesContentElement, self).__init__(node, ownerWorkbook)
-
-    def getFormat(self):
-        return self.getImplementation().tagName
-
-
-class PlainNotesContent(NotesContentElement):
-    TAG_NAME = const.PLAIN_FORMAT_NOTE
-
-    def __init__(self, content=None, node=None, ownerWorkbook=None):
-        super(PlainNotesContent, self).__init__(node, ownerWorkbook)
-        if content is not None:
-            self.setTextContent(content)
-
-    def setContent(self, content):
-        self.setTextContent(content)
-
-
-def split_hyperlink(hyperlink):
-    colon = hyperlink.find(":")
-    if colon < 0:
-        protocol = None
-    else:
-        protocol = hyperlink[:colon]
-
-    hyperlink = hyperlink[colon + 1:]
-    while hyperlink.startswith("/"):
-        hyperlink = hyperlink[1:]
-
-    return (protocol, hyperlink)
 
 
 def main():

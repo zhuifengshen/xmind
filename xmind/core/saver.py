@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 """
     xmind.core.saver
@@ -22,11 +23,10 @@ class WorkbookSaver(object):
         :param workbook: `WorkbookDocument` object
 
         """
-        self._temp_dir = utils.temp_dir()
         self._workbook = workbook
 
     def _get_content(self):
-        content_path = utils.join_path(self._temp_dir, const.CONTENT_XML)
+        content_path = utils.join_path(utils.temp_dir(), const.CONTENT_XML)
 
         with open(content_path, "w") as f:
             self._workbook.output(f)
