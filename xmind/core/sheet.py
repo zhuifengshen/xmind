@@ -11,7 +11,7 @@
     :license:
 """
 
-__author__ = "woody@xmind.net <Woody Ai>"
+__author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
 

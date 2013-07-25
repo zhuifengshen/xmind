@@ -10,7 +10,7 @@
 
 """
 
-__author__ = "woody@xmind.net <Woody Ai>"
+__author__ = "aiqi@xmind.net <Woody Ai>"
 
 import codecs
 

@@ -12,6 +12,7 @@
 
 
 __version__ = "0.1a.0"
+__author__ = "aiqi@xmind.net <Woody Ai>"
 
 from xmind.core.loader import WorkbookLoader
 from xmind.core.saver import WorkbookSaver

@@ -11,7 +11,7 @@ setup(
     install_requires=["distribute"],
 
     author="Woody Ai",
-    author_email="woody@xmind.net",
+    author_email="aiqi@xmind.net",
     description="The offical XMind python SDK",
     license="MIT",
     keywords="XMind, SDK, mind mapping",
