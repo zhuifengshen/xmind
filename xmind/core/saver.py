@@ -12,6 +12,8 @@
 
 __author__ = "woody@xmind.net <Woody Ai>"
 
+import codecs
+
 from . import const
 from .. import utils
 
@@ -28,7 +30,7 @@ class WorkbookSaver(object):
     def _get_content(self):
         content_path = utils.join_path(utils.temp_dir(), const.CONTENT_XML)
 
-        with open(content_path, "w") as f:
+        with codecs.open(content_path, "w", encoding="utf-8") as f:
             self._workbook.output(f)
 
         return content_path

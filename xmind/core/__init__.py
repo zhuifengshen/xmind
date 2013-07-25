@@ -183,7 +183,7 @@ class Element(Node):
 
     def __init__(self, node=None):
         self._node = node or self._elementConstructor(
-            self.TAG_NAME.encode("utf8"))
+            self.TAG_NAME.decode("utf8"))
 
     def _elementConstructor(self, tag_name,
                             namespaceURI=None,
@@ -237,7 +237,7 @@ class Element(Node):
         """
         if attr_value is not None:
             self._node.setAttribute(attr_name,
-                                    str(attr_value).encode("utf8"))
+                                    str(attr_value).decode("utf8"))
         elif self._node.hasAttribute(attr_name):
             self._node.removeAttribute(attr_name)
 
@@ -286,7 +286,7 @@ class Element(Node):
                 self._node.removeChild(node)
 
         text = DOM.Text()
-        text.data = data.encode("utf8")
+        text.data = data.decode("utf8")
 
         self._node.appendChild(text)
 
