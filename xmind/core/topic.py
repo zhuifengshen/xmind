@@ -183,17 +183,19 @@ class TopicElement(WorkbookMixinElement):
 
         return sub_topics[index]
 
-    def addSubTopic(self, topic, index=-1,
+    def addSubTopic(self, topic=None, index=-1,
                     topics_type=const.TOPIC_ATTACHED):
-        """ Add sub topic to current topic.
+        """ Add sub topic to current topic and return added sub topic
 
-        :param topic:   passed `TopicElement` object.
+        :param topic:   `TopicElement` object. If not `TopicElement` object
+                        passed then created new one automatically.
         :param index:   if index not given then passed topic will append to
                         sub topics list. Otherwise, index must be less than
                         length of sub topics list and insert passed topic
                         before given index.
         """
         ownerWorkbook = self.getOwnerWorkbook()
+        topic = topic or self.__class__(None, ownerWorkbook)
 
         topic_children = self._get_children()
         if not topic_children:
@@ -216,6 +218,8 @@ class TopicElement(WorkbookMixinElement):
             topics.appendChild(topic)
         else:
             topics.insertBefore(topic, topic_list[index])
+
+        return topic
 
     def getIndex(self):
         parent = self.getParentNode()
