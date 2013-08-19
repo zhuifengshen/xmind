@@ -18,7 +18,7 @@ from . import const
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
 from .title import TitleElement
-from .relationship import RelationshipsElement
+from .relationship import RelationshipElement, RelationshipsElement
 
 
 class SheetElement(WorkbookMixinElement):
@@ -44,7 +44,28 @@ class SheetElement(WorkbookMixinElement):
 
         return root_topic
 
+    def setRelationship(self, end1, end2, title=None):
+        """ Set relationship between with two different topics and return
+        created rel. Please notice that created rel will not be added to
+        sheet and invoke `addRelationships` to add rel to sheet.
+
+        :param end1:    topic ID
+        :param end2:    topic ID
+        :param title:   relationship tile, default by None
+
+        """
+        rel = RelationshipElement(ownerWorkbook=self.getOwnerWorkbook())
+        rel.setEnd1ID(end1)
+        rel.setEnd2ID(end2)
+
+        if title is not None:
+            rel.setTitle(title)
+
+        return rel
+
     def addRelationships(self, rel):
+        """ Add relationship to sheet
+        """
         _rel = self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
         owner_workbook = self.getOwnerWorkbook()
 
