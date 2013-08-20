@@ -125,6 +125,17 @@ class Node(object):
     def getParentNode(self):
         return self._node.parentNode
 
+    def _isOrphanNode(self, node):
+        if node is None:
+            return True
+        if node.nodeType == node.DOCUMENT_NODE:
+            return False
+
+        return self._isOrphanNode(node.parentNode)
+
+    def isOrphanNode(self):
+        return self._isOrphanNode(self._node)
+
     def iterChildNodesByTagName(self, tag_name):
         for node in self._node.childNodes:
             if node.nodeType == node.TEXT_NODE:
