@@ -30,7 +30,7 @@ class RelationshipElement(WorkbookMixinElement):
     def _get_title(self):
         return self.getFirstChildNodeByTagName(const.TAG_TITLE)
 
-    def _fine_end_point(self, id):
+    def _find_end_point(self, id):
         owner_workbook = self.getOwnerWorkbook()
         if owner_workbook is None:
             return

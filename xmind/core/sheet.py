@@ -44,14 +44,14 @@ class SheetElement(WorkbookMixinElement):
 
         return root_topic
 
-    def setRelationship(self, end1, end2, title=None):
-        """ Set relationship between with two different topics and return
+    def createRelationship(self, end1, end2, title=None):
+        """ Create relationship between with two different topics and return
         created rel. Please notice that created rel will not be added to
-        sheet and invoke `addRelationships` to add rel to sheet.
+        sheet and invoke `addRelationship` to add rel to sheet.
 
         :param end1:    topic ID
         :param end2:    topic ID
-        :param title:   relationship tile, default by None
+        :param title:   relationship title, default by None
 
         """
         rel = RelationshipElement(ownerWorkbook=self.getOwnerWorkbook())
@@ -63,18 +63,36 @@ class SheetElement(WorkbookMixinElement):
 
         return rel
 
-    def addRelationships(self, rel):
+    def _getRelationships(self):
+        return self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
+
+    def addRelationship(self, rel):
         """ Add relationship to sheet
         """
-        _rel = self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
+        _rels = self._getRelationships()
         owner_workbook = self.getOwnerWorkbook()
 
-        rels = RelationshipsElement(_rel, owner_workbook)
+        rels = RelationshipsElement(_rels, owner_workbook)
 
-        if not _rel:
+        if not _rels:
             self.appendChild(rels)
 
         rels.appendChild(rel)
+
+    def removeRelationship(self, rel):
+        """ Remove relationship between two different topics
+        """
+        rels = self._getRelationships()
+
+        if not rels:
+            return
+
+        rel = rel.getImplementation()
+        rels.removeChild(rel)
+        if not rels.hasChildNodes():
+            self.getImplementation().removeChild(rels)
+
+        self.updateModifiedTime()
 
     def getRootTopic(self):
         return self._root_topic
