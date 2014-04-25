@@ -40,7 +40,8 @@ TAG_CHILDREN = "children"
 TAG_NOTES = "notes"
 TAG_RELATIONSHIP = "relationship"
 TAG_RELATIONSHIPS = "relationships"
-
+TAG_MARKERREFS = "marker-refs"
+TAG_MARKERREF  = "marker-ref"
 ATTR_VERSION = "version"
 ATTR_ID = "id"
 ATTR_STYLE_ID = "style-id"
@@ -53,6 +54,7 @@ ATTR_BRANCH = "branch"
 ATTR_TYPE = "type"
 ATTR_END1 = "end1"
 ATTR_END2 = "end2"
+ATTR_MARKERID = "marker-id"
 
 NS_URI = "http://www.w3.org/1999/xhtml"
 

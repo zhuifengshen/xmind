@@ -18,6 +18,9 @@ from .mixin import WorkbookMixinElement
 from .title import TitleElement
 from .position import PositionElement
 from .notes import NotesElement, PlainNotes
+from .markerref import MarkerRefElement
+from .markerref import MarkerRefsElement
+from .markerref import MarkerId
 
 from .. import utils
 
@@ -46,6 +49,9 @@ class TopicElement(WorkbookMixinElement):
 
     def _get_title(self):
         return self.getFirstChildNodeByTagName(const.TAG_TITLE)
+
+    def _get_markerrefs(self):
+        return self.getFirstChildNodeByTagName(const.TAG_MARKERREFS)
 
     def _get_position(self):
         return self.getFirstChildNodeByTagName(const.TAG_POSITION)
@@ -89,6 +95,46 @@ class TopicElement(WorkbookMixinElement):
             self.appendChild(title)
 
         # self.updateModifiedTime()
+
+    def getMarkers(self):
+        refs = self._get_markerrefs()
+        if not refs:
+            return None
+        tmp = MarkerRefsElement(refs, self.getOwnerWorkbook())
+        markers = tmp.getChildNodesByTagName(const.TAG_MARKERREF)
+        marker_list = []
+        if markers:
+            for i in markers:
+                marker_list.append(MarkerRefElement(i, self.getOwnerWorkbook()))
+        return marker_list
+
+
+    def addMarker(self, markerId):
+
+        if not markerId:
+            return None
+        if type(markerId) == str:
+            markerId = MarkerId(markerId)
+
+        refs = self._get_markerrefs()
+        if not refs:
+            tmp = MarkerRefsElement(None, self.getOwnerWorkbook())
+            self.appendChild(tmp)
+        else:
+            tmp = MarkerRefsElement(refs, self.getOwnerWorkbook())
+        markers = tmp.getChildNodesByTagName(const.TAG_MARKERREF)
+        if markers:
+            for m in markers:
+                mre = MarkerRefElement(m, self.getOwnerWorkbook())
+                # look for a marker of same familly
+                if mre.getMarkerId().getFamilly() == markerId.getFamilly():
+                    mre.setMarkerId(markerId)
+                    return mre
+        # not found so let's append it
+        mre = MarkerRefElement(None, self.getOwnerWorkbook())
+        mre.setMarkerId(markerId)
+        tmp.appendChild(mre)
+        return mre
 
     def setFolded(self):
         self.setAttribute(const.ATTR_BRANCH, const.VAL_FOLDED)
