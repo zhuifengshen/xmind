@@ -22,8 +22,8 @@ class WorkbookLoader(object):
     def __init__(self, path):
         """ Load XMind workbook from given path
 
-        :param path:    path of XMind, if path is not a exists file,
-                        will not occured error.
+        :param path:    path to XMind file. If not an existing file,
+                        will not raise an exception.
 
         """
         super(WorkbookLoader, self).__init__()
@@ -32,7 +32,7 @@ class WorkbookLoader(object):
         file_name, ext = utils.split_ext(self._input_source)
 
         if ext != const.XMIND_EXT:
-            raise Exception("Illegal XMind file")
+            raise Exception("The XMind filename is missing the '%s' extension!" % const.XMIND_EXT)
 
         # Input Stream
         self._content_stream = None

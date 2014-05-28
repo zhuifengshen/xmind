@@ -40,13 +40,15 @@ def create_element(tag_name, namespaceURI=None, prefix=None, localName=None):
 
 
 class Node(object):
-    """All of components of XMind workbook are subclass of Node
+    """
+    All of components of XMind workbook subclass Node
     """
     def __init__(self, node):
         self._node = node
 
     def _equals(self, obj=None):
-        """Compare passed object and current instance
+        """
+        Compare the passed object with the current instance
         """
         if obj is None or not isinstance(obj, self.__class__):
             return False
@@ -55,20 +57,17 @@ class Node(object):
         return self.getImplementation() == obj.getImplementation()
 
     def getImplementation(self):
-        """Get DOM implementation of passed node. Provides a interface for
-        manipulate DOM directly
+        """
+        Get DOM implementation of passed node. Provides an interface to
+        manipulate the DOM directly
         """
         return self._node
 
     def getOwnerDocument(self):
-        raise Exception(
-            """This is method doesn't implementated
-            """)
+        raise NotImplementedError("This method requires an implementation!")
 
     def setOwnerDocument(self, doc):
-        raise Exception(
-            """This is method doesn't implementated
-            """)
+        raise NotImplementedError("This method requires an implementation!")
 
     def getLocalName(self, qualifiedName):
         index = qualifiedName.find(":")
@@ -83,7 +82,8 @@ class Node(object):
             return qualifiedName[:index + 1]
 
     def appendChild(self, node):
-        """Append passed node to the end of child node list of this node
+        """
+        Append passed node to the end of child node list of this node
         """
         node.setOwnerDocument(self.getOwnerDocument())
 
@@ -92,7 +92,8 @@ class Node(object):
         return self._node.appendChild(node_impel)
 
     def insertBefore(self, new_node, ref_node):
-        """Insert new node before ref_node. Please notice that ref_node
+        """
+        Insert new node before ref_node. Please notice that ref_node
         must be a child of this node.
         """
         new_node.setOwnerDocument(self.getOwnerDocument())
@@ -103,7 +104,8 @@ class Node(object):
         return self._node.insertBefore(new_node_imple, ref_node_imple)
 
     def getChildNodesByTagName(self, tag_name):
-        """Search for all children with specified tag name under passed DOM
+        """
+        Search for all children with specified tag name under passed DOM
         implementation, instead of all descendants
         """
         child_nodes = []
@@ -157,6 +159,8 @@ class Node(object):
 
 class Document(Node):
     def __init__(self, node=None):
+        # FIXME: Should really call the base class
+        #super(Document, self).__init__()
         self._node = node or self._documentConstructor()
         # self.arg = arg
 
@@ -165,7 +169,8 @@ class Document(Node):
 
     @property
     def documentElement(self):
-        """Get root element of passed DOM implementation for manipulate
+        """
+        Get root element of passed DOM implementation for manipulate
         """
         return self._node.documentElement
 
@@ -193,6 +198,8 @@ class Element(Node):
     TAG_NAME = ""
 
     def __init__(self, node=None):
+        # FIXME: Should really call the base class
+        #super(Element, self).__init__()
         self._node = node or self._elementConstructor(
             self.TAG_NAME.decode("utf8"))
 
@@ -216,8 +223,9 @@ class Element(Node):
         self._node.ownerDocument = doc_imple
 
     def setAttributeNS(self, namespace, attr):
-        """Set attributes with namespace to DOM implementation.
-        Please notice that namespce must be a pairs of namespace name and
+        """
+        Set attributes with namespace to DOM implementation.
+        Please notice that namespace must be a namespace name and
         namespace value. Attr composed by namespceURI, localName and value.
         """
         namespace_name, namespace_value = namespace
@@ -230,7 +238,8 @@ class Element(Node):
             self._node.setAttributeNS(namespaceURI, qualifiedName, value)
 
     def getAttribute(self, attr_name):
-        """Get attribute with specified name. And allowed get attribute with
+        """
+        Get attribute with specified name. And allowed get attribute with
         specified name in ``prefix:localName`` format.
         """
         if not self._node.hasAttribute(attr_name):
@@ -242,7 +251,8 @@ class Element(Node):
         return self._node.getAttribute(attr_name)
 
     def setAttribute(self, attr_name, attr_value=None):
-        """Set attribute to element. Please notice that if ``attr_value`` is
+        """
+        Set attribute to element. Please notice that if ``attr_value`` is
         None and attribute with specified ``attr_name`` is exist,
         attribute will be removed.
         """
@@ -253,7 +263,8 @@ class Element(Node):
             self._node.removeAttribute(attr_name)
 
     def createElement(self, tag_name):
-        """Create new element. But created element doesn't add to the child
+        """
+        Create new element. But created element doesn't add to the child
         node list of this element, invoke :func: ``self.appendChild`` or :func:
         ``self.insertBefore`` to add created element to the child node list of
         this element.

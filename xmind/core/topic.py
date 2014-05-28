@@ -108,7 +108,6 @@ class TopicElement(WorkbookMixinElement):
                 marker_list.append(MarkerRefElement(i, self.getOwnerWorkbook()))
         return marker_list
 
-
     def addMarker(self, markerId):
 
         if not markerId:
@@ -231,7 +230,8 @@ class TopicElement(WorkbookMixinElement):
 
     def addSubTopic(self, topic=None, index=-1,
                     topics_type=const.TOPIC_ATTACHED):
-        """ Add sub topic to current topic and return added sub topic
+        """
+        Add a sub topic to the current topic and return added sub topic
 
         :param topic:   `TopicElement` object. If not `TopicElement` object
                         passed then created new one automatically.
@@ -281,7 +281,8 @@ class TopicElement(WorkbookMixinElement):
         return self.getAttribute(const.ATTR_HREF)
 
     def setFileHyperlink(self, path):
-        """ Set file as topic hyperlink
+        """
+        Set file as topic hyperlink
 
         :param path: path of specified file
 
@@ -293,7 +294,8 @@ class TopicElement(WorkbookMixinElement):
         self._set_hyperlink(path)
 
     def setTopicHyperlink(self, tid):
-        """ Set topic as topic hyperlink
+        """
+        Set topic as topic hyperlink
 
         :param id: given topic's id
 
@@ -319,7 +321,8 @@ class TopicElement(WorkbookMixinElement):
         self._set_hyperlink(url)
 
     def getNotes(self):
-        """ Return `NotesElement` object` and invoke
+        """
+        Return `NotesElement` object` and invoke
         `NotesElement.getContent()` to get notes content.
         """
 
@@ -377,7 +380,8 @@ class TopicsElement(WorkbookMixinElement):
         return self.getAttribute(const.ATTR_TYPE)
 
     def getSubTopics(self):
-        """List all sub topics on current topic
+        """
+        List all sub topics on the current topic
         """
         topics = []
         ownerWorkbook = self.getOwnerWorkbook()
@@ -387,7 +391,8 @@ class TopicsElement(WorkbookMixinElement):
         return topics
 
     def getSubTopicByIndex(self, index):
-        """Get specified sub topic by index
+        """
+        Get specified sub topic by index
         """
         sub_topics = self.getSubTopics()
         if index < 0 or index >= len(sub_topics):

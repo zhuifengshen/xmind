@@ -45,9 +45,10 @@ class SheetElement(WorkbookMixinElement):
         return root_topic
 
     def createRelationship(self, end1, end2, title=None):
-        """ Create relationship between with two different topics and return
-        created rel. Please notice that created rel will not be added to
-        sheet and invoke `addRelationship` to add rel to sheet.
+        """
+        Create a relationship between two different topics and return the
+        created rel. Please notice that the created rel will not be added to
+        sheet. Call `addRelationship()` to add rel to sheet.
 
         :param end1:    topic ID
         :param end2:    topic ID
@@ -67,7 +68,8 @@ class SheetElement(WorkbookMixinElement):
         return self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
 
     def addRelationship(self, rel):
-        """ Add relationship to sheet
+        """
+        Add relationship to sheet
         """
         _rels = self._getRelationships()
         owner_workbook = self.getOwnerWorkbook()
@@ -80,7 +82,8 @@ class SheetElement(WorkbookMixinElement):
         rels.appendChild(rel)
 
     def removeRelationship(self, rel):
-        """ Remove relationship between two different topics
+        """
+        Remove a relationship between two different topics
         """
         rels = self._getRelationships()
 
@@ -100,6 +103,7 @@ class SheetElement(WorkbookMixinElement):
     def _get_title(self):
         return self.getFirstChildNodeByTagName(const.TAG_TITLE)
 
+    # FIXME: convert to getter/setter
     def getTitle(self):
         title = self._get_title()
         if title:
