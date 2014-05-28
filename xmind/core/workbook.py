@@ -119,7 +119,8 @@ class WorkbookDocument(Document):
     """ `WorkbookDocument` as central object correspond XMind workbook.
     """
     def __init__(self, node=None, path=None):
-        """  Construct new `WorkbookDocument` object
+        """
+        Construct new `WorkbookDocument` object
 
         :param node:    pass DOM node object and parse as `WorkbookDocument`
                         object. if node not given then created new one.
@@ -170,30 +171,35 @@ class WorkbookDocument(Document):
         raise Exception("Topics not on the same sheet!")
 
     def createTopic(self):
-        """ Creat new `TopicElement` object and return. Please notice that
-        this topic haven't been add to workbook.
+        """
+        Create new `TopicElement` object and return. Please notice that
+        this topic will not be added to the workbook.
         """
         return TopicElement(None, self)
 
     def getSheets(self):
-        """ List all sheets under workook, if not sheets then return
+        """
+        List all sheets under workbook, if not sheets then return
         empty list
         """
         return self._workbook_element.getSheets()
 
     def getPrimarySheet(self):
-        """ Get the first sheet under workbook.
+        """
+        Get the first sheet under workbook.
         """
         return self._workbook_element.getSheetByIndex(0)
 
     def createSheet(self):
-        """ Create new sheet. But please notice the new created sheet
-        hasn't been add to workbook. Invoke :method addSheet: to do that.
+        """
+        Create new sheet. But please notice the new created sheet
+        hasn't been added to the workbook. Invoke :method addSheet: to do that.
         """
         return self._workbook_element.createSheet()
 
     def addSheet(self, sheet, index=None):
-        """ Add sheet to workbook.
+        """
+        Add a sheet to the workbook.
 
         :param sheet:   add passed `SheetElement` object to workbook.
 
@@ -204,14 +210,16 @@ class WorkbookDocument(Document):
         self._workbook_element.addSheet(sheet, index)
 
     def removeSheet(self, sheet):
-        """ Remove sheet from workbook
+        """
+        Remove a sheet from the workbook
 
         :param sheet:   remove passed `SheetElement` object
         """
         self._workbook_element.removeSheet(sheet)
 
     def moveSheet(self, original_index, target_index):
-        """ Move sheet from original index to target index
+        """
+        Move a sheet from the original index to the target index
 
         :param original_index:  index of the sheet will be moved.
                                 `original_index` must be positive integer and

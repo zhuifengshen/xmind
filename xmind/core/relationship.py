@@ -42,6 +42,8 @@ class RelationshipElement(WorkbookMixinElement):
         if end_point.tagName == const.TAG_TOPIC:
             return TopicElement(end_point, owner_workbook)
 
+    # FIXME: Convert the following to getter/setter
+
     def getEnd1ID(self):
         return self.getAttribute(const.ATTR_END1)
 

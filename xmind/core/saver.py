@@ -36,20 +36,21 @@ class WorkbookSaver(object):
         return content_path
 
     def save(self, path=None):
-        """ Save workbook to given path. If path not given, then
-        will save to path that set to workbook.
+        """
+        Save the workbook to the given path. If the path is not given, then
+        will save to the path set in workbook.
         """
         path = path or self._workbook.get_path()
 
         if not path:
-            raise Exception("Please specified path to save XMind file")
+            raise Exception("Please specify a filename for the XMind file")
 
         path = utils.get_abs_path(path)
 
         file_name, ext = utils.split_ext(path)
 
         if ext != const.XMIND_EXT:
-            raise Exception("Illegal XMind file")
+            raise Exception("XMind filenames require a '%s' extension" % const.XMIND_EXT)
 
         content = self._get_content()
 

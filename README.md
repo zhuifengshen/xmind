@@ -1,28 +1,28 @@
 #XMind SDK for python
 
-**XMind SDK for python** to help python developers to easily work with XMind file and build XMind extensions.
+**XMind SDK for python** to help Python developers to easily work with XMind files and build XMind extensions.
 
 ##Install XMind SDK for python
 
-Clone repository to local working directory
+Clone the repository to a local working directory
 
 	git clone https://github.com/xmindltd/xmind-sdk-python.git
 	
-right now, you got directory named `xmind-sdk-python` under current directory. Change to directory `xmind-sdk-python` and install **XMind SDK for python**.
+Now there will be a directory named `xmind-sdk-python` under the current directory. Change to the directory `xmind-sdk-python` and install **XMind SDK for python**.
 
 	python setup.py install
 	
-*We're highly recommend to install __XMind SDK for python__ under isolate python environment using [virtualenv](https://pypi.python.org/pypi/virtualenv)*
+*It is highly recommended to install __XMind SDK for python__ under an isolated python environment using [virtualenv](https://pypi.python.org/pypi/virtualenv)*
 
 ##Usage
 
-Open XMind file from exist path or create new XMind file and placed to given path
+Open an existing XMind file or create a new XMind file and place it into a given path
 
 	import xmind
-	workbook = xmind.load(/path/to/file/)
+	workbook = xmind.load(/path/to/file/)  # Requires '.xmind' extension
 	
-Save XMind file to given path. 
-If path not given then will save to path that set to workbook
+Save XMind file to a path.
+If the path is not given then the API will save to the path set in the workbook
 
 	xmind.save(workbook)
 

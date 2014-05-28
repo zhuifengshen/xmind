@@ -23,6 +23,8 @@ class PositionElement(WorkbookMixinElement):
     def __init__(self, node=None, ownerWorkbook=None):
         super(PositionElement, self).__init__(node, ownerWorkbook)
 
+    # FIXME: These should be converted to getter/setters
+
     def getX(self):
         return self.getAttribute(const.ATTR_X)
 

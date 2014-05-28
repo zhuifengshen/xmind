@@ -44,12 +44,12 @@ split_ext = os.path.splitext
 
 def get_abs_path(path):
     """
-        Return the absolute path of file
+        Return the absolute path of a file
 
-        If path contained start point then use specified start point
-        instead of current working dir by default. And part of file
-        path allowed begin with a tilde "~" and replaced by user's
-        home dir.
+        If path contains a start point (eg Unix '/') then use the specified start point
+        instead of the current working directory. The starting point of the file
+        path is allowed to begin with a tilde "~", which will be replaced with the user's
+        home directory.
     """
 
     fp, fn = os.path.split(path)
@@ -64,13 +64,15 @@ def get_abs_path(path):
 #########################          Time         ###############################
 
 def get_current_time():
-    """Get current time in milliseconds
+    """
+    Get the current time in milliseconds
     """
     return long(round(time.time() * 1000))
 
 
 def readable_time(timestamp):
-    """Convert timestamp to human readable time format
+    """
+    Convert timestamp to human-readable time format
     """
     # Timestamp in milliseconds, convert to seconds
     # Cause Python handle time in seconds
@@ -105,8 +107,10 @@ parse_dom_string = parseString
 ##########################           Misc             #########################
 
 def generate_id():
-    """Generate unique 26-digit random string
     """
+    Generate unique 26-digit random string
+    """
+    # FIXME: Why not use something like the builtin uuid.uuid1() method?
     # md5 current time get 32-digit random string
     timestamp = md5(str(get_current_time())).hexdigest()
     lotter = md5(str(random.random())).hexdigest()  # :)
@@ -120,8 +124,8 @@ def generate_id():
 
 def prevent(func):
     """
-        Decarate func with this to prevent to raise Exception while
-        occure error
+        Decorate func with this to prevent raising an Exception when
+        an error is encountered
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -136,7 +140,7 @@ def prevent(func):
 def check(attr):
     def decorator(method):
         """
-            Decatrate method with this to check whether the object
+            Decorate method with this to check whether the object
             has an attribute with the given name.
         """
         @wraps(method)
