@@ -46,5 +46,7 @@ for topic in topics:
     topic.addMarker("yes")
 
 w.addSheet(s2) # the second sheet is now added to the workbook
+rel=s2.createRelationship(t1.getID(),t2.getID(),"test") # create a relationship
+s2.addRelationship(rel) # and add to the sheet
 
-xmind.save(w,"test.xmind") # and we save
+xmind.save(w,"test2.xmind") # and we save
