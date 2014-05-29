@@ -54,8 +54,8 @@ class WorkbookSaver(object):
 
         content = self._get_content()
 
-        with utils.compress(path) as f:
-            f.write(content, const.CONTENT_XML)
+        f=utils.compress(path)
+        f.write(content, const.CONTENT_XML)
 
 
 def main():
