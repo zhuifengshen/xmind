@@ -48,8 +48,3 @@ for topic in topics:
 w.addSheet(s2) # the second sheet is now added to the workbook
 
 xmind.save(w,"test.xmind") # and we save
-
-
-
-
-
