@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.loader
@@ -14,7 +14,6 @@ __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
 from .workbook import WorkbookDocument
-
 from .. import utils
 
 
@@ -32,7 +31,9 @@ class WorkbookLoader(object):
         file_name, ext = utils.split_ext(self._input_source)
 
         if ext != const.XMIND_EXT:
-            raise Exception("The XMind filename is missing the '%s' extension!" % const.XMIND_EXT)
+            raise Exception(
+                "The XMind filename is missing the '%s' extension!" %
+                const.XMIND_EXT)
 
         # Input Stream
         self._content_stream = None
@@ -43,7 +44,7 @@ class WorkbookLoader(object):
                     if stream == const.CONTENT_XML:
                         self._content_stream = utils.parse_dom_string(
                             input_stream.read(stream))
-        except:
+        except BaseException:
             pass
 
     def get_workbook(self):
@@ -58,6 +59,7 @@ class WorkbookLoader(object):
 
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

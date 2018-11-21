@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.position
@@ -13,7 +13,6 @@
 __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
-
 from .mixin import WorkbookMixinElement
 
 
@@ -40,6 +39,7 @@ class PositionElement(WorkbookMixinElement):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

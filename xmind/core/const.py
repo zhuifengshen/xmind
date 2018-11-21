@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.const
@@ -41,7 +41,7 @@ TAG_NOTES = "notes"
 TAG_RELATIONSHIP = "relationship"
 TAG_RELATIONSHIPS = "relationships"
 TAG_MARKERREFS = "marker-refs"
-TAG_MARKERREF  = "marker-ref"
+TAG_MARKERREF = "marker-ref"
 ATTR_VERSION = "version"
 ATTR_ID = "id"
 ATTR_STYLE_ID = "style-id"
@@ -67,6 +67,7 @@ VAL_FOLDED = "folded"
 
 TOPIC_ROOT = "root"
 TOPIC_ATTACHED = "attached"
+TOPIC_DETACHED = "detached"
 
 FILE_PROTOCOL = "file://"
 TOPIC_PROTOCOL = "xmind:#"

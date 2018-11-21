@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.saver
@@ -13,7 +13,6 @@
 __author__ = "aiqi@xmind.net <Woody Ai>"
 
 import codecs
-
 from . import const
 from .. import utils
 
@@ -50,16 +49,19 @@ class WorkbookSaver(object):
         file_name, ext = utils.split_ext(path)
 
         if ext != const.XMIND_EXT:
-            raise Exception("XMind filenames require a '%s' extension" % const.XMIND_EXT)
+            raise Exception(
+                "XMind filenames require a '%s' extension" %
+                const.XMIND_EXT)
 
         content = self._get_content()
 
-        f=utils.compress(path)
+        f = utils.compress(path)
         f.write(content, const.CONTENT_XML)
 
 
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

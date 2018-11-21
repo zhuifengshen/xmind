@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.mixin
@@ -14,13 +14,13 @@ __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
 from . import Element
-
 from .. import utils
 
 
 class WorkbookMixinElement(Element):
     """
     """
+
     def __init__(self, node=None, ownerWorkbook=None):
         super(WorkbookMixinElement, self).__init__(node)
         self._owner_workbook = ownerWorkbook
@@ -75,6 +75,7 @@ class TopicMixinElement(Element):
 
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

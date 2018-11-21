@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind
@@ -38,6 +38,7 @@ def save(workbook, path=None):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

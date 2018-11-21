@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.utils
@@ -20,7 +20,6 @@ import time
 import random
 import tempfile
 import zipfile
-
 from hashlib import md5
 from functools import wraps
 from xml.dom.minidom import parse, parseString
@@ -37,6 +36,7 @@ def compress(path):
     return zipfile.ZipFile(path, "w")
 
 ########################             Path             #########################
+
 
 join_path = os.path.join
 split_ext = os.path.splitext
@@ -131,7 +131,7 @@ def prevent(func):
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except:
+        except BaseException:
             return
 
     return wrapper
@@ -155,6 +155,7 @@ def check(attr):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.notes
@@ -13,7 +13,6 @@
 __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
-
 from .mixin import TopicMixinElement
 
 
@@ -73,6 +72,7 @@ class PlainNotes(_NoteContentElement):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

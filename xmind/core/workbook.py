@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.workbook
@@ -17,7 +17,6 @@ __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import Document
 from . import const
-
 from .mixin import WorkbookMixinElement
 from .sheet import SheetElement
 from .topic import TopicElement
@@ -118,6 +117,7 @@ class WorkbookElement(WorkbookMixinElement):
 class WorkbookDocument(Document):
     """ `WorkbookDocument` as central object correspond XMind workbook.
     """
+
     def __init__(self, node=None, path=None):
         """
         Construct new `WorkbookDocument` object
@@ -252,6 +252,7 @@ class WorkbookDocument(Document):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

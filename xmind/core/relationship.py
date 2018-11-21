@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.relationship
@@ -13,7 +13,6 @@
 __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
-
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
 from .title import TitleElement
@@ -90,6 +89,7 @@ class RelationshipsElement(WorkbookMixinElement):
 
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

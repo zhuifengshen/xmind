@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core
@@ -43,6 +43,7 @@ class Node(object):
     """
     All of components of XMind workbook subclass Node
     """
+
     def __init__(self, node):
         self._node = node
 
@@ -315,6 +316,7 @@ class Element(Node):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

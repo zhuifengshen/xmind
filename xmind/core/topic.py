@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.topic
@@ -13,7 +13,6 @@
 __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
-
 from .mixin import WorkbookMixinElement
 from .title import TitleElement
 from .position import PositionElement
@@ -61,7 +60,7 @@ class TopicElement(WorkbookMixinElement):
 
     def _set_hyperlink(self, hyperlink):
         self.setAttribute(const.ATTR_HREF, hyperlink)
-        #self.updateModifiedTime()
+        # self.updateModifiedTime()
 
     def getOwnerSheet(self):
         parent = self.getParentNode()
@@ -105,14 +104,16 @@ class TopicElement(WorkbookMixinElement):
         marker_list = []
         if markers:
             for i in markers:
-                marker_list.append(MarkerRefElement(i, self.getOwnerWorkbook()))
+                marker_list.append(
+                    MarkerRefElement(
+                        i, self.getOwnerWorkbook()))
         return marker_list
 
     def addMarker(self, markerId):
 
         if not markerId:
             return None
-        if type(markerId) == str:
+        if isinstance(markerId, str):
             markerId = MarkerId(markerId)
 
         refs = self._get_markerrefs()
@@ -403,6 +404,7 @@ class TopicsElement(WorkbookMixinElement):
 
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()

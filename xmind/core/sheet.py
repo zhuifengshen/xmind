@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
     xmind.core.sheet
@@ -14,7 +14,6 @@
 __author__ = "aiqi@xmind.net <Woody Ai>"
 
 from . import const
-
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
 from .title import TitleElement
@@ -63,6 +62,16 @@ class SheetElement(WorkbookMixinElement):
             rel.setTitle(title)
 
         return rel
+
+    def getRelationships(self):
+        """
+        Get relationships from current sheet
+        """
+        elems = RelationshipsElement(self._getRelationships())
+        return map(
+            RelationshipElement,
+            elems.iterChildNodesByTagName(
+                const.TAG_RELATIONSHIP))
 
     def _getRelationships(self):
         return self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
