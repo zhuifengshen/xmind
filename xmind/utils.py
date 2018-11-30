@@ -2,19 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.utils
-    ~~~~~~~~~~~
+    xmind.utils provide a handy way for internal used by xmind,
+    and excepted that function defined here will be useful to others.
 
-    :mod:``xmind.utils`` provide a handy way for internal used by
-    xmind, and excepted that function defined here will be useful to
-    others.
-
-    :copyright:
-    :license:
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 import os
 import time
 import random
@@ -25,9 +16,23 @@ from functools import wraps
 from xml.dom.minidom import parse, parseString
 
 
+# ********** Misc **********
 temp_dir = tempfile.mkdtemp
 
 
+def generate_id():
+    """
+    Generate unique 26-digit random string
+    """
+    # FIXME: Why not use something like the builtin uuid.uuid1() method?
+    # md5 current time get 32-digit random string
+    timestamp = md5(str(get_current_time())).hexdigest()
+    lotter = md5(str(random.random())).hexdigest()
+    _id = timestamp[19:] + lotter[:13]
+    return _id.decode("utf8")
+
+
+# ********** Zip **********
 def extract(path):
     return zipfile.ZipFile(path, "r")
 
@@ -35,9 +40,8 @@ def extract(path):
 def compress(path):
     return zipfile.ZipFile(path, "w")
 
-########################             Path             #########################
 
-
+# ********** Path **********
 join_path = os.path.join
 split_ext = os.path.splitext
 
@@ -47,9 +51,8 @@ def get_abs_path(path):
         Return the absolute path of a file
 
         If path contains a start point (eg Unix '/') then use the specified start point
-        instead of the current working directory. The starting point of the file
-        path is allowed to begin with a tilde "~", which will be replaced with the user's
-        home directory.
+        instead of the current working directory. The starting point of the file path is
+        allowed to begin with a tilde "~", which will be replaced with the user's home directory.
     """
 
     fp, fn = os.path.split(path)
@@ -61,8 +64,7 @@ def get_abs_path(path):
     return join_path(fp, fn)
 
 
-#########################          Time         ###############################
-
+# ********** Time **********
 def get_current_time():
     """
     Get the current time in milliseconds
@@ -73,19 +75,20 @@ def get_current_time():
 def readable_time(timestamp):
     """
     Convert timestamp to human-readable time format
+
+    Timestamp in milliseconds, convert to seconds
+    Cause Python handle time in seconds
     """
-    # Timestamp in milliseconds, convert to seconds
-    # Cause Python handle time in seconds
     timestampe_in_seconds = float(timestamp) / 1000
-    return time.strftime(
-        "%m/%d/%Y %H:%M:%S",
-        time.gmtime(timestampe_in_seconds))
+    return time.strftime("%m/%d/%Y %H:%M:%S", time.gmtime(timestampe_in_seconds))
 
 
-##########################           DOM            ###########################
+# ********** DOM **********
 
 parse_dom = parse
 parse_dom_string = parseString
+
+
 # def create_document():
 #     return dom.Document()
 #
@@ -104,23 +107,7 @@ parse_dom_string = parseString
 #         return create_document()
 
 
-##########################           Misc             #########################
-
-def generate_id():
-    """
-    Generate unique 26-digit random string
-    """
-    # FIXME: Why not use something like the builtin uuid.uuid1() method?
-    # md5 current time get 32-digit random string
-    timestamp = md5(str(get_current_time())).hexdigest()
-    lotter = md5(str(random.random())).hexdigest()  # :)
-
-    id = timestamp[19:] + lotter[:13]
-
-    return id.decode("utf8")
-
-
-############################        Decorator       ###########################
+# ********** Decorator **********
 
 def prevent(func):
     """
@@ -151,11 +138,3 @@ def check(attr):
             return None
         return wrapper
     return decorator
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

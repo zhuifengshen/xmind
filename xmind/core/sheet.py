@@ -2,17 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.sheet
-    ~~~~~~~~~~~~~~~~
-
-    :mod:``xmind.core.sheet` command XMind sheets manipulation
-
-    :copytright:
-    :license:
+    xmind.core.sheet command XMind sheets manipulation
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 from . import const
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
@@ -30,8 +21,7 @@ class SheetElement(WorkbookMixinElement):
         self._root_topic = self._get_root_topic()
 
     def _get_root_topic(self):
-        # This method initialize root topic, if not root topic
-        # DOM implementation, then create one
+        # This method initialize root topic, if not root topic DOM implementation, then create one
         topics = self.getChildNodesByTagName(const.TAG_TOPIC)
         owner_workbook = self.getOwnerWorkbook()
         if len(topics) >= 1:
@@ -68,10 +58,7 @@ class SheetElement(WorkbookMixinElement):
         Get relationships from current sheet
         """
         elems = RelationshipsElement(self._getRelationships())
-        return map(
-            RelationshipElement,
-            elems.iterChildNodesByTagName(
-                const.TAG_RELATIONSHIP))
+        return map(RelationshipElement, elems.iterChildNodesByTagName(const.TAG_RELATIONSHIP))
 
     def _getRelationships(self):
         return self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
@@ -134,7 +121,7 @@ class SheetElement(WorkbookMixinElement):
         if workbook:
             parent = self.getParentNode()
 
-            if (parent == workbook.getWorkbookElement().getImplementation()):
+            if parent == workbook.getWorkbookElement().getImplementation():
                 return workbook
 
     def updateModifiedTime(self):
@@ -143,11 +130,3 @@ class SheetElement(WorkbookMixinElement):
         workbook = self.getParent()
         if workbook:
             workbook.updateModifiedTime()
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

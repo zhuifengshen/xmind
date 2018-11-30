@@ -3,15 +3,7 @@
 
 """
     xmind.core.saver
-    ~~~~~~~~~~~~~~~~~
-
-    :copyright:
-    :license:
-
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 import codecs
 from . import const
 from .. import utils
@@ -22,13 +14,12 @@ class WorkbookSaver(object):
         """ Save `WorkbookDocument` as XMind file.
 
         :param workbook: `WorkbookDocument` object
-
         """
         self._workbook = workbook
 
     def _get_content(self):
         content_path = utils.join_path(utils.temp_dir(), const.CONTENT_XML)
-
+        # encoding specifies the encoding which is to be used for the file.
         with codecs.open(content_path, "w", encoding="utf-8") as f:
             self._workbook.output(f)
 
@@ -49,19 +40,9 @@ class WorkbookSaver(object):
         file_name, ext = utils.split_ext(path)
 
         if ext != const.XMIND_EXT:
-            raise Exception(
-                "XMind filenames require a '%s' extension" %
-                const.XMIND_EXT)
+            raise Exception("XMind filenames require a '%s' extension" % const.XMIND_EXT)
 
         content = self._get_content()
 
         f = utils.compress(path)
         f.write(content, const.CONTENT_XML)
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()

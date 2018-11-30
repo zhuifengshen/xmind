@@ -3,15 +3,7 @@
 
 """
     xmind.core.notes
-    ~~~~~~~~~~~~~~~~
-
-    :copyright:
-    :license:
-
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 from . import const
 from .mixin import TopicMixinElement
 
@@ -25,8 +17,7 @@ class NotesElement(TopicMixinElement):
     def getContent(self, format=const.PLAIN_FORMAT_NOTE):
         """ Get notes content
 
-        :parma format:  specified returned content format, plain text
-                        by default.
+        :parma format:  specified returned content format, plain text by default.
         """
 
         content = self.getFirstChildNodeByTagName(format)
@@ -68,11 +59,3 @@ class PlainNotes(_NoteContentElement):
 
     def setContent(self, content):
         self.setTextContent(content)
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

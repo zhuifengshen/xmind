@@ -3,22 +3,14 @@
 
 """
     xmind.mixin
-    ~~~~~~~~~~~
-
-    :copyright:
-    :license:
-
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 from . import const
 from . import Element
 from .. import utils
 
 
 class WorkbookMixinElement(Element):
-    """
+    """`WorkbookMixinElement` as element of the document correspond XMind element.
     """
 
     def __init__(self, node=None, ownerWorkbook=None):
@@ -72,10 +64,3 @@ class TopicMixinElement(Element):
 
         return self._owner_topic.getOwnerWorkbook()
 
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()

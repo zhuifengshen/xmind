@@ -3,18 +3,8 @@
 
 """
     xmind.core
-    ~~~~~~~~~~
-
-    :copyright:
-    :license:
-
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
-
 from xml.dom import minidom as DOM
-
 from .. import utils
 
 
@@ -59,8 +49,7 @@ class Node(object):
 
     def getImplementation(self):
         """
-        Get DOM implementation of passed node. Provides an interface to
-        manipulate the DOM directly
+        Get DOM implementation of passed node. Provides an interface to manipulate the DOM directly
         """
         return self._node
 
@@ -94,8 +83,7 @@ class Node(object):
 
     def insertBefore(self, new_node, ref_node):
         """
-        Insert new node before ref_node. Please notice that ref_node
-        must be a child of this node.
+        Insert new node before ref_node. Please notice that ref_node must be a child of this node.
         """
         new_node.setOwnerDocument(self.getOwnerDocument())
 
@@ -106,8 +94,7 @@ class Node(object):
 
     def getChildNodesByTagName(self, tag_name):
         """
-        Search for all children with specified tag name under passed DOM
-        implementation, instead of all descendants
+        Search for all children with specified tag name under passed DOM implementation, instead of all descendants
         """
         child_nodes = []
         for node in self._node.childNodes:
@@ -152,10 +139,10 @@ class Node(object):
         self._node.removeChild(child_node)
 
     def output(self, output_stream):
-        return self._node.writexml(output_stream,
-                                   addindent="",
-                                   newl="",
-                                   encoding="utf-8")
+        """
+        Output xml file to the specified stream
+        """
+        return self._node.writexml(output_stream, addindent="", newl="", encoding="utf-8")
 
 
 class Document(Node):
@@ -201,12 +188,9 @@ class Element(Node):
     def __init__(self, node=None):
         # FIXME: Should really call the base class
         #super(Element, self).__init__()
-        self._node = node or self._elementConstructor(
-            self.TAG_NAME.decode("utf8"))
+        self._node = node or self._elementConstructor(self.TAG_NAME.decode("utf8"))
 
-    def _elementConstructor(self, tag_name,
-                            namespaceURI=None,
-                            prefix=None, localName=None):
+    def _elementConstructor(self, tag_name, namespaceURI=None, prefix=None, localName=None):
         element = DOM.Element(tag_name, namespaceURI, prefix, localName)
 
         prefix = self.getPrefix(tag_name)
@@ -254,12 +238,10 @@ class Element(Node):
     def setAttribute(self, attr_name, attr_value=None):
         """
         Set attribute to element. Please notice that if ``attr_value`` is
-        None and attribute with specified ``attr_name`` is exist,
-        attribute will be removed.
+        None and attribute with specified ``attr_name`` is exist, attribute will be removed.
         """
         if attr_value is not None:
-            self._node.setAttribute(attr_name,
-                                    str(attr_value).decode("utf8"))
+            self._node.setAttribute(attr_name, str(attr_value).decode("utf8"))
         elif self._node.hasAttribute(attr_name):
             self._node.removeAttribute(attr_name)
 
@@ -313,10 +295,3 @@ class Element(Node):
 
         self._node.appendChild(text)
 
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

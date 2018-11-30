@@ -3,15 +3,7 @@
 
 """
     xmind.core.markerref
-    ~~~~~~~~~~~~~~~
-
-    :copyright:
-    :license:
-
 """
-
-__author__ = "stanypub@gmail.com <Stany MARCEL>"
-
 from . import const
 from .mixin import WorkbookMixinElement
 
@@ -30,14 +22,14 @@ class MarkerId:
         return self.name.split('-')[0]
 
 
-# 星星
+# star(星星)
 MarkerId.starRed = 'star-red'
 MarkerId.starOrange = 'star-orange'
 MarkerId.starYellow = 'star-yellow'
 MarkerId.starBlue = 'star-blue'
 MarkerId.starGreen = 'star-green'
 MarkerId.starPurple = 'star-purple'
-# 优先级
+# priority(优先级)
 MarkerId.priority1 = 'priority-1'
 MarkerId.priority2 = 'priority-2'
 MarkerId.priority3 = 'priority-3'
@@ -47,14 +39,14 @@ MarkerId.priority6 = 'priority-6'
 MarkerId.priority7 = 'priority-7'
 MarkerId.priority8 = 'priority-8'
 MarkerId.priority9 = 'priority-9'
-# 表情
+# smiley(表情)
 MarkerId.smileySmile = 'smiley-smile'
 MarkerId.smileyLaugh = 'smiley-laugh'
 MarkerId.smileyAngry = 'smiley-angry'
 MarkerId.smileyCry = 'smiley-cry'
 MarkerId.smileySurprise = 'smiley-surprise'
 MarkerId.smileyBoring = 'smiley-boring'
-# 任务进度
+# task(任务进度)
 MarkerId.task0_8 = 'task-start'
 MarkerId.task1_8 = 'task-oct'
 MarkerId.task2_8 = 'task-quarter'
@@ -64,21 +56,21 @@ MarkerId.task5_8 = 'task-5oct'
 MarkerId.task6_8 = 'task-3quar'
 MarkerId.task7_8 = 'task-7oct'
 MarkerId.task8_8 = 'task-done'
-# 旗子
+# flag(旗子)
 MarkerId.flagRed = 'flag-red'
 MarkerId.flagOrange = 'flag-orange'
 MarkerId.flagYellow = 'flag-yellow'
 MarkerId.flagBlue = 'flag-blue'
 MarkerId.flagGreen = 'flag-green'
 MarkerId.flagPurple = 'flag-purple'
-# 人像
+# people(人像)
 MarkerId.peopleRed = 'people-red'
 MarkerId.peopleOrange = 'people-orange'
 MarkerId.peopleYellow = 'people-yellow'
 MarkerId.peopleBlue = 'people-blue'
 MarkerId.peopleGreen = 'people-green'
 MarkerId.peoplePurple = 'people-purple'
-# 箭头
+# arrow(箭头)
 MarkerId.arrowUp = 'arrow-up'
 MarkerId.arrowUpRight = 'arrow-up-right'
 MarkerId.arrowRight = 'arrow-right'
@@ -88,7 +80,7 @@ MarkerId.arrowDownLeft = 'arrow-down-left'
 MarkerId.arrowLeft = 'arrow-left'
 MarkerId.arrowUpLeft = 'arrow-up-left'
 MarkerId.arrowRefresh = 'arrow-refresh'
-# 符号
+# symbol(符号)
 MarkerId.symbolPlus = 'symbol-plus'
 MarkerId.symbolMinus = 'symbol-minus'
 MarkerId.symbolQuestion = 'symbol-question'
@@ -96,7 +88,7 @@ MarkerId.symbolExclam = 'symbol-exclam'
 MarkerId.symbolInfo = 'symbol-info'
 MarkerId.symbolWrong = 'symbol-wrong'
 MarkerId.symbolRight = 'symbol-right'
-# 月份
+# month(月份)
 MarkerId.monthJan = 'month-jan'
 MarkerId.monthFeb = 'month-feb'
 MarkerId.monthMar = 'month-mar'
@@ -109,7 +101,7 @@ MarkerId.monthSep = 'month-sep'
 MarkerId.monthOct = 'month-oct'
 MarkerId.monthNov = 'month-nov'
 MarkerId.monthDec = 'month-dec'
-# 星期
+# week(星期)
 MarkerId.weekSun = 'week-sun'
 MarkerId.weekMon = 'week-mon'
 MarkerId.weekTue = 'week-tue'
@@ -138,10 +130,3 @@ class MarkerRefElement(WorkbookMixinElement):
     def setMarkerId(self, val):
         self.setAttribute(const.ATTR_MARKERID, str(val))
 
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

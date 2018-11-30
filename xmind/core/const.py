@@ -3,25 +3,24 @@
 
 """
     xmind.core.const
-    ~~~~~~~~~~~~~~~~
-
-    :copyright:
-    :license:
 """
 
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 XMIND_EXT = ".xmind"
-
 VERSION = "2.0"
+# Namespace
 NAMESPACE = "xmlns"
 XMAP = "urn:xmind:xmap:xmlns:content:2.0"
-
+NS_URI = "http://www.w3.org/1999/xhtml"
+NS_FO = (NS_URI, "fo", "http://www.w3.org/1999/XSL/Format")
+NS_SVG = (NS_URI, "svg", "http://www.w3.org/2000/svg")
+NS_XHTML = (NS_URI, "xhtml", "http://www.w3.org/1999/xhtml")
+NS_XLINK = (NS_URI, "xlink", "http://www.w3.org/1999/xlink")
+# Dir
 ATTACHMENTS_DIR = "attachments/"
 MARKERS_DIR = "markers/"
 META_INF_DIR = "META-INF/"
 REVISIONS_DIR = "Revisions/"
-
+# File
 CONTENT_XML = "content.xml"
 STYLES_XML = "styles.xml"
 META_XML = "meta.xml"
@@ -29,7 +28,7 @@ MANIFEST_XML = "META-INF/manifest.xml"
 MARKER_SHEET_XML = "markerSheet.xml"
 MARKER_SHEET = MARKERS_DIR + MARKER_SHEET_XML
 REVISIONS_XML = "revisions.xml"
-
+# Tag
 TAG_WORKBOOK = "xmap-content"
 TAG_TOPIC = "topic"
 TAG_TOPICS = "topics"
@@ -42,37 +41,30 @@ TAG_RELATIONSHIP = "relationship"
 TAG_RELATIONSHIPS = "relationships"
 TAG_MARKERREFS = "marker-refs"
 TAG_MARKERREF = "marker-ref"
+# Attr
 ATTR_VERSION = "version"
 ATTR_ID = "id"
 ATTR_STYLE_ID = "style-id"
 ATTR_TIMESTAMP = "timestamp"
 ATTR_THEME = "theme"
-ATTR_X = "svg:x"
-ATTR_Y = "svg:y"
+ATTR_X = "svg:x"  # 自由主题X坐标
+ATTR_Y = "svg:y"  # 自由主题Y坐标
 ATTR_HREF = "xlink:href"
 ATTR_BRANCH = "branch"
 ATTR_TYPE = "type"
-ATTR_END1 = "end1"
-ATTR_END2 = "end2"
+ATTR_END1 = "end1"  # relationship: start topic id
+ATTR_END2 = "end2"  # relationship: end topic id
 ATTR_MARKERID = "marker-id"
-
-NS_URI = "http://www.w3.org/1999/xhtml"
-
-NS_XHTML = (NS_URI, "xhtml", "http://www.w3.org/1999/xhtml")
-NS_XLINK = (NS_URI, "xlink", "http://www.w3.org/1999/xlink")
-NS_SVG = (NS_URI, "svg", "http://www.w3.org/2000/svg")
-NS_FO = (NS_URI, "fo", "http://www.w3.org/1999/XSL/Format")
-
+# Topic Type
 VAL_FOLDED = "folded"
-
 TOPIC_ROOT = "root"
 TOPIC_ATTACHED = "attached"
 TOPIC_DETACHED = "detached"
-
-FILE_PROTOCOL = "file://"
-TOPIC_PROTOCOL = "xmind:#"
-HTTP_PROTOCOL = "http://"
-HTTPS_PROTOCOL = "https://"
-
+# Hyperlink Type
+FILE_PROTOCOL = "file://"  # file hyperlink
+TOPIC_PROTOCOL = "xmind:#"  # topic hyperlink
+HTTP_PROTOCOL = "http://"  # hyperlink
+HTTPS_PROTOCOL = "https://"  # hyperlink
+# Note Type
 HTML_FORMAT_NOTE = "html"
 PLAIN_FORMAT_NOTE = "plain"

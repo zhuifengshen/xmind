@@ -3,15 +3,7 @@
 
 """
     xmind.core.topic
-    ~~~~~~~~~~~~~~~~
-
-    :copyright:
-    :license:
-
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
 from . import const
 from .mixin import WorkbookMixinElement
 from .title import TitleElement
@@ -20,7 +12,6 @@ from .notes import NotesElement, PlainNotes
 from .markerref import MarkerRefElement
 from .markerref import MarkerRefsElement
 from .markerref import MarkerId
-
 from .. import utils
 
 
@@ -104,9 +95,7 @@ class TopicElement(WorkbookMixinElement):
         marker_list = []
         if markers:
             for i in markers:
-                marker_list.append(
-                    MarkerRefElement(
-                        i, self.getOwnerWorkbook()))
+                marker_list.append(MarkerRefElement(i, self.getOwnerWorkbook()))
         return marker_list
 
     def addMarker(self, markerId):
@@ -186,6 +175,10 @@ class TopicElement(WorkbookMixinElement):
         # self.updateModifiedTime()
 
     def getType(self):
+        """
+        1、root
+        2、attached、detached
+        """
         parent = self.getParentNode()
         if not parent:
             return
@@ -201,15 +194,12 @@ class TopicElement(WorkbookMixinElement):
         topic_children = self._get_children()
 
         if topic_children:
-            topic_children = ChildrenElement(
-                topic_children,
-                self.getOwnerWorkbook())
+            topic_children = ChildrenElement(topic_children, self.getOwnerWorkbook())
 
             return topic_children.getTopics(topics_type)
 
     def getSubTopics(self, topics_type=const.TOPIC_ATTACHED):
-        """ List all sub topics under current topic, If not sub topics,
-        return None.
+        """ List all sub topics under current topic, If not sub topics, return None.
         """
         topics = self.getTopics(topics_type)
         if not topics:
@@ -229,8 +219,7 @@ class TopicElement(WorkbookMixinElement):
 
         return sub_topics[index]
 
-    def addSubTopic(self, topic=None, index=-1,
-                    topics_type=const.TOPIC_ATTACHED):
+    def addSubTopic(self, topic=None, index=-1, topics_type=const.TOPIC_ATTACHED):
         """
         Add a sub topic to the current topic and return added sub topic
 
@@ -240,6 +229,7 @@ class TopicElement(WorkbookMixinElement):
                         sub topics list. Otherwise, index must be less than
                         length of sub topics list and insert passed topic
                         before given index.
+        :param topics_type:   topics type
         """
         ownerWorkbook = self.getOwnerWorkbook()
         topic = topic or self.__class__(None, ownerWorkbook)
@@ -261,7 +251,7 @@ class TopicElement(WorkbookMixinElement):
         for i in topics.getChildNodesByTagName(const.TAG_TOPIC):
             topic_list.append(TopicElement(i, ownerWorkbook))
 
-        if index < 0 or len(topic_list) >= index:
+        if index < 0 or len(topic_list) <= index:  # fixed >=
             topics.appendChild(topic)
         else:
             topics.insertBefore(topic, topic_list[index])
@@ -323,8 +313,7 @@ class TopicElement(WorkbookMixinElement):
 
     def getNotes(self):
         """
-        Return `NotesElement` object` and invoke
-        `NotesElement.getContent()` to get notes content.
+        Return `NotesElement` object` and invoke `NotesElement.getContent()` to get notes content.
         """
 
         notes = self.getFirstChildNodeByTagName(const.TAG_NOTES)
@@ -401,10 +390,3 @@ class TopicsElement(WorkbookMixinElement):
 
         return sub_topics[index]
 
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()

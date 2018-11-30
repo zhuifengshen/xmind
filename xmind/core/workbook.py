@@ -2,30 +2,20 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.workbook
-    ~~~~~~~~~~~~~~~~~~~
-
-    :mod:``xmind.core.workbook`` implements the command XMind
-    manipulations.
-
-    :copyright:
-    :license:
+    xmind.core.workbook implements the command XMind manipulations.
 """
-
-__author__ = "aiqi@xmind.net <Woody Ai>"
-
-
 from . import Document
 from . import const
 from .mixin import WorkbookMixinElement
 from .sheet import SheetElement
 from .topic import TopicElement
 from .relationship import RelationshipElement
-
 from .. import utils
 
 
 class WorkbookElement(WorkbookMixinElement):
+    """`WorkbookElement` as the one and only root element of the document correspond XMind root topic.
+    """
     TAG_NAME = const.TAG_WORKBOOK
 
     def __init__(self, node=None, ownerWorkbook=None):
@@ -44,9 +34,7 @@ class WorkbookElement(WorkbookMixinElement):
             self.addSheet(sheet)
 
     def setOwnerWorkbook(self, workbook):
-        raise Exception(
-            """WorkbookDocument allowed only contains one WorkbookElement
-            """)
+        raise Exception("""WorkbookDocument allowed only contains one WorkbookElement""")
 
     def getSheets(self):
         sheets = self.getChildNodesByTagName(const.TAG_SHEET)
@@ -130,14 +118,10 @@ class WorkbookDocument(Document):
         """
         super(WorkbookDocument, self).__init__(node)
         self._path = path
-        # Initialize WorkbookDocument to make sure that contains
-        # WorkbookElement as root.
-        _workbook_element = self.getFirstChildNodeByTagName(
-            const.TAG_WORKBOOK)
+        # Initialize WorkbookDocument to make sure that contains WorkbookElement as root.
+        _workbook_element = self.getFirstChildNodeByTagName(const.TAG_WORKBOOK)
 
-        self._workbook_element = WorkbookElement(
-            _workbook_element,
-            self)
+        self._workbook_element = WorkbookElement(_workbook_element, self)
 
         if not _workbook_element:
             self.appendChild(self._workbook_element)
@@ -151,8 +135,7 @@ class WorkbookDocument(Document):
         return RelationshipElement(None, self)
 
     def createRelationship(self, end1, end2):
-        """ Create relationship with two topics. Pass two
-        `TopicElement` object and retuen `RelationshipElement` object
+        """ Create relationship with two topics. Pass two `TopicElement` object and retuen `RelationshipElement` object
         """
         sheet1 = end1.getOwnerSheet()
         sheet2 = end2.getOwnerSheet()
@@ -249,10 +232,3 @@ class WorkbookDocument(Document):
     def set_path(self, path):
         self._path = utils.get_abs_path(path)
 
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
