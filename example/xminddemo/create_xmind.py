@@ -11,7 +11,7 @@ sheet1.setTitle("first sheet")  # set its title
 # 新的sheet，默认新建一个空白root topic
 root_topic1 = sheet1.getRootTopic()  # get the root topic of this sheet
 root_topic1.setTitle("we don't care of this sheet")  # set its title
-root_topic1.addLabel("I'm a Label")
+root_topic1.setLabel("I'm a Label")
 
 sheet2 = workbook_document.createSheet()  # create a new sheet
 sheet2.setTitle("second sheet")
@@ -56,4 +56,4 @@ workbook_document.addSheet(sheet2)  # the second sheet is now added to the workb
 rel = sheet2.createRelationship(topic1.getID(), topic2.getID(), "test")  # create a relationship
 sheet2.addRelationship(rel)  # and add to the sheet
 
-xmind.save(workbook_document, "test2.xmind")  # and we save
+xmind.save(workbook_document)  # and we save

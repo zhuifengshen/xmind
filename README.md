@@ -6,12 +6,12 @@
 
 Clone the repository to a local working directory
 ```
-	git clone https://github.com/xmindltd/xmind-sdk-python.git
+git clone https://github.com/xmindltd/xmind-sdk-python.git
 ```
 	
 Now there will be a directory named `xmind-sdk-python` under the current directory. Change to the directory `xmind-sdk-python` and install **XMind SDK for python**.
 ```
-	python setup.py install
+python setup.py install
 ```
 	
 *It is highly recommended to install __XMind SDK for python__ under an isolated python environment using [pipenv](https://github.com/pypa/pipenv)*
@@ -20,23 +20,23 @@ Now there will be a directory named `xmind-sdk-python` under the current directo
 
 Open an existing XMind file or create a new XMind file and place it into a given path
 ```
-	import xmind
-	workbook = xmind.load(/path/to/file/)  # Requires '.xmind' extension
+import xmind
+workbook = xmind.load(/path/to/file/)  # Requires '.xmind' extension
 ```
 	
 Save XMind file to a path.
 If the path is not given then the API will save to the path set in the workbook.
 ```
-	xmind.save(workbook)
+xmind.save(workbook)
 ```
 or:
 ```
-	xmind.save(workbook, /save/file/to/path)
-```	
+xmind.save(workbook, /save/file/to/path)
+```
 
 	
 ## LICENSE
-
+```
 The MIT License (MIT)
 
 Copyright (c) 2013 XMind, Ltd
@@ -57,3 +57,4 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```

@@ -47,6 +47,9 @@ class TopicElement(WorkbookMixinElement):
     def _get_labels(self):
         return self.getFirstChildNodeByTagName(const.TAG_LABELS)
 
+    def _get_notes(self):
+        return self.getFirstChildNodeByTagName(const.TAG_NOTES)
+
     def _get_position(self):
         return self.getFirstChildNodeByTagName(const.TAG_POSITION)
 
@@ -130,28 +133,69 @@ class TopicElement(WorkbookMixinElement):
         return mre
 
     def getLabels(self):
+        """
+        Get lables content. One topic can set one label right now.
+        """
         _labels = self._get_labels()
         if not _labels:
             return None
         tmp = LabelsElement(_labels, self.getOwnerWorkbook())
-        labels = tmp.getChildNodesByTagName(const.TAG_LABEL)
-        label_list = []
-        if labels:
-            for i in labels:
-                label_list.append(LabelElement(i, self.getOwnerWorkbook()))
-        return label_list
+        # labels = tmp.getChildNodesByTagName(const.TAG_LABEL)
+        # label_list = []
+        # if labels:
+        #     for i in labels:
+        #         label_list.append(LabelElement(i, self.getOwnerWorkbook()))
+        # return label_list
 
-    def addLabel(self, content):
+        label = tmp.getFirstChildNodeByTagName(const.TAG_LABEL)
+        content = label.getLabel()
+        return content
+
+    def setLabel(self, content):
         _labels = self._get_labels()
         if not _labels:
             tmp = LabelsElement(None, self.getOwnerWorkbook())
             self.appendChild(tmp)
         else:
             tmp = LabelsElement(_labels, self.getOwnerWorkbook())
+            old = tmp.getFirstChildNodeByTagName(const.TAG_LABEL)
+            if old:
+                tmp.getImplementation().removeChild(old)
 
         label = LabelElement(content, None, self.getOwnerWorkbook())
         tmp.appendChild(label)
         return label
+
+    def getNotes(self):
+        """
+        Get notes content. One topic can set one note right now.
+        """
+        _notes = self._get_notes()
+        if not _notes:
+            return None
+        tmp = NotesElement(_notes, self)
+        # Only support plain text notes right now
+        content = tmp.getContent(const.PLAIN_FORMAT_NOTE)
+        return content
+
+    def setPlainNotes(self, content):
+        """ Set plain text notes to topic
+
+        :param content: utf8 plain text
+        """
+        new = PlainNotes(content, None, self)
+        _notes = self._get_notes()
+        if not _notes:
+            tmp = NotesElement(None, self)
+            self.appendChild(tmp)
+        else:
+            tmp = NotesElement(_notes, self)
+            old = tmp.getFirstChildNodeByTagName(new.getFormat())
+            if old:
+                tmp.getImplementation().removeChild(old)
+
+        tmp.appendChild(new)
+        return new
 
     def setFolded(self):
         self.setAttribute(const.ATTR_BRANCH, const.VAL_FOLDED)
@@ -338,40 +382,6 @@ class TopicElement(WorkbookMixinElement):
             url = const.HTTP_PROTOCOL + content
 
         self._set_hyperlink(url)
-
-    def getNotes(self):
-        """
-        Return `NotesElement` object` and invoke `NotesElement.getContent()` to get notes content.
-        """
-
-        notes = self.getFirstChildNodeByTagName(const.TAG_NOTES)
-
-        if notes is not None:
-            return NotesElement(notes, self)
-
-    def _set_notes(self):
-        notes = self.getNotes()
-
-        if notes is None:
-            notes = NotesElement(ownerTopic=self)
-            self.appendChild(notes)
-
-        return notes
-
-    def setPlainNotes(self, content):
-        """ Set plain text notes to topic
-
-        :param content: utf8 plain text
-
-        """
-        notes = self._set_notes()
-        new = PlainNotes(content, None, self)
-
-        old = notes.getFirstChildNodeByTagName(new.getFormat())
-        if old is not None:
-            notes.getImplementation().removeChild(old)
-
-        notes.appendChild(new)
 
 
 class ChildrenElement(WorkbookMixinElement):

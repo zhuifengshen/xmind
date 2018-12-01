@@ -20,17 +20,17 @@ class NotesElement(TopicMixinElement):
         :parma format:  specified returned content format, plain text by default.
         """
 
-        content = self.getFirstChildNodeByTagName(format)
+        _note = self.getFirstChildNodeByTagName(format)
 
-        if not content:
+        if not _note:
             return
 
         if format is const.PLAIN_FORMAT_NOTE:
-            content = PlainNotes(node=content, ownerTopic=self.getOwnerTopic())
+            _note = PlainNotes(node=_note, ownerTopic=self.getOwnerTopic())
         else:
             raise Exception("Only support plain text notes right now")
 
-        return content.getTextContent()
+        return _note.getTextContent()
 
 
 class _NoteContentElement(TopicMixinElement):
