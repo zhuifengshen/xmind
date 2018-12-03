@@ -27,7 +27,7 @@ def split_hyperlink(hyperlink):
     while hyperlink.startswith("/"):
         hyperlink = hyperlink[1:]
 
-    return (protocol, hyperlink)
+    return protocol, hyperlink
 
 
 class TopicElement(WorkbookMixinElement):
@@ -37,6 +37,7 @@ class TopicElement(WorkbookMixinElement):
         super(TopicElement, self).__init__(node, ownerWorkbook)
 
         self.addIdAttribute(const.ATTR_ID)
+        self.setAttribute(const.ATTR_TIMESTAMP, int(utils.get_current_time()))
 
     def _get_title(self):
         return self.getFirstChildNodeByTagName(const.TAG_TITLE)
@@ -106,7 +107,11 @@ class TopicElement(WorkbookMixinElement):
         return marker_list
 
     def addMarker(self, markerId):
-
+        """
+        Add a marker to this topic
+        :param markerId: a markerId indicating the marker to add
+        :return: a MarkerRefElement instance
+        """
         if not markerId:
             return None
         if isinstance(markerId, str):
@@ -119,11 +124,13 @@ class TopicElement(WorkbookMixinElement):
         else:
             tmp = MarkerRefsElement(refs, self.getOwnerWorkbook())
         markers = tmp.getChildNodesByTagName(const.TAG_MARKERREF)
+
+        # If the same family marker exists, replace it
         if markers:
             for m in markers:
                 mre = MarkerRefElement(m, self.getOwnerWorkbook())
-                # look for a marker of same familly
-                if mre.getMarkerId().getFamilly() == markerId.getFamilly():
+                # look for a marker of same family
+                if mre.getMarkerId().getFamily() == markerId.getFamily():
                     mre.setMarkerId(markerId)
                     return mre
         # not found so let's append it
@@ -222,28 +229,26 @@ class TopicElement(WorkbookMixinElement):
         x = x or 0
         y = y or 0
 
-        return (int(x), int(y))
+        return int(x), int(y)
 
     def setPosition(self, x, y):
-        ownerWorkbook = self.getOwnerWorkbook()
+        owner_workbook = self.getOwnerWorkbook()
         position = self._get_position()
 
         if not position:
-            position = PositionElement(ownerWorkbook=ownerWorkbook)
+            position = PositionElement(ownerWorkbook=owner_workbook)
             self.appendChild(position)
         else:
-            position = PositionElement(position, ownerWorkbook)
+            position = PositionElement(position, owner_workbook)
 
         position.setX(x)
         position.setY(y)
-
         # self.updateModifiedTime()
 
     def removePosition(self):
         position = self._get_position()
         if position is not None:
             self.getImplementation().removeChild(position)
-
         # self.updateModifiedTime()
 
     def getType(self):
@@ -271,11 +276,11 @@ class TopicElement(WorkbookMixinElement):
             return topic_children.getTopics(topics_type)
 
     def getSubTopics(self, topics_type=const.TOPIC_ATTACHED):
-        """ List all sub topics under current topic, If not sub topics, return None.
+        """ List all sub topics under current topic, If not sub topics, return empty list.
         """
         topics = self.getTopics(topics_type)
         if not topics:
-            return
+            return []
 
         return topics.getSubTopics()
 
@@ -301,29 +306,29 @@ class TopicElement(WorkbookMixinElement):
                         sub topics list. Otherwise, index must be less than
                         length of sub topics list and insert passed topic
                         before given index.
-        :param topics_type:   topics type
+        :param topics_type:   TOPIC_ATTACHED or TOPIC_DETACHED
         """
-        ownerWorkbook = self.getOwnerWorkbook()
-        topic = topic or self.__class__(None, ownerWorkbook)
+        owner_workbook = self.getOwnerWorkbook()
+        topic = topic or self.__class__(None, owner_workbook)
 
         topic_children = self._get_children()
         if not topic_children:
-            topic_children = ChildrenElement(ownerWorkbook=ownerWorkbook)
+            topic_children = ChildrenElement(ownerWorkbook=owner_workbook)
             self.appendChild(topic_children)
         else:
-            topic_children = ChildrenElement(topic_children, ownerWorkbook)
+            topic_children = ChildrenElement(topic_children, owner_workbook)
 
         topics = topic_children.getTopics(topics_type)
         if not topics:
-            topics = TopicsElement(ownerWorkbook=ownerWorkbook)
+            topics = TopicsElement(ownerWorkbook=owner_workbook)
             topics.setAttribute(const.ATTR_TYPE, topics_type)
             topic_children.appendChild(topics)
 
         topic_list = []
         for i in topics.getChildNodesByTagName(const.TAG_TOPIC):
-            topic_list.append(TopicElement(i, ownerWorkbook))
+            topic_list.append(TopicElement(i, owner_workbook))
 
-        if index < 0 or len(topic_list) <= index:  # fixed >=
+        if index < 0 or index >= len(topic_list):
             topics.appendChild(topic)
         else:
             topics.insertBefore(topic, topic_list[index])

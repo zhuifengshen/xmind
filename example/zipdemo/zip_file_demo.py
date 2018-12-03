@@ -11,10 +11,10 @@ def zip_file_demo():
     with zipfile.ZipFile(os.path.join(os.getcwd(), 'demo.zip')) as zipFile:
         for file in zipFile.namelist():
             zipInfo = zipFile.getinfo(file)
-            print zipInfo.filename
-            print zipInfo.date_time
-            print zipInfo.file_size
-            print zipInfo.compress_size
+            print(zipInfo.filename)
+            print(zipInfo.date_time)
+            print(zipInfo.file_size)
+            print(zipInfo.compress_size)
             # if file == const.CONTENT_XML:
             #     zipFile.extract(file)
 

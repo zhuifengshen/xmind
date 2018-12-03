@@ -35,6 +35,10 @@ class Node(object):
     """
 
     def __init__(self, node):
+        # FIXME: WE HAVE TO CHECK IF node INHERITS dom.Node class
+        # it's needed because later in appendChild method we will call
+        # self._node.appendChild and if we pass wrong type then we will
+        # have exception!!!!
         self._node = node
 
     def _equals(self, obj=None):
@@ -187,19 +191,29 @@ class Element(Node):
 
     def __init__(self, node=None):
         # FIXME: Should really call the base class
-        #super(Element, self).__init__()
-        self._node = node or self._elementConstructor(self.TAG_NAME.decode("utf8"))
+        # super(Element, self).__init__()
+        self._node = node or self._elementConstructor(self.TAG_NAME)
 
     def _elementConstructor(self, tag_name, namespaceURI=None, prefix=None, localName=None):
-        element = DOM.Element(tag_name, namespaceURI, prefix, localName)
+        return DOM.Element(tag_name,
+                           namespaceURI,
+                           self.getPrefix(tag_name),
+                           self.getLocalName(tag_name))
 
-        prefix = self.getPrefix(tag_name)
-        localName = self.getLocalName(tag_name)
+        # _localName = self.getLocalName(tag_name)
+        # element = DOM.Element(tag_name, namespaceURI, prefix, _localName)
+        #
+        # prefix = self.getPrefix(tag_name)
+        # element.prefix = prefix
+        #
+        # return element
 
-        element.prefix = prefix
-        element.localName = localName
-
-        return element
+        # element = DOM.Element(tag_name, namespaceURI, prefix, localName)
+        # prefix = self.getPrefix(tag_name)
+        # localName = self.getLocalName(tag_name)
+        # element.prefix = prefix
+        # element.localName = localName
+        # return element
 
     def getOwnerDocument(self):
         return self._node.ownerDocument
@@ -241,7 +255,7 @@ class Element(Node):
         None and attribute with specified ``attr_name`` is exist, attribute will be removed.
         """
         if attr_value is not None:
-            self._node.setAttribute(attr_name, str(attr_value).decode("utf8"))
+            self._node.setAttribute(attr_name, str(attr_value))
         elif self._node.hasAttribute(attr_name):
             self._node.removeAttribute(attr_name)
 
@@ -291,7 +305,7 @@ class Element(Node):
                 self._node.removeChild(node)
 
         text = DOM.Text()
-        text.data = data.decode("utf8")
+        text.data = data
 
         self._node.appendChild(text)
 

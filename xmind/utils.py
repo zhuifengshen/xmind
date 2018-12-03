@@ -26,10 +26,10 @@ def generate_id():
     """
     # FIXME: Why not use something like the builtin uuid.uuid1() method?
     # md5 current time get 32-digit random string
-    timestamp = md5(str(get_current_time())).hexdigest()
-    lotter = md5(str(random.random())).hexdigest()
+    timestamp = md5(str(get_current_time()).encode('utf-8')).hexdigest()
+    lotter = md5(str(random.random()).encode('utf-8')).hexdigest()
     _id = timestamp[19:] + lotter[:13]
-    return _id.decode("utf8")
+    return _id
 
 
 # ********** Zip **********
@@ -69,7 +69,7 @@ def get_current_time():
     """
     Get the current time in milliseconds
     """
-    return long(round(time.time() * 1000))
+    return int(round(time.time() * 1000))
 
 
 def readable_time(timestamp):

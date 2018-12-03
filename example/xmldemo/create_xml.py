@@ -16,8 +16,8 @@ def gen_xml_demo1():
     text = xml.createTextNode('text')
     child.appendChild(text)
 
-    print xml.toxml()
-    print xml.toprettyxml()
+    print(xml.toxml())
+    print(xml.toprettyxml())
 
     hello = minidom.parseString('<hello>world</hello>')
     root.appendChild(hello.firstChild)
@@ -55,17 +55,17 @@ def parse_xml_demo1():
     employees = root.getElementsByTagName('employee')
 
     for employee in employees:
-        print employee.nodeName
-        print employee.toxml()
-        print employee.childNodes
+        print(employee.nodeName)
+        print(employee.toxml())
+        print(employee.childNodes)
 
         nameNode = employee.getElementsByTagName("name")[0]
-        print nameNode.childNodes
-        print nameNode.nodeName + ':' + nameNode.childNodes[0].nodeValue  # nodeValue是结点的值，只对textNode有效
+        print(nameNode.childNodes)
+        print(nameNode.nodeName + ':' + nameNode.childNodes[0].nodeValue)  # nodeValue是结点的值，只对textNode有效
 
         ageNode = employee.getElementsByTagName('age')[0]
-        print ageNode.childNodes
-        print ageNode.nodeName + ':' + ageNode.childNodes[0].data  # 对应textNode也可以通过.data属性获取其文本内容
+        print(ageNode.childNodes)
+        print(ageNode.nodeName + ':' + ageNode.childNodes[0].data)  # 对应textNode也可以通过.data属性获取其文本内容
 
 
 def parse_xml_demo2():
@@ -77,20 +77,20 @@ def parse_xml_demo2():
     domtree = minidom.parse("movies.xml")
     collection = domtree.documentElement
     if collection.hasAttribute("shelf"):
-        print "Root element: %s" % collection.getAttribute("shelf")
+        print("Root element: %s" % collection.getAttribute("shelf"))
     movies = collection.getElementsByTagName("movie")
     for movie in movies:
-        print "*****Movie*****"
+        print("*****Movie*****")
         if movie.hasAttribute("title"):
-            print "Title: %s" % movie.getAttribute("title")
+            print("Title: %s" % movie.getAttribute("title"))
         type = movie.getElementsByTagName('type')[0]
-        print "Type: %s" % type.childNodes[0].data
+        print("Type: %s" % type.childNodes[0].data)
         format = movie.getElementsByTagName('format')[0]
-        print "Format: %s" % format.childNodes[0].data
+        print("Format: %s" % format.childNodes[0].data)
         rating = movie.getElementsByTagName('rating')[0]
-        print "Rating: %s" % rating.childNodes[0].data
+        print("Rating: %s" % rating.childNodes[0].data)
         description = movie.getElementsByTagName('description')[0]
-        print "Description: %s" % description.childNodes[0].data
+        print("Description: %s" % description.childNodes[0].data)
 
 
 if __name__ == '__main__':

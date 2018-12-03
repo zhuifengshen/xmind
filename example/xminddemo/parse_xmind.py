@@ -3,32 +3,32 @@
 import xmind
 import pipes
 
-M = {}
+elements = {}
 
 
 def _echo(tag, element, indent=0):
     title = element.getTitle()
-    M[element.getID()] = title
-    print '\t' * indent, tag, ':', pipes.quote(title)
+    elements[element.getID()] = title
+    print('\t' * indent, tag, ':', pipes.quote(title))
 
 
 def dump_sheet(sheet):
-    rootTopic = sheet.getRootTopic()
-    _echo('RootTopic', rootTopic, 1)
+    root_topic = sheet.getRootTopic()
+    _echo('RootTopic', root_topic, 1)
 
-    for topic in rootTopic.getSubTopics() or []:
+    for topic in root_topic.getSubTopics() or []:
         _echo('AttachedSubTopic', topic, 2)
 
-    for topic in rootTopic.getSubTopics(xmind.core.const.TOPIC_DETACHED) or []:
+    for topic in root_topic.getSubTopics(xmind.core.const.TOPIC_DETACHED) or []:
         _echo('DetachedSubtopic', topic, 2)
 
     for rel in sheet.getRelationships():
         id1, id2 = rel.getEnd1ID(), rel.getEnd2ID()
-        print 'Relation: [%s] --> [%s]' % (M.get(id1), M.get(id2))
+        print('Relationship: [%s] --> [%s]' % (elements.get(id1), elements.get(id2)))
 
 
 def main():
-    x = xmind.load('test2.xmind')
+    x = xmind.load('test.xmind')
     for sheet in x.getSheets():
         _echo('Sheet', sheet)
         dump_sheet(sheet)

@@ -4,6 +4,7 @@
 """
     xmind.core.sheet command XMind sheets manipulation
 """
+from xmind import utils
 from . import const
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
@@ -18,6 +19,7 @@ class SheetElement(WorkbookMixinElement):
         super(SheetElement, self).__init__(node, ownerWorkbook)
 
         self.addIdAttribute(const.ATTR_ID)
+        self.setAttribute(const.ATTR_TIMESTAMP, int(utils.get_current_time()))
         self._root_topic = self._get_root_topic()
 
     def _get_root_topic(self):
@@ -33,37 +35,10 @@ class SheetElement(WorkbookMixinElement):
 
         return root_topic
 
-    def createRelationship(self, end1, end2, title=None):
-        """
-        Create a relationship between two different topics and return the
-        created rel. Please notice that the created rel will not be added to
-        sheet. Call `addRelationship()` to add rel to sheet.
-
-        :param end1:    topic ID
-        :param end2:    topic ID
-        :param title:   relationship title, default by None
-
-        """
-        rel = RelationshipElement(ownerWorkbook=self.getOwnerWorkbook())
-        rel.setEnd1ID(end1)
-        rel.setEnd2ID(end2)
-
-        if title is not None:
-            rel.setTitle(title)
-
-        return rel
-
-    def getRelationships(self):
-        """
-        Get relationships from current sheet
-        """
-        elems = RelationshipsElement(self._getRelationships())
-        return map(RelationshipElement, elems.iterChildNodesByTagName(const.TAG_RELATIONSHIP))
-
     def _getRelationships(self):
         return self.getFirstChildNodeByTagName(const.TAG_RELATIONSHIPS)
 
-    def addRelationship(self, rel):
+    def _addRelationship(self, rel):
         """
         Add relationship to sheet
         """
@@ -76,6 +51,40 @@ class SheetElement(WorkbookMixinElement):
             self.appendChild(rels)
 
         rels.appendChild(rel)
+
+    def createRelationship(self, end1, end2, title=None):
+        """
+        Create a relationship between two different topics and return the
+        created rel. Please notice that the created rel will be added to
+        sheet.
+
+        :param end1:    topic or topic ID
+        :param end2:    topic or topic ID
+        :param title:   relationship title, default by None
+
+        :return: a `RelationshipElement` instance
+
+        """
+        rel = RelationshipElement(ownerWorkbook=self.getOwnerWorkbook())
+        rel.setEnd1ID(end1 if isinstance(end1, str) else end1.getID())
+        rel.setEnd2ID(end2 if isinstance(end2, str) else end2.getID())
+
+        if title is not None:
+            rel.setTitle(title)
+
+        self._addRelationship(rel)
+
+        return rel
+
+    def getRelationships(self):
+        """
+        Get list of relationship from current sheet
+        """
+        _rels = self._getRelationships()
+        if not _rels:
+            return []
+        owner_workbook = self.getOwnerWorkbook()
+        return RelationshipsElement(_rels, owner_workbook).getRelationships()
 
     def removeRelationship(self, rel):
         """

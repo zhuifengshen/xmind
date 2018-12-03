@@ -4,6 +4,7 @@
 """
     xmind.core.relationship
 """
+from xmind import utils
 from . import const
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
@@ -17,6 +18,7 @@ class RelationshipElement(WorkbookMixinElement):
         super(RelationshipElement, self).__init__(node, ownerWorkbook)
 
         self.addIdAttribute(const.ATTR_ID)
+        self.setAttribute(const.ATTR_TIMESTAMP, int(utils.get_current_time()))
 
     def _get_title(self):
         return self.getFirstChildNodeByTagName(const.TAG_TITLE)
@@ -77,3 +79,14 @@ class RelationshipsElement(WorkbookMixinElement):
 
     def __init__(self, node=None, ownerWorkbook=None):
         super(RelationshipsElement, self).__init__(node, ownerWorkbook)
+
+    def getRelationships(self):
+        """
+        List all relationships
+        """
+        relationships = []
+        owner_workbook = self.getOwnerWorkbook()
+        for r in self.getChildNodesByTagName(const.TAG_RELATIONSHIP):
+            relationships.append(RelationshipElement(r, owner_workbook))
+
+        return relationships

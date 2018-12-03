@@ -55,7 +55,7 @@ class WorkbookElement(WorkbookMixinElement):
         sheet = SheetElement(None, self.getOwnerWorkbook())
         return sheet
 
-    def addSheet(self, sheet, index=None):
+    def addSheet(self, sheet, index=-1):
         sheets = self.getSheets()
         if index < 0 or index >= len(sheets):
             self.appendChild(sheet)
@@ -92,14 +92,14 @@ class WorkbookElement(WorkbookMixinElement):
             if target != sheet:
                 self.removeChild(sheet)
                 self.insertBefore(sheet, target)
-        else:
+        else:  # target < 0 or target >= len(sheets)
             self.removeChild(sheet)
             self.appendChild(sheet)
 
         self.updateModifiedTime()
 
     def getVersion(self):
-        return self.getAttribution(const.ATTR_VERSION)
+        return self.getAttribute(const.ATTR_VERSION)
 
 
 class WorkbookDocument(Document):
@@ -131,27 +131,24 @@ class WorkbookDocument(Document):
     def getWorkbookElement(self):
         return self._workbook_element
 
-    def _create_relationship(self):
-        return RelationshipElement(None, self)
-
-    def createRelationship(self, end1, end2):
-        """ Create relationship with two topics. Pass two `TopicElement` object and retuen `RelationshipElement` object
+    def createRelationship(self, topic1, topic2, title=None):
         """
-        sheet1 = end1.getOwnerSheet()
-        sheet2 = end2.getOwnerSheet()
+        Create relationship with two topics(on the same sheet) and return a `RelationshipElement` instance
 
-        if sheet1 and sheet2:
-            if sheet1.getImplementation() == sheet2.getImplementation():
+        :param topic1: first topic
+        :param topic2: second topic
+        :param title: relationship title, default by None
+        :return: a `RelationshipElement` instance
 
-                rel = self._create_relationship()
-                rel.setEnd1ID(end1.getID())
-                rel.setEnd2ID(end2.getID())
+        """
+        sheet1 = topic1.getOwnerSheet()
+        sheet2 = topic2.getOwnerSheet()
 
-                sheet1.addRelationships(rel)
-
-                return rel
-
-        raise Exception("Topics not on the same sheet!")
+        if sheet1.getImplementation() == sheet2.getImplementation():
+            rel = sheet1.createRelationship(topic1.getID(), topic2.getID(), title)
+            return rel
+        else:
+            raise Exception("Topics not on the same sheet!")
 
     def createTopic(self):
         """
@@ -173,24 +170,21 @@ class WorkbookDocument(Document):
         """
         return self._workbook_element.getSheetByIndex(0)
 
-    def createSheet(self):
+    def createSheet(self, index=-1):
         """
-        Create new sheet. But please notice the new created sheet
-        hasn't been added to the workbook. Invoke :method addSheet: to do that.
-        """
-        return self._workbook_element.createSheet()
+        Create new sheet. But please notice the new created sheet has
+        been added to the workbook. Invoke :method addSheet: to do that.
 
-    def addSheet(self, sheet, index=None):
-        """
-        Add a sheet to the workbook.
-
-        :param sheet:   add passed `SheetElement` object to workbook.
-
-        :param index:   insert sheet before another sheet that given by
+        :param index: insert sheet before another sheet that given by
                         index. If index not given, append sheet to the
                         sheets list.
+
+        :return: a `SheetElement` instance
+
         """
+        sheet = self._workbook_element.createSheet()
         self._workbook_element.addSheet(sheet, index)
+        return sheet
 
     def removeSheet(self, sheet):
         """

@@ -1,40 +1,19 @@
-### /Users/monster/.gitignore-boilerplates/Python.gitignore
+.DS_Store
 .idea
-*.py[cod]
 
-# C extensions
-*.so
-
-# Packages
+# build
 *.egg
 *.egg-info
 dist
 build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
-lib
-lib64
 __pycache__
+.pypirc
+*.py[cod]
 
-# Installer logs
-pip-log.txt
-
-# Unit test / coverage reports
+# unittest or coverage reports
 .coverage
-.tox
-nosetests.xml
+htmlcov
+logs
 
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
 
 
