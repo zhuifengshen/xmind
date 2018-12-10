@@ -67,7 +67,7 @@ topic3.setPlainNotes("notes for this topic")  # set notes (F4 in XMind)
 topic3.setTitle("topic with \n notes")
 
 topic4 = TopicElement(ownerWorkbook=workbook_document)
-topic4.setFileHyperlink("logo.jpeg")  # set a file hyperlink
+topic4.setFileHyperlink("logo.png")  # set a file hyperlink
 topic4.setTitle("topic with a file")
 
 topic1_1 = TopicElement(ownerWorkbook=workbook_document)

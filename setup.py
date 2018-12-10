@@ -10,7 +10,7 @@ setup(
     description="Xmind思维导图创建和解析的一站式解决方案",
     packages=find_packages(),
 
-    # install_requires=["distribute"],
+    install_requires=["openpyxl", "xlrd", "xlutils"],
     python_requires='>=3.6',
     classifiers=[
         "Programming Language :: Python :: 3",
