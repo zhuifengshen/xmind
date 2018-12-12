@@ -349,8 +349,7 @@ class TopicElement(WorkbookMixinElement):
         return self.getAttribute(const.ATTR_HREF)
 
     def setFileHyperlink(self, path):
-        """
-        Set file as topic hyperlink
+        """ Set file as topic hyperlink
 
         :param path: path of specified file
 
@@ -362,10 +361,9 @@ class TopicElement(WorkbookMixinElement):
         self._set_hyperlink(path)
 
     def setTopicHyperlink(self, tid):
-        """
-        Set topic as topic hyperlink
+        """ Set topic as topic hyperlink
 
-        :param id: given topic's id
+        :param tid: given topic's id
 
         """
         protocol, content = split_hyperlink(tid)
@@ -387,6 +385,17 @@ class TopicElement(WorkbookMixinElement):
             url = const.HTTP_PROTOCOL + content
 
         self._set_hyperlink(url)
+
+    def getStructureClass(self):
+        self.getAttribute(const.ATTR_STRUCTURE_CLASS)
+
+    def setStructureClass(self, structure_class):
+        """ Set topic's structure class attribute
+
+        :param structure_class: such as structure-class="org.xmind.ui.map.floating"
+
+        """
+        self.setAttribute(const.ATTR_STRUCTURE_CLASS, structure_class)
 
 
 class ChildrenElement(WorkbookMixinElement):

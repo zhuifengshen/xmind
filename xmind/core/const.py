@@ -47,6 +47,7 @@ TAG_MARKERREF = "marker-ref"
 ATTR_VERSION = "version"
 ATTR_ID = "id"
 ATTR_STYLE_ID = "style-id"
+ATTR_STRUCTURE_CLASS = "structure-class"
 ATTR_TIMESTAMP = "timestamp"
 ATTR_THEME = "theme"
 ATTR_X = "svg:x"  # 自由主题X坐标
