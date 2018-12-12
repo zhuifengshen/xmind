@@ -10,6 +10,7 @@ def zip_file_demo():
     """
     with zipfile.ZipFile(os.path.join(os.getcwd(), 'demo.zip')) as zipFile:
         for file in zipFile.namelist():
+            print(file)
             zipInfo = zipFile.getinfo(file)
             print(zipInfo.filename)
             print(zipInfo.date_time)
