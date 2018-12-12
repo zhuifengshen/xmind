@@ -51,11 +51,11 @@ class RelationshipElement(WorkbookMixinElement):
         self.setAttribute(const.ATTR_END2, id)
         self.updateModifiedTime()
 
-    def getEnd1(self, end1_id):
-        return self._find_end_point(end1_id)
+    def getEnd1(self):
+        return self._find_end_point(self.getEnd1ID())
 
-    def getEnd2(self, end2_id):
-        return self._find_end_point(end2_id)
+    def getEnd2(self):
+        return self._find_end_point(self.getEnd2ID())
 
     def getTitle(self):
         title = self._get_title()
