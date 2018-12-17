@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
+import json
+
 import xmind
 import pipes
 
@@ -29,7 +31,16 @@ def dump_sheet(sheet):
 
 def main():
     x = xmind.load('test.xmind')
-    for sheet in x.getSheets():
+    print(x.getData())  # convert the xmind file to dict data
+    print(x.to_prettify_json())  # convert the xmind file to a json format
+
+    sheet = x.getPrimarySheet()
+    print(sheet.getData())  # convert the sheet to dict data
+
+    root_topic = sheet.getRootTopic()
+    print(root_topic.getData())  # convert the topic to dict data
+
+    for sheet in x.getSheets():  # custom extraction or required data
         _echo('Sheet', sheet)
         dump_sheet(sheet)
 

@@ -1,0 +1,215 @@
+[
+    {
+        "name": "test case 1",
+        "version": 1,
+        "summary": "",
+        "preconditions": "summary",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "step 1",
+                "expectedresults": "expected 1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "step 2",
+                "expectedresults": "expected 2",
+                "execution_type": 1
+            }
+        ],
+        "product": "test case by xmind",
+        "testsuite": "demo suite"
+    },
+    {
+        "name": "test case 2",
+        "version": 1,
+        "summary": "",
+        "preconditions": "summary",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "step 1",
+                "expectedresults": "expected 1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "step 2",
+                "expectedresults": "expected 2",
+                "execution_type": 1
+            }
+        ],
+        "product": "test case by xmind",
+        "testsuite": "demo suite"
+    },
+    {
+        "name": "test case 3",
+        "version": 1,
+        "summary": "",
+        "preconditions": "summary",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "step 1",
+                "expectedresults": "expected 1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "step 2",
+                "expectedresults": "expected 2",
+                "execution_type": 1
+            },
+            {
+                "step_number": 3,
+                "actions": "step 3",
+                "expectedresults": "expected 3",
+                "execution_type": 1
+            }
+        ],
+        "product": "test case by xmind",
+        "testsuite": "demo suite"
+    },
+    {
+        "name": "test case title for apple 1",
+        "version": 1,
+        "summary": "",
+        "preconditions": "note will be summary field for this test case",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "step1 action",
+                "expectedresults": "step1 expected",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "step2 action",
+                "expectedresults": "step2 expected",
+                "execution_type": 1
+            },
+            {
+                "step_number": 3,
+                "actions": "step3 action",
+                "expectedresults": "step3 expected",
+                "execution_type": 1
+            }
+        ],
+        "product": "test case by xmind",
+        "testsuite": "apple suite"
+    },
+    {
+        "name": "test case title for apple 2",
+        "version": 1,
+        "summary": "",
+        "preconditions": "summary of test case",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "test case by xmind",
+        "testsuite": "apple suite"
+    },
+    {
+        "name": "my test case 1",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 3,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "step 1 action without expected",
+                "expectedresults": "",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "step 2 action",
+                "expectedresults": "step2 expected",
+                "execution_type": 1
+            },
+            {
+                "step_number": 3,
+                "actions": "step 3 action",
+                "expectedresults": "step 3 expected",
+                "execution_type": 1
+            }
+        ],
+        "product": "test case by xmind",
+        "testsuite": "banana suite"
+    },
+    {
+        "name": "my test case 2",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "test case by xmind",
+        "testsuite": "banana suite"
+    },
+    {
+        "name": "my test case 1 without priority for this test",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "test case by xmind",
+        "testsuite": "orange suite"
+    },
+    {
+        "name": "my test case 2 start from this step expected something",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "test case by xmind",
+        "testsuite": "orange suite"
+    },
+    {
+        "name": "test 3 without steps",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "test case by xmind",
+        "testsuite": "orange suite"
+    }
+]

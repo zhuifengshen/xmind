@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.sheet command XMind sheets manipulation
+xmind.core.sheet command XMind sheets manipulation
 """
 from xmind import utils
 from . import const
@@ -139,3 +139,15 @@ class SheetElement(WorkbookMixinElement):
         workbook = self.getParent()
         if workbook:
             workbook.updateModifiedTime()
+
+    def getData(self):
+        """
+        Get sheet's main content in the form of a dictionary.
+        """
+        root_topic = self.getRootTopic()
+        data = {
+            'id': self.getAttribute(const.ATTR_ID),
+            'title': self.getTitle(),
+            'topic': root_topic.getData()
+        }
+        return data

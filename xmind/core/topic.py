@@ -97,7 +97,7 @@ class TopicElement(WorkbookMixinElement):
     def getMarkers(self):
         refs = self._get_markerrefs()
         if not refs:
-            return None
+            return []
         tmp = MarkerRefsElement(refs, self.getOwnerWorkbook())
         markers = tmp.getChildNodesByTagName(const.TAG_MARKERREF)
         marker_list = []
@@ -146,7 +146,7 @@ class TopicElement(WorkbookMixinElement):
         _labels = self._get_labels()
         if not _labels:
             return None
-        tmp = LabelsElement(_labels, self.getOwnerWorkbook())
+        tmp = LabelsElement(_labels, self)
         # labels = tmp.getChildNodesByTagName(const.TAG_LABEL)
         # label_list = []
         # if labels:
@@ -154,22 +154,22 @@ class TopicElement(WorkbookMixinElement):
         #         label_list.append(LabelElement(i, self.getOwnerWorkbook()))
         # return label_list
 
-        label = tmp.getFirstChildNodeByTagName(const.TAG_LABEL)
+        label = LabelElement(node=tmp.getFirstChildNodeByTagName(const.TAG_LABEL), ownerTopic=self)
         content = label.getLabel()
         return content
 
     def setLabel(self, content):
         _labels = self._get_labels()
         if not _labels:
-            tmp = LabelsElement(None, self.getOwnerWorkbook())
+            tmp = LabelsElement(None, self)
             self.appendChild(tmp)
         else:
-            tmp = LabelsElement(_labels, self.getOwnerWorkbook())
+            tmp = LabelsElement(_labels, self)
             old = tmp.getFirstChildNodeByTagName(const.TAG_LABEL)
             if old:
                 tmp.getImplementation().removeChild(old)
 
-        label = LabelElement(content, None, self.getOwnerWorkbook())
+        label = LabelElement(content, None, self)
         tmp.appendChild(label)
         return label
 
@@ -396,6 +396,27 @@ class TopicElement(WorkbookMixinElement):
 
         """
         self.setAttribute(const.ATTR_STRUCTURE_CLASS, structure_class)
+
+    def getData(self):
+        """ Get topic's main content in the form of a dictionary.
+            if subtopic exist, recursively get the subtopics content.
+        """
+        data = {
+            'id': self.getAttribute(const.ATTR_ID),
+            'link': self.getAttribute(const.ATTR_HREF),
+            'title': self.getTitle(),
+            'note': self.getNotes(),
+            'label': self.getLabels(),
+            'comment': '',  # TODO(devin): get comment's content
+            'markers': [marker.getMarkerId().name for marker in self.getMarkers() if marker],
+        }
+
+        if self.getSubTopics(topics_type=const.TOPIC_ATTACHED):
+            data['topics'] = []
+            for sub_topic in self.getSubTopics(topics_type=const.TOPIC_ATTACHED):
+                data['topics'].append(sub_topic.getData())
+
+        return data
 
 
 class ChildrenElement(WorkbookMixinElement):

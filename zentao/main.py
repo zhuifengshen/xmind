@@ -4,7 +4,7 @@ import logging
 import os
 from tkinter import *
 from tkinter import filedialog
-from xmind2excel.xmind_to_excel import XMindToExcel
+from zentao.xmind_to_excel import XMindToExcel
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s  %(name)s  [%(module)s - %(funcName)s]  %(levelname)s: %(message)s',

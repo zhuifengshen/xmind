@@ -1,0 +1,500 @@
+<?xml version="1.0" ?>
+<testsuite>
+	<testsuite name="demo suite">
+		<testcase name="test case 1">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+<![CDATA[summary]]>				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[3]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+			<steps>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 1]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 1]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[2]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 2]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 2]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+			</steps>
+		</testcase>
+		<testcase name="test case 2">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+<![CDATA[summary]]>				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[3]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+			<steps>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 1]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 1]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[2]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 2]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 2]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+			</steps>
+		</testcase>
+		<testcase name="test case 3">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+<![CDATA[summary]]>				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[2]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+			<steps>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 1]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 1]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[2]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 2]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 2]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[3]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 3]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[expected 3]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+			</steps>
+		</testcase>
+	</testsuite>
+	<testsuite name="apple suite">
+		<details>
+			<!-- -->
+<![CDATA[this will be a detail or summary note<br />
+]]>			<!---->
+		</details>
+		<testcase name="test case title for apple 1">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+<![CDATA[note will be summary field for this test case]]>				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[3]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+			<steps>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step1 action]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[step1 expected]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[2]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step2 action]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[step2 expected]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[3]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step3 action]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[step3 expected]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+			</steps>
+		</testcase>
+		<testcase name="test case title for apple 2">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+<![CDATA[summary of test case]]>				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[2]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+		</testcase>
+	</testsuite>
+	<testsuite name="banana suite">
+		<testcase name="my test case 1">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+			<steps>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 1 action without expected]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[2]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 2 action]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[step2 expected]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+				<step>
+					<step_number>
+						<!-- -->
+<![CDATA[3]]>						<!---->
+					</step_number>
+					<actions>
+						<!-- -->
+<![CDATA[step 3 action]]>						<!---->
+					</actions>
+					<expectedresults>
+						<!-- -->
+<![CDATA[step 3 expected]]>						<!---->
+					</expectedresults>
+					<execution_type>
+						<!-- -->
+<![CDATA[1]]>						<!---->
+					</execution_type>
+				</step>
+			</steps>
+		</testcase>
+		<testcase name="my test case 2">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[3]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+		</testcase>
+	</testsuite>
+	<testsuite name="orange suite">
+		<testcase name="my test case 1 without priority for this test">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[2]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+		</testcase>
+		<testcase name="my test case 2 start from this step expected something">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[2]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+		</testcase>
+		<testcase name="test 3 without steps">
+			<version>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</version>
+			<summary>
+				<!-- -->
+				<!---->
+			</summary>
+			<preconditions>
+				<!-- -->
+				<!---->
+			</preconditions>
+			<execution_type>
+				<!-- -->
+<![CDATA[1]]>				<!---->
+			</execution_type>
+			<importance>
+				<!-- -->
+<![CDATA[2]]>				<!---->
+			</importance>
+			<estimated_exec_duration>3</estimated_exec_duration>
+			<status>7</status>
+		</testcase>
+	</testsuite>
+</testsuite>

@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.workbook implements the command XMind manipulations.
+xmind.core.workbook implements the command XMind manipulations.
 """
+import json
+
 from . import Document
 from . import const
 from .mixin import WorkbookMixinElement
@@ -226,3 +228,17 @@ class WorkbookDocument(Document):
     def set_path(self, path):
         self._path = utils.get_abs_path(path)
 
+    def getData(self):
+        """
+        Get workbook's content in the form of a dictionary.
+        """
+        data = []
+        for sheet in self.getSheets():
+            data.append(sheet.getData())
+        return data
+
+    def to_prettify_json(self):
+        """
+        Convert the contents of the workbook to a json format
+        """
+        return json.dumps(self.getData(), indent=4, separators=(',', ': '))
