@@ -4,6 +4,8 @@ import arrow
 import sqlite3
 from contextlib import closing
 from os.path import join, exists
+
+from werkzeug.contrib.fixers import ProxyFix
 from werkzeug.utils import secure_filename
 from flask import Flask, request, send_from_directory, g, render_template, abort, redirect, url_for
 from testlink.builder import get_testlink_testsuites, get_testlink_testcases, xmind_to_testlink_xml_file
@@ -18,6 +20,7 @@ V2 = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = os.urandom(32)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 
 def connect_db():
