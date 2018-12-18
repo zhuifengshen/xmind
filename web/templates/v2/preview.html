@@ -57,10 +57,10 @@
                 {% if test.steps %}
                     <ol>
                         {% for step in test.steps %}
-                            <li>{{ step.action }}
-                                {% if step.expected %}
+                            <li>{{ step.actions }}
+                                {% if step.expectedresults %}
                                     <ul>
-                                        <li>{{ step.expected }}</li>
+                                        <li>{{ step.expectedresults }}</li>
                                     </ul>
                                 {% endif %}
                             </li>

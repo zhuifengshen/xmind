@@ -12,16 +12,16 @@ config = {'sep': ' ',
           }
 
 
-def xmind_to_suite(xmind_data):
+def xmind_to_suite(xmind_content_dict):
     suites = []
 
-    for sheet in xmind_data:
+    for sheet in xmind_content_dict:
         logging.debug('start to parse a sheet: %s', sheet['title'])
         root_topic = sheet['topic']
         sub_topics = root_topic.get('topics', [])
 
         if sub_topics:
-            root_topic['topics'] = filter_ignore_or_blank_testcase(sub_topics)
+            root_topic['topics'] = filter_empty_or_ignore_topic(sub_topics)
         else:
             logging.error('Invalid XMind file, should have at least 1 sub topic(test suite)')
             exit(1)
@@ -33,17 +33,26 @@ def xmind_to_suite(xmind_data):
     return suites
 
 
-def filter_ignore_or_blank_testcase(topics):
-    """filter blank topic or start with config.ignore_char"""
+def filter_empty_or_ignore_topic(topics):
+    """filter blank or start with config.ignore_char topic"""
     result = [topic for topic in topics if not(
             topic['title'] is None or
-            topic['title'].strip() == '') or
-            topic['title'][0] in config['ignore_char']]
+            topic['title'].strip() == '' or
+            topic['title'][0] in config['ignore_char'])]
 
     for topic in result:
         sub_topics = topic.get('topics', [])
-        topic['topics'] = filter_ignore_or_blank_testcase(sub_topics)
+        topic['topics'] = filter_empty_or_ignore_topic(sub_topics)
 
+    return result
+
+
+def filter_empty_or_ignore_element(values):
+    """Filter all empty or ignore XMind elements, especially notes、comments、labels element"""
+    result = []
+    for value in values:
+        if isinstance(value, str) and not value.strip() == '' and not value[0] in config['ignore_char']:
+            result.append(value.strip())
     return result
 
 
@@ -119,8 +128,13 @@ def parse_a_testcase(case_dict, parent):
     topics = parent + [case_dict] if parent else [case_dict]
 
     testcase.name = gen_testcase_title(topics)
-    testcase.preconditions = gen_testcase_preconditions(topics)
-    testcase.summary = gen_testcase_summary(topics)
+
+    preconditions = gen_testcase_preconditions(topics)
+    testcase.preconditions = preconditions if preconditions else '无'
+
+    summary = gen_testcase_summary(topics)
+    testcase.summary = summary if summary else testcase.name
+
     testcase.importance = get_priority(case_dict) or 2
 
     step_dict_list = case_dict.get('topics', [])
@@ -139,21 +153,10 @@ def get_priority(case_dict):
                 return int(marker[-1])
 
 
-def filter_empty_string(values):
-    result = []
-    for value in values:
-        if isinstance(value, str):
-            if value.strip():
-                result.append(value.strip())
-        # else:
-        #     logging.error('Expected string but not: %s', value)
-    return result
-
-
 def gen_testcase_title(topics):
     """Link all topic's title as testcase title"""
     titles = [topic['title'] for topic in topics]
-    titles = filter_empty_string(titles)
+    titles = filter_empty_or_ignore_element(titles)
 
     # when separator is not blank, will add space around separator, e.g. '/' will be changed to ' / '
     separator = config['sep']
@@ -165,13 +168,13 @@ def gen_testcase_title(topics):
 
 def gen_testcase_preconditions(topics):
     notes = [topic['note'] for topic in topics]
-    notes = filter_empty_string(notes)
+    notes = filter_empty_or_ignore_element(notes)
     return config['precondition_sep'].join(notes)
 
 
 def gen_testcase_summary(topics):
     comments = [topic['comment'] for topic in topics]
-    comments = filter_empty_string(comments)
+    comments = filter_empty_or_ignore_element(comments)
     return config['summary_sep'].join(comments)
 
 

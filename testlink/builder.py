@@ -3,11 +3,9 @@
 
 import json
 import logging
-import time
-from datetime import datetime
-
 import xmind
 from io import BytesIO
+from datetime import datetime
 from xml.dom import minidom
 from xml.etree.ElementTree import Element, SubElement, ElementTree, Comment
 from xml.sax.saxutils import escape

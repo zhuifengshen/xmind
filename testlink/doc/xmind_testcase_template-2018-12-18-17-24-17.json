@@ -1,0 +1,340 @@
+[
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u767b\u5f55\u94fe\u63a5",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09\n----\n\u524d\u7f6e\u6761\u4ef62\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa41",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa42",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c2",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u767b\u5f55\u9875\u9762",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa4\uff1a\u9875\u9762\u8bbe\u8ba1\u98ce\u683c\u7edf\u4e00\uff08\u53ef\u4ee5\u53ea\u6709\u6d4b\u8bd5\u6b65\u9aa4\uff0c\u6ca1\u6709\u9884\u671f\u7ed3\u679c)",
+                "expectedresults": "",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u63a7\u4ef6 \u7528\u6237\u540d\u8f93\u5165",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09\n----\n\u524d\u7f6e\u6761\u4ef62\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09\n----\n\u524d\u7f6e\u6761\u4ef63\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa4",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u63a7\u4ef6 \u5bc6\u7801\u8f93\u5165",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09\n----\n\u524d\u7f6e\u6761\u4ef62\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa4",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c1",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u63a7\u4ef6 \u767b\u5f55\u6309\u94ae",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09\n----\n\u524d\u7f6e\u6761\u4ef62\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u56fd\u9645\u5316 \u4e2d\u6587\u73af\u5883",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u56fd\u9645\u5316 \u82f1\u6587\u73af\u5883",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u64cd\u4f5c \u6709\u6548\u7684\u7528\u6237\u540d+\u6709\u6548\u7684\u5bc6\u7801",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa41",
+                "expectedresults": "",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa42",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c",
+                "execution_type": 1
+            },
+            {
+                "step_number": 3,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa43\uff08\u53ef\u4ee5\u53ea\u6709\u6d4b\u8bd5\u6b65\u9aa4\uff0c\u6ca1\u6709\u9884\u671f\u7ed3\u679c\uff09",
+                "expectedresults": "",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u64cd\u4f5c \u6709\u6548\u7684\u7528\u6237\u540d+\u65e0\u6548\u7684\u5bc6\u7801",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u767b\u5f55\u9875 \u64cd\u4f5c \u65e0\u6548\u7684\u7528\u6237\u540d+\u65e0\u6548\u7684\u5bc6\u7801",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef61\uff1a\u6d4b\u8bd5\u7528\u4f8b\u7684\u5907\u6ce8\u4f1a\u81ea\u52a8\u8bc6\u522b\u4e3a\u6d4b\u8bd5\u7528\u4f8b\u7684\u524d\u7f6e\u6761\u4ef6\uff0c\u6709\u591a\u4e2a\u5907\u6ce8\u65f6\uff0c\u4e5f\u4f1a\u81ea\u52a8\u5408\u5e76\u8d77\u6765\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u9a8c\u8bc1\u4e2a\u4eba\u4e3b\u9875",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef6\uff1a\u5982\u679c\u6d4b\u8bd5\u7528\u4f8b\u4e0a\u6ca1\u6709\u6807\u6ce8\u4f18\u5148\u7ea7\uff0c\u5219\u9ed8\u8ba4\u4f5c\u4e3a\u4e00\u6761\u6d4b\u8bd5\u7528\u4f8b\u4e14\u4f18\u5148\u7ea7\u9ed8\u8ba4\u4e3a\u4e2d\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "UI\u6a21\u5757"
+    },
+    {
+        "name": "\u7528\u6237\u8868 Data",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef6\uff1a\u5982\u679c\u6d4b\u8bd5\u7528\u4f8b\u4e0a\u6ca1\u6709\u6807\u6ce8\u4f18\u5148\u7ea7\uff0c\u5219\u9ed8\u8ba4\u4f5c\u4e3a\u4e00\u6761\u6d4b\u8bd5\u7528\u4f8b\u4e14\u4f18\u5148\u7ea7\u9ed8\u8ba4\u4e3a\u4e2d\uff08\u9ed8\u8ba4\u4e3a\u7a7a\uff09",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "\u6570\u636e\u5e93\u6a21\u5757"
+    },
+    {
+        "name": "\u7528\u6237\u8868 Schema",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f0",
+        "suite": "\u6570\u636e\u5e93\u6a21\u5757"
+    },
+    {
+        "name": "\u6d4b\u8bd5\u7528\u4f8b1",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef6",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa41",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa42",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c2",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f02",
+        "suite": "A\u6a21\u5757\u540d"
+    },
+    {
+        "name": "\u6d4b\u8bd5\u7528\u4f8b2",
+        "version": 1,
+        "summary": "",
+        "preconditions": "\u524d\u7f6e\u6761\u4ef6",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa41",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa42\uff08\u9884\u671f\u7ed3\u679c2\u53ef\u4ee5\u4e3a\u7a7a\uff09",
+                "expectedresults": "",
+                "execution_type": 1
+            },
+            {
+                "step_number": 3,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa43",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c3",
+                "execution_type": 1
+            },
+            {
+                "step_number": 4,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa44",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c4",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f02",
+        "suite": "A\u6a21\u5757\u540d"
+    },
+    {
+        "name": "\u6d4b\u8bd5\u7528\u4f8b3\uff08\u6d4b\u8bd5\u6b65\u9aa4\u548c\u9884\u671f\u7ed3\u679c\u53ef\u4ee5\u90fd\u4e3a\u7a7a\uff09",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f02",
+        "suite": "A\u6a21\u5757\u540d"
+    },
+    {
+        "name": "\u6d4b\u8bd5\u6b65\u9aa42\uff08\u4f18\u5148\u7ea7\u9ed8\u8ba4\u4e3a\u4e2d\uff09",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 1,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [
+            {
+                "step_number": 1,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa41",
+                "expectedresults": "\u9884\u671f\u7ed3\u679c1",
+                "execution_type": 1
+            },
+            {
+                "step_number": 2,
+                "actions": "\u6d4b\u8bd5\u6b65\u9aa43",
+                "expectedresults": "",
+                "execution_type": 1
+            }
+        ],
+        "product": "\u4ea7\u54c1\u540d\u79f02",
+        "suite": "B\u6a21\u5757\u540d"
+    },
+    {
+        "name": "\u6d4b\u8bd5\u7528\u4f8b3\uff08\u524d\u7f6e\u6761\u4ef6\u9ed8\u8ba4\u4e3a\u7a7a\uff09 > \u65e0\u8bbe\u7f6e\u4f18\u5148\u7ea7\uff0c\u8fd9\u91cc\u52a0\u5165\u7528\u4f8b\u6807\u9898",
+        "version": 1,
+        "summary": "",
+        "preconditions": "",
+        "execution_type": 1,
+        "importance": 2,
+        "estimated_exec_duration": 3,
+        "status": 7,
+        "steps": [],
+        "product": "\u4ea7\u54c1\u540d\u79f02",
+        "suite": "B\u6a21\u5757\u540d"
+    }
+]
