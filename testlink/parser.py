@@ -38,7 +38,7 @@ def filter_ignore_or_blank_testcase(topics):
     result = [topic for topic in topics if not(
             topic['title'] is None or
             topic['title'].strip() == '') or
-            topic['title'][1] in config['ignore_char']]
+            topic['title'][0] in config['ignore_char']]
 
     for topic in result:
         sub_topics = topic.get('topics', [])

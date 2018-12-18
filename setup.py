@@ -20,5 +20,5 @@ setup(
 
     license="MIT",
     keywords="xmind, mind mapping, 思维导图",
-    url="https://github.com/xmindltd/xmind-sdk-python"
+    url="https://github.com/xmindltd/xmind"
 )

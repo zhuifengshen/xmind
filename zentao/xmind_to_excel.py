@@ -153,11 +153,11 @@ class XMindToExcel(object):
 
 if __name__ == "__main__":
     xmind_Text_content = \
-        "/Users/zhangchuzhao/Project/python/tmp/xmind-sdk-python/zentao/template/case_example.xmind"
+        "/Users/zhangchuzhao/Project/python/tmp/xmind/zentao/template/case_example.xmind"
     excel_file_Text_content = \
-        "/Users/zhangchuzhao/Project/python/tmp/xmind-sdk-python/zentao/template/result.xlsx"
+        "/Users/zhangchuzhao/Project/python/tmp/xmind/zentao/template/result.xlsx"
     templet_Text_content = \
-        "/Users/zhangchuzhao/Project/python/tmp/xmind-sdk-python/zentao/template/case_template.xlsx"
+        "/Users/zhangchuzhao/Project/python/tmp/xmind/zentao/template/case_template.xlsx"
 
     xmindParse = XMindToExcel(xmind_Text_content, excel_file_Text_content, templet_Text_content)
     xmindParse.main()

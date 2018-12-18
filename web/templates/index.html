@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="main_grid_left">
+        <div class="main_grid">
+            <form method="post" action="/"
+                  enctype="multipart/form-data" novalidate class="box">
+                <div class="box__input">
+                    <svg class="box__icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43"
+                         viewBox="0 0 50 43">
+                        <path d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z"/>
+                    </svg>
+
+                    <input type="file" name="files[]" id="file" class="box__file"
+                           data-multiple-caption="{count} files selected" multiple/>
+                    <label for="file">
+
+                        {% if g.upload_form %}
+                            <strong>Choose your xmind</strong>
+                            <span class="box__dragndrop"> or drag it here.</span>
+                        {% endif %}
+
+                        {% if g.is_success %}
+                            <span>Done!</span>
+                            <strong class="box__dragndrop"> Upload more?</strong>
+                        {% endif %}
+
+                        {% if g.error %}
+                            <span style="color: red">Error!</span>
+                            <strong style="color: red" class="box__dragndrop"> {{ g.error }}</strong>
+                        {% endif %}
+                    </label>
+
+                    <input type="submit" class="box__button" value="To TestLink XML"/>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="main_grid_right">
+        {% if records %}
+            <h3>Recent converted files</h3>
+            <table id="main_table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Download</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td title="{{ record[1] }}"> {{ record[0] }}</td>
+                        <td>{{ record[2] }}</td>
+                        <td><a href="{{ url_for('uploaded_file',filename=record[1]) }}">XMIND</a> | <a
+                                href="{{ url_for('download_file',filename=record[1]) }}">XML</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% endif %}
+        {% if not records %}
+            <h3>Welcome!</h3>
+            <p>Xmind2TestLink is a tool to help you convert xmind file to testlink xml file, and then
+                you will be able to import the xml into TestLink.
+                <a href="https://github.com/tobyqin/xmind2testlink">Learn more.</a></p>
+            <p>Are you ready? Upload your xmind file now.</p>
+        {% endif %}
+    </div>
+    <div class="clear"></div>
+
+{% endblock %}
