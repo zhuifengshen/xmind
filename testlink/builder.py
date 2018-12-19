@@ -45,8 +45,7 @@ def xmind_to_testlink_xml_file(xmind_file, is_all_sheet=True):
         return testlink_xml_file
 
     with open(testlink_xml_file, 'w', encoding='utf-8') as f:
-        pretty_content = minidom.parseString(
-            xml_content).toprettyxml(indent='\t')
+        pretty_content = minidom.parseString(xml_content).toprettyxml(indent='\t')
         f.write(pretty_content)
         logging.info('convert XMind file(%s) to a testlink xml file(%s) successfully!', xmind_file, testlink_xml_file)
 
@@ -82,17 +81,18 @@ def get_testlink_testcases(testsuites):
 
 def testsuites_to_xml_content(testsuites):
     root_element = Element(const.TAG_TESTSUITE)
-
     # setting the root suite's name attribute, that will generate a new testsuite folder on testlink
     # root_element.set(const.ATTR_NMAE, testsuite.name)
 
     for testsuite in testsuites:
-        for sub_suite in testsuite.sub_suites:
+        suite_element = SubElement(root_element, const.TAG_TESTSUITE)
+        suite_element.set(const.ATTR_NMAE, testsuite.name)
+        gen_text_element(suite_element, const.TAG_DETAILS, testsuite.details)
 
+        for sub_suite in testsuite.sub_suites:
             if is_should_skip(sub_suite.name):
                 continue
-
-            sub_suite_element = SubElement(root_element, const.TAG_TESTSUITE)
+            sub_suite_element = SubElement(suite_element, const.TAG_TESTSUITE)
             sub_suite_element.set(const.ATTR_NMAE, sub_suite.name)
             gen_text_element(sub_suite_element, const.TAG_DETAILS, sub_suite.details)
             gen_testcase_element(sub_suite_element, sub_suite)
