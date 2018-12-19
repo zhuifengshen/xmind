@@ -240,8 +240,7 @@ def delete_file(filename, record_id):
         abort(404)
     else:
         delete_record(filename, record_id)
-
-    return render_template('v2/index.html', records=list(get_records()))
+    return redirect('/')
 
 
 @app.errorhandler(Exception)

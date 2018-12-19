@@ -2,6 +2,7 @@
     font-size: 1.5em;
     line-height: 2em;
     text-decoration: none;
+    display: block;
 }
 
 #file-label:hover {
@@ -191,7 +192,8 @@ body {
 }
 
 input[type="file"] {
-    display: none;
+    /*display: none;*/
+    opacity: 0;
 }
 
 input[type="submit"] {
