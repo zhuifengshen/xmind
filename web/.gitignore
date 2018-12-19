@@ -1,0 +1,13 @@
+.DS_Store
+.idea
+*.pyc
+__pycache__
+.pypirc
+
+build/*
+dist/*
+*.egg-info
+
+data.db3
+running.log
+uploads

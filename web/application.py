@@ -1,22 +1,38 @@
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
+
+import logging
 import os
 import re
 import arrow
 import sqlite3
 from contextlib import closing
 from os.path import join, exists
-
 from werkzeug.contrib.fixers import ProxyFix
 from werkzeug.utils import secure_filename
 from flask import Flask, request, send_from_directory, g, render_template, abort, redirect, url_for
 from testlink.builder import get_testlink_testsuites, get_testlink_testcases, xmind_to_testlink_xml_file
 
+# log handler
+formatter = logging.Formatter('%(asctime)s  %(name)s  %(levelname)s  [%(module)s - %(funcName)s]: %(message)s')
+handler = logging.FileHandler('running.log', encoding='UTF-8')
+handler.setFormatter(formatter)
+# xmind to testcase logger
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)
+root_logger.addHandler(handler)
+# flask and werkzeug logger
+werkzeug_logger = logging.getLogger('werkzeug')
+werkzeug_logger.setLevel(logging.DEBUG)
+werkzeug_logger.addHandler(handler)
+# global variable
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = ['xmind']
 DEBUG = True
 DATABASE = './data.db3'
 HOST = '0.0.0.0'
 V2 = True
-
+# flask app
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = os.urandom(32)
