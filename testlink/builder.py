@@ -3,6 +3,8 @@
 
 import json
 import logging
+import os
+
 import xmind
 from io import BytesIO
 from datetime import datetime
@@ -18,7 +20,11 @@ def xmind_to_testlink_json_file(xmind_file):
     testsuites = get_testlink_testsuites(xmind_file)
     testcases = get_testlink_testcases(testsuites)
 
-    testlink_json_file = xmind_file[:-6] + datetime.now().strftime('-%Y-%m-%d-%H-%M-%S') + '.json'
+    testlink_json_file = xmind_file[:-6] + '.json'
+
+    if os.path.exists(testlink_json_file):
+        logging.info('the testlink json file already exists, return it directly: %s', testlink_json_file)
+        return testlink_json_file
 
     with open(testlink_json_file, 'w', encoding='utf8') as f:
         f.write(json.dumps(testcases, indent=4, separators=(',', ': ')))
@@ -34,15 +40,19 @@ def xmind_to_testlink_xml_file(xmind_file, is_all_sheet=True):
         testsuites = [testsuites[0]]
 
     xml_content = testsuites_to_xml_content(testsuites)
-    testsuite_xml_file = xmind_file[:-6] + datetime.now().strftime('-%Y-%m-%d-%H-%M-%S') + '.xml'
+    testlink_xml_file = xmind_file[:-6] + '.xml'
 
-    with open(testsuite_xml_file, 'w', encoding='utf-8') as f:
+    if os.path.exists(testlink_xml_file):
+        logging.info('the testlink xml file already exists, return it directly: %s', testlink_xml_file)
+        return testlink_xml_file
+
+    with open(testlink_xml_file, 'w', encoding='utf-8') as f:
         pretty_content = minidom.parseString(
             xml_content).toprettyxml(indent='\t')
         f.write(pretty_content)
-        logging.info('convert XMind file(%s) to a testlink xml file(%s) successfully!', xmind_file, testsuite_xml_file)
+        logging.info('convert XMind file(%s) to a testlink xml file(%s) successfully!', xmind_file, testlink_xml_file)
 
-    return testsuite_xml_file
+    return testlink_xml_file
 
 
 def get_testlink_testsuites(xmind_file):

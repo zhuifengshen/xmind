@@ -123,7 +123,8 @@ def check_file_name(name):
 
 def save_file(file):
     if file and allowed_file(file.filename):
-        filename = check_file_name(file.filename[:-6])
+        # filename = check_file_name(file.filename[:-6])
+        filename = file.filename
         upload_to = join(app.config['UPLOAD_FOLDER'], filename)
 
         if exists(upload_to):

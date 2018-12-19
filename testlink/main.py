@@ -44,6 +44,8 @@ def get_absolute_path(path):
 def main():
     xmind_file = 'doc/xmind_testcase_template.xmind'
     xmind_file_path = get_absolute_path(xmind_file)
+    logging.info('Start to convert XMind file: %s', xmind_file_path)
+
     testlink_xml_file = xmind_to_testlink_xml_file(xmind_file_path)
     logging.info('Convert XMind file to testlink xml file successfully: %s', testlink_xml_file)
 
@@ -55,6 +57,7 @@ def cli_main():
     if len(sys.argv) > 1 and sys.argv[1].endswith('.xmind'):
         xmind_file = sys.argv[1]
         xmind_file_path = get_absolute_path(xmind_file)
+        logging.info('Start to convert XMind file: %s', xmind_file_path)
 
         if len(sys.argv) == 3 and sys.argv[2] == '-json':
             testlink_json_file = xmind_to_testlink_json_file(xmind_file_path)
@@ -65,10 +68,6 @@ def cli_main():
     else:
         print(__doc__)
         logging.error('%s', __doc__)
-
-
-def gui_main():
-    pass
 
 
 if __name__ == '__main__':
