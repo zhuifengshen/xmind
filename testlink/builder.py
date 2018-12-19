@@ -4,10 +4,8 @@
 import json
 import logging
 import os
-
 import xmind
 from io import BytesIO
-from datetime import datetime
 from xml.dom import minidom
 from xml.etree.ElementTree import Element, SubElement, ElementTree, Comment
 from xml.sax.saxutils import escape
@@ -63,8 +61,8 @@ def get_testlink_testsuites(xmind_file):
         testsuites = xmind_to_suite(xmind_content_dict)
         return testsuites
     else:
-        logging.error('Invalid XMind file: it is empty!')
-        exit(1)  # TODO(devin): look for other best practice!!!
+        logging.error('Invalid XMind file(%s): it is empty!', xmind_file)
+        return []
 
 
 def get_testlink_testcases(testsuites):

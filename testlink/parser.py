@@ -23,8 +23,8 @@ def xmind_to_suite(xmind_content_dict):
         if sub_topics:
             root_topic['topics'] = filter_empty_or_ignore_topic(sub_topics)
         else:
-            logging.error('Invalid XMind file, should have at least 1 sub topic(test suite)')
-            exit(1)
+            logging.warning('This is a blank sheet(%s), should have at least 1 sub topic(test suite)', sheet['title'])
+            continue
         root_suite = sheet_to_suite(root_topic)
         # root_suite.sheet_name = sheet['title']  # root testsuite has a sheet_name attribute
         logging.debug('sheet(%s) parsing complete: %s', sheet['title'], root_suite.to_dict())
