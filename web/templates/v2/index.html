@@ -39,7 +39,9 @@
                             <td>{{ record[2] }}</td>
                             <td><a href="{{ url_for('uploaded_file',filename=record[1]) }}">XMIND</a> |
                                 <a href="{{ url_for('download_file',filename=record[1]) }}">XML</a> |
-                                <a href="{{ url_for('preview_file',filename=record[1]) }}">PREVIEW</a></td>
+                                <a href="{{ url_for('preview_file',filename=record[1]) }}">PREVIEW</a> |
+                                <a href="{{ url_for('delete_file',filename=record[1], record_id=record[4]) }}">DELETE</a>
+                            </td>
                         </tr>
                     {% endfor %}
 

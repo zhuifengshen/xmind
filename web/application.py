@@ -62,6 +62,18 @@ def insert_record(xmind_name, note=''):
     g.db.commit()
 
 
+def delete_record(filename, record_id):
+    xmind = join(app.config['UPLOAD_FOLDER'], filename)
+    xml = join(app.config['UPLOAD_FOLDER'], filename[:-5] + 'xml')
+    for f in [xmind, xml]:
+        if exists(f):
+            os.remove(f)
+    c = g.db.cursor()
+    sql = 'UPDATE records SET is_deleted=1 WHERE id = ?'
+    c.execute(sql, (record_id,))
+    g.db.commit()
+
+
 def delete_records(keep=20):
     """Clean up files on server and mark the record as deleted"""
     sql = "SELECT * from records where is_deleted<>1 ORDER BY id desc LIMIT -1 offset {}".format(keep)
@@ -97,7 +109,7 @@ def get_records(limit=8):
     rows = c.fetchall()
 
     for row in rows:
-        name, short_name, create_on, note = row[1], row[1], row[2], row[3]
+        name, short_name, create_on, note, record_id = row[1], row[1], row[2], row[3], row[0]
 
         # shorten the name for display
         if len(name) > short_name_length:
@@ -105,7 +117,7 @@ def get_records(limit=8):
 
         # more readable time format
         create_on = arrow.get(create_on).humanize()
-        yield short_name, name, create_on, note
+        yield short_name, name, create_on, note, record_id
 
 
 def allowed_file(filename):
@@ -186,6 +198,11 @@ def index(download_xml=None):
         return render_template('index.html', download_xml=g.download_xml, records=list(get_records()))
 
 
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+
 @app.route('/<filename>/to/testlink')
 def download_file(filename):
     full_path = join(app.config['UPLOAD_FOLDER'], filename)
@@ -197,11 +214,6 @@ def download_file(filename):
     filename = os.path.basename(testlink_xmls_file) if testlink_xmls_file else abort(404)
 
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
-
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 @app.route('/preview/<filename>')
@@ -218,6 +230,18 @@ def preview_file(filename):
     testcases = get_testlink_testcases(testsuites)
 
     return render_template('v2/preview.html', name=filename, suite=testcases, suite_count=suite_count)
+
+
+@app.route('/delete/<filename>/<int:record_id>')
+def delete_file(filename, record_id):
+
+    full_path = join(app.config['UPLOAD_FOLDER'], filename)
+    if not exists(full_path):
+        abort(404)
+    else:
+        delete_record(filename, record_id)
+
+    return render_template('v2/index.html', records=list(get_records()))
 
 
 @app.errorhandler(Exception)
