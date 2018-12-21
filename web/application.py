@@ -16,6 +16,8 @@ from flask import Flask, request, send_from_directory, g, render_template, abort
 
 
 # log handler
+from testcase.zentao import xmind_to_zentao_csv_file
+
 formatter = logging.Formatter('%(asctime)s  %(name)s  %(levelname)s  [%(module)s - %(funcName)s]: %(message)s')
 handler = logging.FileHandler('running.log', encoding='UTF-8')
 handler.setFormatter(formatter)
@@ -222,7 +224,7 @@ def uploaded_file(filename):
 
 
 @app.route('/<filename>/to/testlink')
-def download_file(filename):
+def download_testlink_file(filename):
     full_path = join(app.config['UPLOAD_FOLDER'], filename)
 
     if not exists(full_path):
@@ -230,6 +232,19 @@ def download_file(filename):
 
     testlink_xmls_file = xmind_to_testlink_xml_file(full_path)
     filename = os.path.basename(testlink_xmls_file) if testlink_xmls_file else abort(404)
+
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+
+
+@app.route('/<filename>/to/zentao')
+def download_zentao_file(filename):
+    full_path = join(app.config['UPLOAD_FOLDER'], filename)
+
+    if not exists(full_path):
+        abort(404)
+
+    zentao_csv_file = xmind_to_zentao_csv_file(full_path)
+    filename = os.path.basename(zentao_csv_file) if zentao_csv_file else abort(404)
 
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
 
