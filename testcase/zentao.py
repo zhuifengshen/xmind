@@ -3,7 +3,7 @@
 import csv
 import logging
 import os
-from testlink.builder import get_testlink_testsuites, get_testlink_testcases
+from testcase.utils import get_xmind_testsuites, get_xmind_testcases
 
 """
 Convert XMind fie to Zentao testcase csv file 
@@ -12,8 +12,8 @@ Convert XMind fie to Zentao testcase csv file
 
 def xmind_to_zentao_csv_file(xmind_file):
     """Convert XMind file to a zentao csv file"""
-    testsuites = get_testlink_testsuites(xmind_file)
-    testcases = get_testlink_testcases(testsuites)
+    testsuites = get_xmind_testsuites(xmind_file)
+    testcases = get_xmind_testcases(testsuites)
 
     fileheader = ["所属模块", "用例标题", "前置条件", "步骤", "预期", "关键词", "优先级", "用例类型", "适用阶段"]
     zentao_testcase_rows = [fileheader]
@@ -86,4 +86,5 @@ def gen_case_type(case_type):
 
 if __name__ == '__main__':
     xmind_file = 'doc/zentao_testcase_template.xmind'
-    xmind_to_zentao_csv_file(xmind_file)
+    zentao_csv_file = xmind_to_zentao_csv_file(xmind_file)
+    print('Conver the xmind file to a zentao csv file succssfully: %s', zentao_csv_file)

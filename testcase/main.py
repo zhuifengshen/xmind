@@ -2,43 +2,29 @@
 # _*_ coding:utf-8 _*_
 
 import logging
-import os
 import sys
-from testlink.builder import xmind_to_testlink_json_file, xmind_to_testlink_xml_file
-from testlink.zentao import xmind_to_zentao_csv_file
+from testcase.testlink import xmind_to_testlink_json_file, xmind_to_testlink_xml_file
+from testcase.utils import get_absolute_path
+from testcase.zentao import xmind_to_zentao_csv_file
 
 """
-A tool to parse xmind file into testlink xml file, which will help
-you generate a testlink recognized xml file, then you can import it
-into testlink as test suites.
+A tool to parse xmind file into testcase file, which will help you 
+generate a testlink recognized xml file or a zentao recognized cvs file, 
+then you can import it into testlink as test suites or zentao as testcases.
 
 Usage:
- xmind2testcase [path_to_xmind_file] [-json]
+ xmind2testcase [path_to_xmind_file] [-csv] [-xml] 
 
 Example:
- xmind2testcase /home/devin/testcase.xmind       => output xml
- xmind2testcase /home/devin/testcase.xmind -json => output json
+ xmind2testcase /path/to/testcase.xmind       => output testcase.csv、testcase.xml
+ xmind2testcase /path/to/testcase.xmind -csv  => output testcase.csv
+ xmind2testcase /path/to/testcase.xmind -xml  => output testcase.xml 
 """
 
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s  %(name)s  %(levelname)s  [%(module)s - %(funcName)s]: %(message)s',
                     datefmt='%Y/%m/%d %H:%M:%S')
-
-
-def get_absolute_path(path):
-    """
-        Return the absolute path of a file
-
-        If path contains a start point (eg Unix '/') then use the specified start point
-        instead of the current working directory. The starting point of the file path is
-        allowed to begin with a tilde "~", which will be replaced with the user's home directory.
-    """
-    fp, fn = os.path.split(path)
-    if not fp:
-        fp = os.getcwd()
-    fp = os.path.abspath(os.path.expanduser(fp))
-    return os.path.join(fp, fn)
 
 
 def main():

@@ -2,7 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 import logging
-from testlink.metadata import TestSuite, TestCase, TestStep
+from testcase.metadata import TestSuite, TestCase, TestStep
 
 config = {'sep': ' ',
           'valid_sep': '&>+/-',
@@ -12,7 +12,8 @@ config = {'sep': ' ',
           }
 
 
-def xmind_to_suite(xmind_content_dict):
+def xmind_to_testsuites(xmind_content_dict):
+    """convert xmind file to `TestSuite` list"""
     suites = []
 
     for sheet in xmind_content_dict:
@@ -57,6 +58,7 @@ def filter_empty_or_ignore_element(values):
 
 
 def sheet_to_suite(root_topic):
+    """convert a xmind sheet to a `TestSuite` instance"""
     root_suite = TestSuite()
     root_title = root_topic['title']
     separator = root_title[-1]

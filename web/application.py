@@ -10,8 +10,10 @@ from contextlib import closing
 from os.path import join, exists
 from werkzeug.contrib.fixers import ProxyFix
 from werkzeug.utils import secure_filename
+from testcase.testlink import xmind_to_testlink_xml_file
+from testcase.utils import get_xmind_testsuites, get_xmind_testcases
 from flask import Flask, request, send_from_directory, g, render_template, abort, redirect, url_for
-from testlink.builder import get_testlink_testsuites, get_testlink_testcases, xmind_to_testlink_xml_file
+
 
 # log handler
 formatter = logging.Formatter('%(asctime)s  %(name)s  %(levelname)s  [%(module)s - %(funcName)s]: %(message)s')
@@ -239,11 +241,11 @@ def preview_file(filename):
     if not exists(full_path):
         abort(404)
 
-    testsuites = get_testlink_testsuites(full_path)
+    testsuites = get_xmind_testsuites(full_path)
     suite_count = 0
     for suite in testsuites:
         suite_count += len(suite.sub_suites)
-    testcases = get_testlink_testcases(testsuites)
+    testcases = get_xmind_testcases(testsuites)
 
     return render_template('v2/preview.html', name=filename, suite=testcases, suite_count=suite_count)
 

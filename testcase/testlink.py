@@ -4,19 +4,23 @@
 import json
 import logging
 import os
-import xmind
 from io import BytesIO
 from xml.dom import minidom
-from xml.etree.ElementTree import Element, SubElement, ElementTree, Comment
 from xml.sax.saxutils import escape
-from testlink import const
-from testlink.parser import config, xmind_to_suite
+from testcase import const
+from testcase.parser import config
+from testcase.utils import get_xmind_testsuites, get_xmind_testcases, get_absolute_path
+from xml.etree.ElementTree import Element, SubElement, ElementTree, Comment
+
+"""
+Convert XMind fie to TestLink testcase xml file 
+"""
 
 
 def xmind_to_testlink_json_file(xmind_file):
     """Convert XMind file to a testlink json file"""
-    testsuites = get_testlink_testsuites(xmind_file)
-    testcases = get_testlink_testcases(testsuites)
+    testsuites = get_xmind_testsuites(xmind_file)
+    testcases = get_xmind_testcases(testsuites)
 
     testlink_json_file = xmind_file[:-6] + '.json'
 
@@ -33,7 +37,7 @@ def xmind_to_testlink_json_file(xmind_file):
 
 def xmind_to_testlink_xml_file(xmind_file, is_all_sheet=True):
     """Convert a XMind sheet to a testlink xml file"""
-    testsuites = get_testlink_testsuites(xmind_file)
+    testsuites = get_xmind_testsuites(xmind_file)
     if not is_all_sheet and testsuites:
         testsuites = [testsuites[0]]
 
@@ -52,34 +56,8 @@ def xmind_to_testlink_xml_file(xmind_file, is_all_sheet=True):
     return testlink_xml_file
 
 
-def get_testlink_testsuites(xmind_file):
-    workbook = xmind.load(xmind_file)
-    xmind_content_dict = workbook.getData()
-    logging.debug("loading XMind file(%s) dict data: %s", xmind_file, xmind_content_dict)
-    if xmind_content_dict:
-        testsuites = xmind_to_suite(xmind_content_dict)
-        return testsuites
-    else:
-        logging.error('Invalid XMind file(%s): it is empty!', xmind_file)
-        return []
-
-
-def get_testlink_testcases(testsuites):
-    testcases = []
-
-    for testsuite in testsuites:
-        product = testsuite.name
-        for suite in testsuite.sub_suites:
-            for case in suite.testcase_list:
-                case_data = case.to_dict()
-                case_data['product'] = product
-                case_data['suite'] = suite.name
-                testcases.append(case_data)
-
-    return testcases
-
-
 def testsuites_to_xml_content(testsuites):
+    """Convert the testsuites to testlink xml file format"""
     root_element = Element(const.TAG_TESTSUITE)
     # setting the root suite's name attribute, that will generate a new testsuite folder on testlink
     # root_element.set(const.ATTR_NMAE, testsuite.name)
@@ -190,3 +168,11 @@ def _convert_importance(value):
         return mapping[value]
     else:
         return '2'
+
+
+if __name__ == '__main__':
+    xmind_file = 'doc/xmind_testcase_template.xmind'
+    testlink_json_file = xmind_to_testlink_json_file(xmind_file)
+    print('Convert XMind file to testlink json file successfully: %s', testlink_json_file)
+    testlink_xml_file = xmind_to_testlink_xml_file(xmind_file)
+    print('Convert XMind file to testlink xml file successfully: %s', testlink_xml_file)
