@@ -4,30 +4,42 @@
 		<testsuite name="UI模块">
 			<details>
 				<!-- -->
-<![CDATA[测试集摘要：测试集的备注会转换为测试集的摘要/详情（默认为空）]]>				<!---->
+				 
+<![CDATA[测试集摘要：测试集的备注会转换为测试集的摘要/详情（默认为空）]]>				 
+				<!-- -->
 			</details>
 			<testcase name="验证登录页 登录链接">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 登录链接]]>					<!---->
+					 
+<![CDATA[验证登录页 登录链接]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
+					 
 <![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）<br />
 ----<br />
-前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -35,37 +47,53 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤1]]>							<!---->
+							 
+<![CDATA[测试步骤1]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果1]]>							<!---->
+							 
+<![CDATA[预期结果1]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[2]]>							<!---->
+							 
+<![CDATA[2]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤2]]>							<!---->
+							 
+<![CDATA[测试步骤2]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果2]]>							<!---->
+							 
+<![CDATA[预期结果2]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -73,23 +101,33 @@
 			<testcase name="验证登录页 登录页面">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 登录页面]]>					<!---->
+					 
+<![CDATA[验证登录页 登录页面]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -97,15 +135,21 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤：页面设计风格统一（可以只有测试步骤，没有预期结果)]]>							<!---->
+							 
+<![CDATA[测试步骤：页面设计风格统一（可以只有测试步骤，没有预期结果)]]>							 
+							<!-- -->
 						</actions>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -113,27 +157,37 @@
 			<testcase name="验证登录页 控件 用户名输入">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 控件 用户名输入]]>					<!---->
+					 
+<![CDATA[验证登录页 控件 用户名输入]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
+					 
 <![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）<br />
 ----<br />
 前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）<br />
 ----<br />
-前置条件3：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+前置条件3：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -141,19 +195,27 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤]]>							<!---->
+							 
+<![CDATA[测试步骤]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果]]>							<!---->
+							 
+<![CDATA[预期结果]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -161,25 +223,35 @@
 			<testcase name="验证登录页 控件 密码输入">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 控件 密码输入]]>					<!---->
+					 
+<![CDATA[验证登录页 控件 密码输入]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
+					 
 <![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）<br />
 ----<br />
-前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -187,19 +259,27 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤]]>							<!---->
+							 
+<![CDATA[测试步骤]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果1]]>							<!---->
+							 
+<![CDATA[预期结果1]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -207,25 +287,35 @@
 			<testcase name="验证登录页 控件 登录按钮">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 控件 登录按钮]]>					<!---->
+					 
+<![CDATA[验证登录页 控件 登录按钮]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
+					 
 <![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）<br />
 ----<br />
-前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+前置条件2：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -233,23 +323,33 @@
 			<testcase name="验证登录页 国际化 中文环境">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 国际化 中文环境]]>					<!---->
+					 
+<![CDATA[验证登录页 国际化 中文环境]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -257,23 +357,33 @@
 			<testcase name="验证登录页 国际化 英文环境">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 国际化 英文环境]]>					<!---->
+					 
+<![CDATA[验证登录页 国际化 英文环境]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -281,23 +391,33 @@
 			<testcase name="验证登录页 操作 有效的用户名+有效的密码">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 操作 有效的用户名+有效的密码]]>					<!---->
+					 
+<![CDATA[验证登录页 操作 有效的用户名+有效的密码]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -305,47 +425,67 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤1]]>							<!---->
+							 
+<![CDATA[测试步骤1]]>							 
+							<!-- -->
 						</actions>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[2]]>							<!---->
+							 
+<![CDATA[2]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤2]]>							<!---->
+							 
+<![CDATA[测试步骤2]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果]]>							<!---->
+							 
+<![CDATA[预期结果]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[3]]>							<!---->
+							 
+<![CDATA[3]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤3（可以只有测试步骤，没有预期结果）]]>							<!---->
+							 
+<![CDATA[测试步骤3（可以只有测试步骤，没有预期结果）]]>							 
+							<!-- -->
 						</actions>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -353,23 +493,33 @@
 			<testcase name="验证登录页 操作 有效的用户名+无效的密码">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 操作 有效的用户名+无效的密码]]>					<!---->
+					 
+<![CDATA[验证登录页 操作 有效的用户名+无效的密码]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -377,23 +527,33 @@
 			<testcase name="验证登录页 操作 无效的用户名+无效的密码">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证登录页 操作 无效的用户名+无效的密码]]>					<!---->
+					 
+<![CDATA[验证登录页 操作 无效的用户名+无效的密码]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件1：测试用例的备注会自动识别为测试用例的前置条件，有多个备注时，也会自动合并起来（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -401,23 +561,33 @@
 			<testcase name="验证个人主页">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[验证个人主页]]>					<!---->
+					 
+<![CDATA[验证个人主页]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件：如果测试用例上没有标注优先级，则默认作为一条测试用例且优先级默认为中（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件：如果测试用例上没有标注优先级，则默认作为一条测试用例且优先级默认为中（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -427,23 +597,33 @@
 			<testcase name="用户表 Data">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[用户表 Data]]>					<!---->
+					 
+<![CDATA[用户表 Data]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件：如果测试用例上没有标注优先级，则默认作为一条测试用例且优先级默认为中（默认为空）]]>					<!---->
+					 
+<![CDATA[前置条件：如果测试用例上没有标注优先级，则默认作为一条测试用例且优先级默认为中（默认为空）]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -451,23 +631,33 @@
 			<testcase name="用户表 Schema">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[用户表 Schema]]>					<!---->
+					 
+<![CDATA[用户表 Schema]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[无]]>					<!---->
+					 
+<![CDATA[无]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -479,23 +669,33 @@
 			<testcase name="测试用例1">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[测试用例1]]>					<!---->
+					 
+<![CDATA[测试用例1]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件]]>					<!---->
+					 
+<![CDATA[前置条件]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -503,37 +703,53 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤1]]>							<!---->
+							 
+<![CDATA[测试步骤1]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果1]]>							<!---->
+							 
+<![CDATA[预期结果1]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[2]]>							<!---->
+							 
+<![CDATA[2]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤2]]>							<!---->
+							 
+<![CDATA[测试步骤2]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果2]]>							<!---->
+							 
+<![CDATA[预期结果2]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -541,23 +757,33 @@
 			<testcase name="测试用例2">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[测试用例2]]>					<!---->
+					 
+<![CDATA[测试用例2]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[前置条件]]>					<!---->
+					 
+<![CDATA[前置条件]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -565,69 +791,99 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤1]]>							<!---->
+							 
+<![CDATA[测试步骤1]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果1]]>							<!---->
+							 
+<![CDATA[预期结果1]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[2]]>							<!---->
+							 
+<![CDATA[2]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤2（预期结果2可以为空）]]>							<!---->
+							 
+<![CDATA[测试步骤2（预期结果2可以为空）]]>							 
+							<!-- -->
 						</actions>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[3]]>							<!---->
+							 
+<![CDATA[3]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤3]]>							<!---->
+							 
+<![CDATA[测试步骤3]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果3]]>							<!---->
+							 
+<![CDATA[预期结果3]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[4]]>							<!---->
+							 
+<![CDATA[4]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤4]]>							<!---->
+							 
+<![CDATA[测试步骤4]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果4]]>							<!---->
+							 
+<![CDATA[预期结果4]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -635,23 +891,33 @@
 			<testcase name="测试用例3（测试步骤和预期结果可以都为空）">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[测试用例3（测试步骤和预期结果可以都为空）]]>					<!---->
+					 
+<![CDATA[测试用例3（测试步骤和预期结果可以都为空）]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[无]]>					<!---->
+					 
+<![CDATA[无]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -660,28 +926,40 @@
 		<testsuite name="B模块名">
 			<details>
 				<!-- -->
-<![CDATA[测试集摘要（详情）]]>				<!---->
+				 
+<![CDATA[测试集摘要（详情）]]>				 
+				<!-- -->
 			</details>
 			<testcase name="测试步骤2（优先级默认为中）">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[测试步骤2（优先级默认为中）]]>					<!---->
+					 
+<![CDATA[测试步骤2（优先级默认为中）]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[无]]>					<!---->
+					 
+<![CDATA[无]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[3]]>					<!---->
+					 
+<![CDATA[3]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>
@@ -689,33 +967,47 @@
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤1]]>							<!---->
+							 
+<![CDATA[测试步骤1]]>							 
+							<!-- -->
 						</actions>
 						<expectedresults>
 							<!-- -->
-<![CDATA[预期结果1]]>							<!---->
+							 
+<![CDATA[预期结果1]]>							 
+							<!-- -->
 						</expectedresults>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 					<step>
 						<step_number>
 							<!-- -->
-<![CDATA[2]]>							<!---->
+							 
+<![CDATA[2]]>							 
+							<!-- -->
 						</step_number>
 						<actions>
 							<!-- -->
-<![CDATA[测试步骤3]]>							<!---->
+							 
+<![CDATA[测试步骤3]]>							 
+							<!-- -->
 						</actions>
 						<execution_type>
 							<!-- -->
-<![CDATA[1]]>							<!---->
+							 
+<![CDATA[1]]>							 
+							<!-- -->
 						</execution_type>
 					</step>
 				</steps>
@@ -723,23 +1015,33 @@
 			<testcase name="测试用例3（前置条件默认为空） &gt; 无设置优先级，这里加入用例标题">
 				<version>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</version>
 				<summary>
 					<!-- -->
-<![CDATA[测试用例3（前置条件默认为空） &gt; 无设置优先级，这里加入用例标题]]>					<!---->
+					 
+<![CDATA[测试用例3（前置条件默认为空） &gt; 无设置优先级，这里加入用例标题]]>					 
+					<!-- -->
 				</summary>
 				<preconditions>
 					<!-- -->
-<![CDATA[无]]>					<!---->
+					 
+<![CDATA[无]]>					 
+					<!-- -->
 				</preconditions>
 				<execution_type>
 					<!-- -->
-<![CDATA[1]]>					<!---->
+					 
+<![CDATA[1]]>					 
+					<!-- -->
 				</execution_type>
 				<importance>
 					<!-- -->
-<![CDATA[2]]>					<!---->
+					 
+<![CDATA[2]]>					 
+					<!-- -->
 				</importance>
 				<estimated_exec_duration>3</estimated_exec_duration>
 				<status>7</status>

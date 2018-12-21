@@ -136,8 +136,8 @@ def element_set_text(element, content):
     # add the line break in source to make it readable
     content = content.replace('<br />', '<br />\n')
 
-    # add CDATA for a element  TODO(devin): fix format
-    element.append(Comment(' --><![CDATA[' + content.replace(']]>', ']]]]><![CDATA[>') + ']]><!--'))
+    # add CDATA for a element
+    element.append(Comment(' --><![CDATA[' + content.replace(']]>', ']]]]><![CDATA[>') + ']]> <!-- '))
 
 
 def is_should_parse(content):
@@ -172,7 +172,7 @@ def _convert_importance(value):
 
 if __name__ == '__main__':
     xmind_file = 'doc/xmind_testcase_template.xmind'
-    testlink_json_file = xmind_to_testlink_json_file(xmind_file)
-    print('Convert XMind file to testlink json file successfully: %s', testlink_json_file)
+    # testlink_json_file = xmind_to_testlink_json_file(xmind_file)
+    # print('Convert XMind file to testlink json file successfully: %s', testlink_json_file)
     testlink_xml_file = xmind_to_testlink_xml_file(xmind_file)
     print('Convert XMind file to testlink xml file successfully: %s', testlink_xml_file)

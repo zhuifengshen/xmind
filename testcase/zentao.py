@@ -7,6 +7,8 @@ from testcase.utils import get_xmind_testsuites, get_xmind_testcases
 
 """
 Convert XMind fie to Zentao testcase csv file 
+
+Zentao official document about import CSV testcase file: https://www.zentao.net/book/zentaopmshelp/243.mhtml 
 """
 
 
