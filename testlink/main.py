@@ -5,7 +5,7 @@ import logging
 import os
 import sys
 from testlink.builder import xmind_to_testlink_json_file, xmind_to_testlink_xml_file
-
+from testlink.zentao import xmind_to_zentao_csv_file
 
 """
 A tool to parse xmind file into testlink xml file, which will help
@@ -46,6 +46,9 @@ def main():
     xmind_file_path = get_absolute_path(xmind_file)
     logging.info('Start to convert XMind file: %s', xmind_file_path)
 
+    zentao_csv_file = xmind_to_zentao_csv_file(xmind_file)
+    logging.info('Convert XMind file to zentao csv file successfully: %s', zentao_csv_file)
+
     testlink_xml_file = xmind_to_testlink_xml_file(xmind_file_path)
     logging.info('Convert XMind file to testlink xml file successfully: %s', testlink_xml_file)
 
@@ -62,9 +65,23 @@ def cli_main():
         if len(sys.argv) == 3 and sys.argv[2] == '-json':
             testlink_json_file = xmind_to_testlink_json_file(xmind_file_path)
             logging.info('Convert XMind file to testlink json file successfully: %s', testlink_json_file)
-        else:
+        elif len(sys.argv) == 3 and sys.argv[2] == '-xml':
             testlink_xml_file = xmind_to_testlink_xml_file(xmind_file_path)
             logging.info('Convert XMind file to testlink xml files successfully: %s', testlink_xml_file)
+        elif len(sys.argv) == 3 and sys.argv[2] == '-csv':
+            zentao_csv_file = xmind_to_zentao_csv_file(xmind_file)
+            logging.info('Convert XMind file to zentao csv file successfully: %s', zentao_csv_file)
+        else:
+            testlink_json_file = xmind_to_testlink_json_file(xmind_file_path)
+            testlink_xml_file = xmind_to_testlink_xml_file(xmind_file_path)
+            zentao_csv_file = xmind_to_zentao_csv_file(xmind_file)
+            logging.info('Convert XMind file successfully: \n'
+                         '1、 testlink json file(%s)\n'
+                         '2、 testlink xml file(%s)\n'
+                         '3、 zentao csv file(%s)',
+                         testlink_json_file,
+                         testlink_xml_file,
+                         zentao_csv_file)
     else:
         print(__doc__)
         logging.error('%s', __doc__)

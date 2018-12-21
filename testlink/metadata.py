@@ -74,7 +74,7 @@ class TestCase(object):
             'execution_type': self.execution_type,
             'importance': self.importance,
             'estimated_exec_duration': self.estimated_exec_duration,  # TODO(devin): get estimated content
-            'status': self.status,  # TODO(devin): get stauts content
+            'status': self.status,  # TODO(devin): get status content
             'steps': []
         }
 
