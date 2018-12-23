@@ -15,16 +15,8 @@ def load(path):
     return loader.get_workbook()
 
 
-def save(workbook, path=None):
+def save(workbook, path=None, only_content=False, except_attachments=False, except_revisions=False):
     """ Save workbook to given path. If path not given, then will save to path that set to workbook. """
     saver = WorkbookSaver(workbook)
-    saver.save(path)
+    saver.save(path=path, only_content=only_content, except_attachments=except_attachments, except_revisions=except_revisions)
 
-
-def save_as(workbook, path=None):
-    """
-        After update a xmind file, save it to the given path with all references in the xmind file except
-        Revisions content for saving space. If the path is not given, then will save to the path set in workbook.
-    """
-    saver = WorkbookSaver(workbook)
-    saver.save_as(path)

@@ -158,7 +158,7 @@ class TopicElement(WorkbookMixinElement):
         content = label.getLabel()
         return content
 
-    def setLabel(self, content):
+    def addLabel(self, content):
         _labels = self._get_labels()
         if not _labels:
             tmp = LabelsElement(None, self)
@@ -172,6 +172,21 @@ class TopicElement(WorkbookMixinElement):
         label = LabelElement(content, None, self)
         tmp.appendChild(label)
         return label
+
+    def getComments(self):
+        """
+        Get comments content.
+        """
+        topic_id = self.getAttribute(const.ATTR_ID)
+        workbook = self.getOwnerWorkbook()
+        content = workbook.commentsbook.getComment(topic_id)
+        return content
+
+    def addComment(self, content, author=None):
+        topic_id = self.getAttribute(const.ATTR_ID)
+        workbook = self.getOwnerWorkbook()
+        comment = workbook.commentsbook.addComment(content=content, topic_id=topic_id, author=author)
+        return comment
 
     def getNotes(self):
         """
@@ -397,6 +412,17 @@ class TopicElement(WorkbookMixinElement):
         """
         self.setAttribute(const.ATTR_STRUCTURE_CLASS, structure_class)
 
+    def getStyleId(self):
+        """ Get topic's style id
+
+        :return: such as <topic id="4i367dju3smik6p5tl7le3mb6d" style-id="4sfj39toumgj9tupqn113ck9kq">
+        """
+        return self.getAttribute(const.ATTR_STYLE_ID)
+
+    def setStyleID(self):
+        style_id = utils.generate_id()
+        self.setAttribute(const.ATTR_STYLE_ID, style_id)
+
     def getData(self):
         """ Get topic's main content in the form of a dictionary.
             if subtopic exist, recursively get the subtopics content.
@@ -407,7 +433,7 @@ class TopicElement(WorkbookMixinElement):
             'title': self.getTitle(),
             'note': self.getNotes(),
             'label': self.getLabels(),
-            'comment': '',  # TODO(devin): get comment's content
+            'comment': self.getComments(),
             'markers': [marker.getMarkerId().name for marker in self.getMarkers() if marker],
         }
 

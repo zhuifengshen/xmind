@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core
+xmind.core
 """
 from xml.dom import minidom as DOM
 from .. import utils

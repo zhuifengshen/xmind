@@ -30,7 +30,7 @@ def dump_sheet(sheet):
 
 
 def main():
-    x = xmind.load('test.xmind')
+    x = xmind.load('demo.xmind')
     print(x.getData())  # convert the xmind file to dict data
     print(x.to_prettify_json())  # convert the xmind file to a json format
 

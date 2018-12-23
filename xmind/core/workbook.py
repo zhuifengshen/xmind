@@ -24,7 +24,7 @@ class WorkbookElement(WorkbookMixinElement):
         super(WorkbookElement, self).__init__(node, ownerWorkbook)
 
         # Initialize WorkbookElement with default attribute
-        namespace = (const.NAMESPACE, const.XMAP)
+        namespace = (const.NAMESPACE, const.XMLNS_CONTENT)
         attrs = [const.NS_FO, const.NS_XHTML, const.NS_XLINK, const.NS_SVG]
 
         for attr in attrs:
@@ -108,18 +108,19 @@ class WorkbookDocument(Document):
     """ `WorkbookDocument` as central object correspond XMind workbook.
     """
 
-    def __init__(self, node=None, path=None):
-        """
-        Construct new `WorkbookDocument` object
+    def __init__(self, node=None, path=None, stylesbook=None, commentsbook=None):
+        """Construct new `WorkbookDocument` object
 
-        :param node:    pass DOM node object and parse as `WorkbookDocument`
-                        object. if node not given then created new one.
-
-        :param path:    set workbook will to be placed.
-
+        :param node: pass DOM node object and parse as `WorkbookDocument` object.
+                     if node not given then created new one.
+        :param path: set workbook will to be placed.
+        :param stylesbook: an instance which implements encapsulation of the XMind styles.xml.
+        :param commentsbook: an instance which implements encapsulation of the XMind comments.xml.
         """
         super(WorkbookDocument, self).__init__(node)
         self._path = path
+        self.stylesbook = stylesbook
+        self.commentsbook = commentsbook
         # Initialize WorkbookDocument to make sure that contains WorkbookElement as root.
         _workbook_element = self.getFirstChildNodeByTagName(const.TAG_WORKBOOK)
 

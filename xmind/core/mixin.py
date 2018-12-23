@@ -16,9 +16,9 @@ class WorkbookMixinElement(Element):
     def __init__(self, node=None, ownerWorkbook=None):
         super(WorkbookMixinElement, self).__init__(node)
         self._owner_workbook = ownerWorkbook
-        self.registOwnerWorkbook()
+        self.registerOwnerWorkbook()
 
-    def registOwnerWorkbook(self):
+    def registerOwnerWorkbook(self):
         if self._owner_workbook:
             self.setOwnerDocument(self._owner_workbook.getOwnerDocument())
 

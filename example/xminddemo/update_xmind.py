@@ -4,25 +4,22 @@ import xmind
 from xmind.core.markerref import MarkerId
 
 
-def update_xmind_correctly():
-    workbook = xmind.load('demo.xmind')
+def update_xmind():
+    workbook = xmind.load('update_demo.xmind')
     primary_sheet = workbook.getPrimarySheet()
     root_topic = primary_sheet.getRootTopic()
-    root_topic.addMarker(MarkerId.smileyLaugh)
-    # save_as() save all references in the xmind file（except Revisions content for saving space）
-    xmind.save_as(workbook, path='update_demo.xmind')
-
-
-def update_xmind_by_mistake():
-    workbook = xmind.load('demo.xmind')
-    primary_sheet = workbook.getPrimarySheet()
-    root_topic = primary_sheet.getRootTopic()
-    root_topic.addMarker(MarkerId.smileyLaugh)
-    # save() only save content.xml（styles and attachments will lost)
-    xmind.save(workbook, path='update_demo_by_mistake.xmind')
+    root_topic.addMarker(MarkerId.starRed)
+    # 1、save all content and save as xmind_update_demo.xmind(recommended)
+    xmind.save(workbook=workbook, path='xmind_update_demo.xmind')
+    # 2、only save the content.xml
+    xmind.save(workbook=workbook, path='xmind_update_demo1.xmind', only_content=True)
+    # 3、only save content.xml、comments.xml、styles.xml
+    xmind.save(workbook=workbook, path='xmind_update_demo2.xmind', except_attachments=True)
+    # 4、save everything except `Revisions` content to save space(also recommended)
+    xmind.save(workbook=workbook, path='xmind_update_demo3.xmind', except_revisions=True)
+    # 5、update and overwrite the original file directly.
+    xmind.save(workbook)
 
 
 if __name__ == '__main__':
-    # update_xmind_correctly()
-    # update_xmind_by_mistake()
-    pass
+    update_xmind()
