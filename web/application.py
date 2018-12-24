@@ -83,11 +83,14 @@ def insert_record(xmind_name, note=''):
 
 
 def delete_record(filename, record_id):
-    xmind = join(app.config['UPLOAD_FOLDER'], filename)
-    xml = join(app.config['UPLOAD_FOLDER'], filename[:-5] + 'xml')
-    for f in [xmind, xml]:
+    xmind_file = join(app.config['UPLOAD_FOLDER'], filename)
+    testlink_file = join(app.config['UPLOAD_FOLDER'], filename[:-5] + 'xml')
+    zentao_file = join(app.config['UPLOAD_FOLDER'], filename[:-5] + 'csv')
+
+    for f in [xmind_file, testlink_file, zentao_file]:
         if exists(f):
             os.remove(f)
+
     c = g.db.cursor()
     sql = 'UPDATE records SET is_deleted=1 WHERE id = ?'
     c.execute(sql, (record_id,))
@@ -103,10 +106,11 @@ def delete_records(keep=20):
     rows = c.fetchall()
     for row in rows:
         name = row[1]
-        xmind = join(app.config['UPLOAD_FOLDER'], name)
-        xml = join(app.config['UPLOAD_FOLDER'], name[:-5] + 'xml')
+        xmind_file = join(app.config['UPLOAD_FOLDER'], name)
+        testlink_file = join(app.config['UPLOAD_FOLDER'], name[:-5] + 'xml')
+        zentao_file = join(app.config['UPLOAD_FOLDER'], name[:-5] + 'csv')
 
-        for f in [xmind, xml]:
+        for f in [xmind_file, testlink_file, zentao_file]:
             if exists(f):
                 os.remove(f)
 
