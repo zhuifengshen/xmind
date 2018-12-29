@@ -33,6 +33,10 @@ def custom_parse_xmind(workbook):
         dump_sheet(sheet)
 
 
+def dict_to_prettify_json(data):
+    print(json.dumps(data, indent=4, separators=(',', ': ')))
+
+
 def main():
     # 1、you can convert the xmind file to dict data or json data
     workbook = xmind.load('demo.xmind')
@@ -41,11 +45,11 @@ def main():
 
     # 2、you can also convert the sheet to dict data
     sheet = workbook.getPrimarySheet()
-    print(sheet.getData())
+    dict_to_prettify_json(sheet.getData())
 
     # 3、as well as topic
     root_topic = sheet.getRootTopic()
-    print(root_topic.getData())
+    dict_to_prettify_json(root_topic.getData())
 
     # 4、as well as comments
     commentsbook = workbook.commentsbook

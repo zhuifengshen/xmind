@@ -5,7 +5,7 @@ from xmind.core.markerref import MarkerId
 
 
 def update_xmind():
-    workbook = xmind.load('xmind_element_demo.xmind')
+    workbook = xmind.load('demo.xmind')
     primary_sheet = workbook.getPrimarySheet()
     root_topic = primary_sheet.getRootTopic()
     root_topic.addMarker(MarkerId.starRed)

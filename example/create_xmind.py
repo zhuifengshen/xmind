@@ -8,7 +8,7 @@ from xmind.core.topic import TopicElement
 
 def gen_my_xmind_file():
     # load an existing file or create a new workbook if nothing is found
-    workbook = xmind.load("demo.xmind")
+    workbook = xmind.load("my.xmind")
     # get the first sheet(a new workbook has a blank sheet by default)
     sheet1 = workbook.getPrimarySheet()
     design_sheet1(sheet1)
@@ -66,7 +66,7 @@ def gen_sheet2(workbook, sheet1):
 
     topic2 = TopicElement(ownerWorkbook=workbook)
     topic2.setTitle("topic with an url hyperlink")
-    topic2.setURLHyperlink("https://xmind.net")  # set an url hyperlink
+    topic2.setURLHyperlink("https://github.com/zhuifengshen/xmind")  # set an url hyperlink
 
     topic3 = TopicElement(ownerWorkbook=workbook)
     topic3.setTitle("third node")
