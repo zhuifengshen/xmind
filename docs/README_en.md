@@ -1,6 +1,7 @@
 # XMind
 
-**XMind** to help Python developers to easily work with XMind files and build XMind extensions.
+**XMind** is a a one-stop solution for creating, parsing, and updating XMind files. 
+To help Python developers to easily work with XMind files and build XMind extensions.
 
 ## Install
 
@@ -39,6 +40,7 @@ xmind.save(workbook, /save/file/to/path)
 ```
 The MIT License (MIT)
 
+Copyright (c) 2019 Devin https://zhangchuzhao.site
 Copyright (c) 2013 XMind, Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of

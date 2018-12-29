@@ -58,6 +58,7 @@ class PyPiCommand(Command):
         except OSError:
             pass
 
+        self.status('Congratulations! Upload PyPi and publish git tag successfully...')
         sys.exit()
 
 

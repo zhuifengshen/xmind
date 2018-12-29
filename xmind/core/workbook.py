@@ -242,4 +242,4 @@ class WorkbookDocument(Document):
         """
         Convert the contents of the workbook to a json format
         """
-        return json.dumps(self.getData(), indent=4, separators=(',', ': '))
+        return json.dumps(self.getData(), indent=4, separators=(',', ': '), ensure_ascii=False)
