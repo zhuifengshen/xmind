@@ -618,7 +618,7 @@ python3 -m unittest discover
 ```
 python3 setup.py pypi
 ```
-![upload pypi]()
+![upload pypi](images/pypi_upload.png)
 
 
 
