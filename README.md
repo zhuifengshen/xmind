@@ -2,7 +2,7 @@
 
 **XMind** 是基于 Python 实现，提供了对 [XMind思维导图](https://www.xmind.cn/)进行创建、解析、更新的一站式解决方案！
 
-![mind_mapping](images/xmind.png)
+![mind_mapping](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/xmind.png)
 
 ### 一、安装方式
 ```
@@ -40,7 +40,7 @@ def gen_my_xmind_file():
     xmind.save(workbook, path='test.xmind')
 ```
 
-![first sheet](images/first_sheet.png)
+![first sheet](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/first_sheet.png)
 
 ```
 def design_sheet1(sheet1):
@@ -74,7 +74,7 @@ def design_sheet1(sheet1):
     sub_topic1_1.setTitle("I'm a sub topic too")
 ```
 
-![second sheet](images/second_sheet.png)
+![second sheet](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/second_sheet.png)
 
 ```
 def gen_sheet2(workbook, sheet1):
@@ -142,7 +142,7 @@ def gen_sheet2(workbook, sheet1):
     # 添加一个主题与主题之间的联系
     sheet2.createRelationship(topic1.getID(), topic2.getID(), "relationship test") 
 ```
-具体代码参考：[create_xmind.py](example/create_xmind.py)
+具体代码参考：[create_xmind.py](https://github.com/zhuifengshen/xmind/blob/master/example/create_xmind.py)
 
 
 #### 2、解析XMind文件
@@ -515,7 +515,7 @@ Output:
 		 AttachedSubTopic : 'topic with a file'
 Relationship: [redirection to the first sheet] --> [topic with an url hyperlink]
 ```
-具体代码参考：[parse_xmind.py](example/parse_xmind.py)
+具体代码参考：[parse_xmind.py](https://github.com/zhuifengshen/xmind/blob/master/example/parse_xmind.py)
 
 
 #### 3、更新保存XMind文件
@@ -545,12 +545,12 @@ xmind.save(workbook=workbook, path='xmind_update_demo3.xmind', except_revisions=
 # 5、不指定保存路径，直接更新原文件
 xmind.save(workbook)
 ```
-具体代码参考：[update_xmind.py](example/update_xmind.py)
+具体代码参考：[update_xmind.py](https://github.com/zhuifengshen/xmind/blob/master/example/update_xmind.py)
 
 
 ##### （2）XMind文件结构
 
-![xmind file structure](images/xmind_file_structure.png)
+![xmind file structure](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/xmind_file_structure.png)
 
 
 ### 四、工具支持功能
@@ -558,7 +558,7 @@ xmind.save(workbook)
 #### 1、支持XMind以下原生元素的创建、解析和更新
 - 画布(Sheet)
 - 主题(Topic：固定主题、自由主题)
-- 图标(Marker：[图标名称](xmind/core/markerref.py))
+- 图标(Marker：[图标名称](https://github.com/zhuifengshen/xmind/blob/master/xmind/core/markerref.py))
 - 备注(Note)
 - 标签(Label)
 - 批注(Comment)
@@ -567,7 +567,7 @@ xmind.save(workbook)
 
 #### 2、XMind原生元素
 
-![xmind_native_elements](images/xmind_native_elements.png)
+![xmind_native_elements](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/xmind_native_elements.png)
 
 其中，暂不支持的元素（日常也比较少用到）
 - 标注（cllout topic)
@@ -590,19 +590,19 @@ xmind.save(workbook)
 
 #### 1、使用Web工具进行XMind用例文件解析
 
-![webtool](images/webtool.png)
+![webtool](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/webtool.png)
 
 #### 2、转换后的用例预览
 
-![testcase preview](images/testcase_preview.png)
+![testcase preview](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/testcase_preview.png)
 
 #### 3、用例导入TestLink系统
 
-![testlink](images/testlink.png)
+![testlink](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/testlink.png)
 
 #### 4、用例导入Zentao（禅道）系统
 
-![zentao](images/zentao.png)
+![zentao](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/zentao.png)
 
 
 ### 六、自动化测试与发布
@@ -618,7 +618,7 @@ python3 -m unittest discover
 ```
 python3 setup.py pypi
 ```
-![upload pypi](images/pypi_upload.png)
+![upload pypi](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/pypi_upload.png)
 
 
 
