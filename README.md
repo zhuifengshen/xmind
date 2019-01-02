@@ -1,8 +1,9 @@
 # XMind
 
-**XMind** 是基于 Python 实现，提供了对 [XMind思维导图](https://www.xmind.cn/)进行创建、解析、更新的一站式解决方案！
-
 ![mind_mapping](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/xmind.png)
+
+**[XMind](https://github.com/zhuifengshen/xmind)** 是基于 Python 实现，提供了对 [XMind思维导图](https://www.xmind.cn/)进行创建、解析、更新的一站式解决方案！
+
 
 ### 一、安装方式
 ```
@@ -632,7 +633,7 @@ python3 setup.py pypi
 （如果本项目对你有帮助的话，也欢迎 _**[star](https://github.com/zhuifengshen/xmind)**_ ）
 
 
-<img align="middle" src="https://raw.githubusercontent.com/zhuifengshen/zhangchuzhao/gh-pages/img/qa_qrcode_258.jpg" />
+![QA之禅](http://upload-images.jianshu.io/upload_images/139581-27c6030ba720846f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ### LICENSE
