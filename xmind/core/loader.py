@@ -41,8 +41,8 @@ class WorkbookLoader(object):
                     elif stream == const.COMMENTS_XML:
                         self._comments_steam = utils.parse_dom_string(input_stream.read(stream))
 
-        except BaseException:
-            pass
+        except BaseException as e:
+            raise e
 
     def get_workbook(self):
         """ Parse XMind file to `WorkbookDocument` object and return
