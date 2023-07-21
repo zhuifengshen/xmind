@@ -5,7 +5,7 @@
 xmind.core.workbook implements the command XMind manipulations.
 """
 import json
-
+import os
 from . import Document
 from . import const
 from .mixin import WorkbookMixinElement
@@ -108,7 +108,8 @@ class WorkbookDocument(Document):
     """ `WorkbookDocument` as central object correspond XMind workbook.
     """
 
-    def __init__(self, node=None, path=None, stylesbook=None, commentsbook=None):
+    def __init__(self, node=None, path=None, stylesbook=None, commentsbook=None,
+                 manifestbook=None, reference_dir=None):
         """Construct new `WorkbookDocument` object
 
         :param node: pass DOM node object and parse as `WorkbookDocument` object.
@@ -121,6 +122,8 @@ class WorkbookDocument(Document):
         self._path = path
         self.stylesbook = stylesbook
         self.commentsbook = commentsbook
+        self.manifestbook = manifestbook
+        self.reference_dir = reference_dir
         # Initialize WorkbookDocument to make sure that contains WorkbookElement as root.
         _workbook_element = self.getFirstChildNodeByTagName(const.TAG_WORKBOOK)
 
@@ -243,3 +246,10 @@ class WorkbookDocument(Document):
         Convert the contents of the workbook to a json format
         """
         return json.dumps(self.getData(), indent=4, separators=(',', ': '), ensure_ascii=False)
+
+    def get_attachments_path(self):
+        """Get temp attachments path under reference directory"""
+        attach_path = os.path.join(self.reference_dir, "attachments")
+        if not os.path.isdir(attach_path):
+            os.makedirs(attach_path)
+        return attach_path

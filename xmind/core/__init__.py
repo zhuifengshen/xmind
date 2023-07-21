@@ -138,6 +138,7 @@ class Node(object):
             if node.tagName == tag_name:
                 yield node
 
+    # Remove child node
     def removeChild(self, child_node):
         child_node = child_node.getImplementation()
         self._node.removeChild(child_node)
@@ -308,4 +309,7 @@ class Element(Node):
         text.data = data
 
         self._node.appendChild(text)
+
+    def getnode(self):
+        return self._node
 

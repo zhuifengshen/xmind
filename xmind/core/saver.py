@@ -42,7 +42,17 @@ class WorkbookSaver(object):
 
         return styles_path
 
-    def _get_reference(self, except_revisions=False):
+    def _get_manifest_xml(self):
+        Metainf_dir = os.path.join(self._temp_dir, const.META_INF_DIR)
+        if not os.path.exists(Metainf_dir):
+            os.makedirs(Metainf_dir)
+        manifest_path = utils.join_path(self._temp_dir, const.MANIFEST_XML)
+        with codecs.open(manifest_path, "w", encoding="utf-8") as f:
+            self._workbook.manifestbook.output(f)
+
+        return manifest_path
+
+    def _get_origin_reference(self, except_revisions=False):
         """
         Get all references in xmind zip file.
 
@@ -59,7 +69,7 @@ class WorkbookSaver(object):
         try:
             with original_zip as input_stream:
                 for name in input_stream.namelist():
-                    if name in [const.CONTENT_XML, const.STYLES_XML, const.COMMENTS_XML]:
+                    if name in [const.CONTENT_XML, const.STYLES_XML, const.COMMENTS_XML, const.MANIFEST_XML]:
                         continue
                     if const.REVISIONS_DIR in name and except_revisions:
                         continue
@@ -94,9 +104,13 @@ class WorkbookSaver(object):
         if not only_content:
             styles = self._get_styles_xml()
             comments = self._get_comments_xml()
-            if not except_attachments and os.path.exists(original_path):
+            manifest = self._get_manifest_xml()
+            if not except_attachments and\
+                    (os.path.exists(original_path) or self._workbook.reference_dir):
                 is_have_attachments = True
-                reference_dir = self._get_reference(except_revisions)
+                reference_dir = self._workbook.reference_dir
+                if not reference_dir:  # save original references if not given
+                    reference_dir = self._get_origin_reference(except_revisions)
             else:
                 is_have_attachments = False
 
@@ -105,6 +119,7 @@ class WorkbookSaver(object):
         if not only_content:
             f.write(styles, const.STYLES_XML)
             f.write(comments, const.COMMENTS_XML)
+            f.write(manifest, const.MANIFEST_XML)
             if not except_attachments and is_have_attachments:
                 length = reference_dir.__len__()  # the length of the file string
                 for dirpath, dirnames, filenames in os.walk(reference_dir):
@@ -162,7 +177,7 @@ class WorkbookSaver(object):
     #     content = self._get_content_xml()
     #     styles = self._get_styles_xml()
     #     comments = self._get_comments_xml()
-    #     reference_dir = self._get_reference(original_path)
+    #     reference_dir = self._get_origin_reference(original_path)
     #
     #     f = utils.compress(new_path)
     #     f.write(content, const.CONTENT_XML)

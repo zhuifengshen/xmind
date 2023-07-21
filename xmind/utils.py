@@ -138,3 +138,12 @@ def check(attr):
             return None
         return wrapper
     return decorator
+
+# ***************Other****************
+# 列表去重复
+def remove_duplicates(thy_list, sort=False):
+    my_set = set(thy_list)  # 集合有去重功能，将列表转换成集合
+    my_list = list(my_set)  # 将集合转换成列表，列表实现去重
+    if sort:
+        my_list.sort()
+    return my_list
