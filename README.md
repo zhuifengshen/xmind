@@ -1,9 +1,8 @@
-# XMind
+# XMindCopilot
 
-![mind_mapping](https://raw.githubusercontent.com/zhuifengshen/xmind/master/images/xmind.png)
+**[XMindCopilot](https://github.com/MasterYip/XmindCopilot)**是一款思维导图辅助工具，支持xmind创建、编辑、压缩、格式互转、多文件内容检索等功能。A mindmap tool that provides assistance in creating, editing, compressing, format conversion, and multi-file content search for XMind files.
 
-**[XMind](https://github.com/zhuifengshen/xmind)** 是基于 Python 实现，提供了对 [XMind思维导图](https://www.xmind.cn/)进行创建、解析、更新的一站式解决方案！
-
+# Xmind
 
 ### 一、安装方式
 ```
