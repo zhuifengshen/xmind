@@ -14,3 +14,6 @@ class TitleElement(WorkbookMixinElement):
 
     def __init__(self, node=None, ownerWorkbook=None):
         super(TitleElement, self).__init__(node, ownerWorkbook)
+    
+    def setSvgWidth(self, width):
+        self.setAttribute(const.ATTR_TITLE_SVGWIDTH, width)

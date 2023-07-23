@@ -78,6 +78,8 @@ ATTR_STYLE_COLOR = "svg:fill"
 ATTR_AUTHOR = "author"
 ATTR_OBJECT_ID = "object-id"
 ATTR_TIME = "time"
+# Attr title
+ATTR_TITLE_SVGWIDTH = "svg:width"
 # Attr xhtml:img
 ATTR_IMG_ALIGN = "align"
 ATTR_IMG_HEIGHT = "svg:height"

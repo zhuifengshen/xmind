@@ -47,6 +47,7 @@ class WorkbookLoader(object):
                         self._manifest_stream = utils.parse_dom_string(input_stream.read(stream))
 
         except BaseException:
+            # FIXME: illegal char in xmind & illegal file name should be distinguished
             pass
 
     def get_workbook(self, get_refs=True):

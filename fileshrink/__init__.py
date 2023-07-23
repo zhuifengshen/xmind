@@ -5,8 +5,9 @@ import subprocess
 import zipfile
 from glob import glob
 import shutil
-import time
+import tempfile
 from tqdm import trange
+
 # Directory Management
 try:
     # Run in Terminal
@@ -14,8 +15,15 @@ try:
 except Warning:
     # Run in ipykernel & interactive
     ROOT_DIR = os.getcwd()
-TMP_DIR = os.path.join(ROOT_DIR, "temp")
+# TMP_DIR = os.path.join(ROOT_DIR, "temp")
+TMP_DIR = tempfile.mkdtemp()
 
+OUTPUT_DISPLAY = False
+
+
+def debug_print(*args):
+    if OUTPUT_DISPLAY:
+        print(*args)
 
 def pngquant_compress(fp, force=False, quality=None):
     '''
@@ -41,7 +49,7 @@ def pngquant_compress(fp, force=False, quality=None):
             f'/pngquant/pngquant.exe \"{fp}\"\\*.png --skip-if-larger {force_command} {quality_command} --ext=.png'
         subprocess.run(command)
     else:
-        print(f'Warning: {fp} is not a file or directory.')
+        debug_print(f'Warning: {fp} is not a file or directory.')
 
 
 def shrink_images(folder_path, PNG_Quality, JPEG_Quality, use_pngquant=True):
@@ -49,13 +57,15 @@ def shrink_images(folder_path, PNG_Quality, JPEG_Quality, use_pngquant=True):
     files = os.listdir(folder_path)
 
     # batch compress png
-    print("Shrinking png images...")
+    debug_print("Shrinking png images...")
     if use_pngquant:
-        print("pngquant(no progress bar)")
+        debug_print("pngquant(no progress bar)")
         pngquant_compress(folder_path, force=True, quality=PNG_Quality)
     else:
-        for i in trange(len(files)):
+        if OUTPUT_DISPLAY: progress = trange(len(files))
+        for i in range(len(files)):
             file = files[i]
+            if OUTPUT_DISPLAY: progress.update(1)
             image_path = os.path.join(folder_path, file)
             if file.endswith('.png'):
                 # Support Chinese path
@@ -63,9 +73,11 @@ def shrink_images(folder_path, PNG_Quality, JPEG_Quality, use_pngquant=True):
                 cv2.imencode(".png", image, [cv2.IMWRITE_PNG_COMPRESSION,
                              PNG_Quality])[1].tofile(image_path)
     # batch compress jpg
-    print("Shrinking jpg images...")
-    for i in trange(len(files)):
+    debug_print("Shrinking jpg images...")
+    if OUTPUT_DISPLAY: progress = trange(len(files))
+    for i in range(len(files)):
         file = files[i]
+        if OUTPUT_DISPLAY: progress.update(1)
         image_path = os.path.join(folder_path, file)
 
         if file.endswith('.jpg') or file.endswith('.jpeg'):
@@ -95,22 +107,34 @@ def zipDir(dirpath, outFullName):
     zip.close()
 
 
-def xmind_shrink(path, PNG_Quality, JPEG_Quality, replace=True, use_pngquant=True):
+def xmind_shrink(path, PNG_Quality=10, JPEG_Quality=20, replace=True, use_pngquant=True):
+    """
+    Shrinking xmind file(s)
+    :param path: xmind file path or folder path containing the xmind files
+    :param PNG_Quality: CV: 0-9(high-low) | pngquant: 1-100(low-high)
+    :param JPEG_Quality: CV: 0-100(low-high)
+    :param replace: whether to replace the original file (default: True)
+    :param use_pngquant: whether to use pngquant.exe to compress png images (default: True)
+    """
+
     xmind_files = []
+    if path is None:
+        debug_print("Please specify the path of the xmind file or folder containing the xmind files.")
+        return
     if os.path.isfile(path):
         xmind_files = [path]
     elif os.path.isdir(path):
         xmind_files = glob(path+'/**/*.xmind', recursive=True)
     
-    print("Xmind Files:")
+    debug_print("Xmind Files:")
     for i in range(len(xmind_files)):
-        print(f'{i+1}: {xmind_files[i]}')
-    print('')
+        debug_print(f'{i+1}: {xmind_files[i]}')
+    debug_print('\n')
     
     for file in xmind_files:
         if file.endswith('.shrink.xmind'):
             continue
-        print('Shrinking No.%02d: %s' % (xmind_files.index(file)+1, file))
+        debug_print('Shrinking No.%02d: %s' % (xmind_files.index(file)+1, file))
         if os.path.exists(TMP_DIR):
             shutil.rmtree(TMP_DIR)
         zip = zipfile.ZipFile(file)
@@ -124,14 +148,14 @@ def xmind_shrink(path, PNG_Quality, JPEG_Quality, replace=True, use_pngquant=Tru
             else:
                 zipDir(TMP_DIR, file+".shrink.xmind")
         else:
-            print(f'No images found in: {file}')
+            debug_print(f'No images found in: {file}')
     shutil.rmtree(TMP_DIR)
 
 
 if __name__ == "__main__":
     # Specify the <xmind file path> OR <folder path containing the xmind files>
     # folder_path = "D:\\CodeTestFiles\\HITSA-Courses-Xmind-Note"
-    folder_path = "D:\\SFTR\\1 Course\\Automation"
+    folder_path = "E:\\Temp\\Player One.xmind"
 
     # Specify the compression level
     use_pngquant = True
@@ -144,4 +168,6 @@ if __name__ == "__main__":
     ideal for xmind files: PNG_Quality=10, JPEG_Quality=20
     extreme compression: PNG_Quality=1, JPEG_Quality=0 (PNG will lose color(almost B&W?), JPEG will lose color details)
     '''
-    xmind_shrink(folder_path, PNG_Quality, JPEG_Quality, replace=True, use_pngquant=use_pngquant)
+    OUTPUT_DISPLAY = True
+    xmind_shrink(folder_path, PNG_Quality, JPEG_Quality, replace=True,
+                 use_pngquant=use_pngquant)

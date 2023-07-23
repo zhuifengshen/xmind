@@ -15,7 +15,7 @@ from .markerref import MarkerRefElement
 from .markerref import MarkerRefsElement
 from .markerref import MarkerId
 from .. import utils
-
+import re
 import json
 
 def split_hyperlink(hyperlink):
@@ -97,11 +97,14 @@ class TopicElement(WorkbookMixinElement):
         _title = self._get_title()
         title = TitleElement(_title, self.getOwnerWorkbook())
         title.setTextContent(text)
-
         if _title is None:
             self.appendChild(title)
-
         # self.updateModifiedTime()
+
+    def setTitleSvgWidth(self, svgwidth):
+        _title = self._get_title()
+        title = TitleElement(_title, self.getOwnerWorkbook())
+        title.setSvgWidth(svgwidth)
 
     def getImage(self):
         """Get ImageElement of this topic"""
@@ -254,11 +257,20 @@ class TopicElement(WorkbookMixinElement):
         tmp.appendChild(new)
         return new
 
-    def setFolded(self):
+    def setFolded(self, recursive=False):
         self.setAttribute(const.ATTR_BRANCH, const.VAL_FOLDED)
-
+        if recursive:
+            for c in self.getSubTopics():
+                c.setFolded(recursive=True)
         # self.updateModifiedTime()
 
+    def setExpanded(self, recursive=False):
+        self.setAttribute(const.ATTR_BRANCH, None)
+        if recursive:
+            for c in self.getSubTopics():
+                c.setExpanded(recursive=True)
+        # self.updateModifiedTime()
+    
     def getPosition(self):
         """ Get a pair of integer located topic position.
 
@@ -350,7 +362,7 @@ class TopicElement(WorkbookMixinElement):
         return sub_topics[index]
 
     # 增加子主题
-    def addSubTopic(self, topic=None, index=-1, topics_type=const.TOPIC_ATTACHED):
+    def addSubTopic(self, topic=None, index=-1, topics_type=const.TOPIC_ATTACHED, svg_width=500):
         """
         Add a sub topic to the current topic and return added sub topic
 
@@ -361,6 +373,7 @@ class TopicElement(WorkbookMixinElement):
                         length of sub topics list and insert passed topic
                         before given index.
         :param topics_type:   TOPIC_ATTACHED or TOPIC_DETACHED
+        :param svg_width:   svg width (default 500)
         """
         owner_workbook = self.getOwnerWorkbook()
         topic = topic or self.__class__(None, owner_workbook)
@@ -386,7 +399,7 @@ class TopicElement(WorkbookMixinElement):
             topics.appendChild(topic)
         else:
             topics.insertBefore(topic, topic_list[index])
-
+        topic.setTitleSvgWidth(svg_width)
         return topic
     
     def addSubTopicbyTitle(self, title, index=-1):
@@ -399,6 +412,32 @@ class TopicElement(WorkbookMixinElement):
         else:
             for i in range(len(content_list)):
                 self.addSubTopicbyTitle(content_list[i], index+i)
+
+    def addSubTopicbyIndentedList(self, content_list, index=-1):
+        """
+        Add subtopic tree to the current topic judging by '\t' prefix in each
+        :param content_list: list of string
+        :param index: insert index
+        """
+        last_indent = -1
+        ptr = self
+        for item in content_list:
+            indent = re.match(r'[\t]{0,}', item).group().count('\t')
+            if indent == 0:
+                pindex = index
+            else:
+                pindex = -1
+            if indent > last_indent:
+                ptr = ptr.addSubTopicbyTitle(item.strip('\t'), pindex)
+            elif indent == last_indent:
+                ptr = ptr.getParentTopic().addSubTopicbyTitle(item.strip('\t'), pindex)
+            elif indent < last_indent:
+                for i in range(last_indent - indent):
+                    ptr = ptr.getParentTopic()
+                ptr = ptr.getParentTopic().addSubTopicbyTitle(item.strip('\t'), pindex)
+            last_indent = indent
+            if indent == 0 and index >= 0:
+                index += 1
 
     def addSubTopicbyImage(self, image_path, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(),
