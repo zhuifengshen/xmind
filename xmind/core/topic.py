@@ -18,6 +18,7 @@ from .. import utils
 import re
 import json
 
+
 def split_hyperlink(hyperlink):
     colon = hyperlink.find(":")
     if colon < 0:
@@ -50,7 +51,7 @@ class TopicElement(WorkbookMixinElement):
 
     def _get_image(self):
         return self.getFirstChildNodeByTagName(const.TAG_IMAGE)
-    
+
     def _get_markerrefs(self):
         return self.getFirstChildNodeByTagName(const.TAG_MARKERREFS)
 
@@ -101,7 +102,11 @@ class TopicElement(WorkbookMixinElement):
             self.appendChild(title)
         # self.updateModifiedTime()
 
-    def setTitleSvgWidth(self, svgwidth):
+    def setTitleSvgWidth(self, svgwidth=500):
+        """
+        Set svg:width of title of this topic
+        :param svgwidth: svg:width of title of this topic, default is 500
+        """
         _title = self._get_title()
         title = TitleElement(_title, self.getOwnerWorkbook())
         title.setSvgWidth(svgwidth)
@@ -120,7 +125,7 @@ class TopicElement(WorkbookMixinElement):
     def setImage(self, imgpath=None, align=None, height=None, width=None):
         """
         Set the image and its attr of this topic
-        
+
         :param img_path: file path of image to be set. If src is not None, it WON'T be changed.
         :param align: image align (["top", "bottom", "left", "right"]). if it is None, it will be removed(Defaults to aligning top).
         :param height: image svg:height. If it is None, it will be removed.
@@ -131,7 +136,7 @@ class TopicElement(WorkbookMixinElement):
             image_element = ImageElement(None, self.getOwnerWorkbook())
             self.appendChild(image_element)
         image_element.setImage(imgpath, align, height, width)
-    
+
     def getMarkers(self):
         refs = self._get_markerrefs()
         if not refs:
@@ -141,7 +146,8 @@ class TopicElement(WorkbookMixinElement):
         marker_list = []
         if markers:
             for i in markers:
-                marker_list.append(MarkerRefElement(i, self.getOwnerWorkbook()))
+                marker_list.append(MarkerRefElement(
+                    i, self.getOwnerWorkbook()))
         return marker_list
 
     def addMarker(self, markerId):
@@ -192,7 +198,8 @@ class TopicElement(WorkbookMixinElement):
         #         label_list.append(LabelElement(i, self.getOwnerWorkbook()))
         # return label_list
 
-        label = LabelElement(node=tmp.getFirstChildNodeByTagName(const.TAG_LABEL), ownerTopic=self)
+        label = LabelElement(node=tmp.getFirstChildNodeByTagName(
+            const.TAG_LABEL), ownerTopic=self)
         content = label.getLabel()
         return content
 
@@ -223,7 +230,8 @@ class TopicElement(WorkbookMixinElement):
     def addComment(self, content, author=None):
         topic_id = self.getAttribute(const.ATTR_ID)
         workbook = self.getOwnerWorkbook()
-        comment = workbook.commentsbook.addComment(content=content, topic_id=topic_id, author=author)
+        comment = workbook.commentsbook.addComment(
+            content=content, topic_id=topic_id, author=author)
         return comment
 
     def getNotes(self):
@@ -234,7 +242,7 @@ class TopicElement(WorkbookMixinElement):
         if not _notes:
             return None
         tmp = NotesElement(_notes, self)
-        #TODO: Only support plain text notes right now
+        # TODO: Only support plain text notes right now
         content = tmp.getContent(const.PLAIN_FORMAT_NOTE)
         return content
 
@@ -270,7 +278,7 @@ class TopicElement(WorkbookMixinElement):
             for c in self.getSubTopics():
                 c.setExpanded(recursive=True)
         # self.updateModifiedTime()
-    
+
     def getPosition(self):
         """ Get a pair of integer located topic position.
 
@@ -329,12 +337,26 @@ class TopicElement(WorkbookMixinElement):
             topics = TopicsElement(parent, self.getOwnerWorkbook())
             return topics.getType()
 
+    def modify(self, fun, *args, recursive=False):
+        """modify topic and sub topics.
+
+        :param fun: function to modify topic
+        :param args: args for fun
+        :param kwargs: kwargs for fun
+        :param recursive: if modify sub topics
+        """
+        fun(self, *args)
+        if recursive:
+            for c in self.getSubTopics():
+                c.modify(fun, *args, recursive=recursive)
+
     # 获取单层子主题(TopicsElement形式返回 节点仍然在本层)
     def getTopics(self, topics_type=const.TOPIC_ATTACHED):
         topic_children = self._get_children()
 
         if topic_children:
-            topic_children = ChildrenElement(topic_children, self.getOwnerWorkbook())
+            topic_children = ChildrenElement(
+                topic_children, self.getOwnerWorkbook())
 
             return topic_children.getTopics(topics_type)
 
@@ -401,10 +423,10 @@ class TopicElement(WorkbookMixinElement):
             topics.insertBefore(topic, topic_list[index])
         topic.setTitleSvgWidth(svg_width)
         return topic
-    
+
     def addSubTopicbyTitle(self, title, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(), title=title), index)
-    
+
     def addSubTopicbyList(self, content_list, index=-1):
         if index < 0:
             for item in content_list:
@@ -442,11 +464,11 @@ class TopicElement(WorkbookMixinElement):
     def addSubTopicbyImage(self, image_path, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(),
                                              image_path=image_path), index)
-          
+
     def removeTopic(self):
         """Remove(Detach) self from parent topic"""
         self.getParentNode().removeChild(self.getImplementation())
-    
+
     def removeSubTopicbyMarkerId(self, markerId, recursive=False):
         topics = self.getSubTopics()
         for t in topics:
@@ -455,14 +477,31 @@ class TopicElement(WorkbookMixinElement):
             for m in t.getMarkers():
                 if m.getMarkerId().name == markerId:
                     t.removeTopic()
-        
+
+    def removeSubTopicbyTitle(self, title, recursive=False):
+        topics = self.getSubTopics()
+        for t in topics:
+            if recursive:
+                t.removeSubTopicbyTitle(title, recursive)
+            if t.getTitle() == title:
+                t.removeTopic()
+
+    def removeSubTopicWithEmptyTitle(self, recursive=True):
+        """Remove sub topic with empty title(reserved for image)"""
+        topics = self.getSubTopics()
+        for t in topics:
+            if recursive:
+                t.removeSubTopicWithEmptyTitle(recursive)
+            if t.getTitle() is None and t.getImage() is None:
+                t.removeTopic()
+
     def moveTopic(self, index):
         '''
         description: Move SubTopic to index\n
         param {*} self\n
         param {*} index - -1: move to last\n
         return {*}
-        '''   
+        '''
         owner_workbook = self.getOwnerWorkbook()
         parent_topic = self.getParentTopic()
         topic_children = parent_topic._get_children()
@@ -582,7 +621,7 @@ class TopicElement(WorkbookMixinElement):
         Convert the contents of the workbook to a json format
         """
         return json.dumps(self.getData(), indent=4, separators=(',', ': '), ensure_ascii=False)
-    
+
     def getParentTopic(self):
         pnode = self._node.parentNode
         for i in range(2):
@@ -634,4 +673,3 @@ class TopicsElement(WorkbookMixinElement):
             return sub_topics
 
         return sub_topics[index]
-
