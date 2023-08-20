@@ -1,7 +1,6 @@
-import os
 import re
-from XmindCopilot import xmind
-from XmindCopilot.xmind.core.topic import TopicElement
+from XmindCopilot.core.topic import TopicElement
+
 
 class MDTextSnippet(object):
     pass

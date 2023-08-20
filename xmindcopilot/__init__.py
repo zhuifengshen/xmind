@@ -5,8 +5,8 @@
     xmind
 """
 __version__ = "0.1.0"
-from XmindCopilot.core.loader import WorkbookLoader
-from XmindCopilot.core.saver import WorkbookSaver
+from .core.loader import WorkbookLoader
+from .core.saver import WorkbookSaver
 
 
 def load(path):

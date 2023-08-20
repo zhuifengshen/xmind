@@ -9,6 +9,7 @@ import sys
 
 import glob
 
+
 def WalkTopic(dictXmind: Dict, resultDict: Dict):
     strTitle: typing.AnyStr = dictXmind['title']
     if 'topics' in dictXmind:
