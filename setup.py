@@ -8,7 +8,7 @@ from setuptools import setup, find_packages, Command
 
 about = {}
 here = os.path.abspath(os.path.dirname(__file__))
-with io.open(os.path.join(here, 'xmind', '__about__.py'), encoding='utf-8') as f:
+with io.open(os.path.join(here, 'XmindCopilot', '__about__.py'), encoding='utf-8') as f:
     exec(f.read(), about)
 
 with io.open('README.md', encoding='utf-8') as f:
@@ -73,7 +73,7 @@ setup(
     author_email=about['__author_email__'],
     url=about['__url__'],
     license=about['__license__'],
-    packages=find_packages(exclude=['example', 'tests', 'test.*', 'docs']),
+    packages=find_packages(exclude=['example', 'test', 'test.*', 'docs']),
     package_data={'': ['README.md']},
     install_requires=install_requires,
     extras_require={},
