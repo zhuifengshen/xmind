@@ -1,4 +1,6 @@
 import re
+
+from pyparsing import Or
 from XmindCopilot.core.topic import TopicElement
 
 
@@ -13,6 +15,8 @@ class MDSection(object):
     """
     
     titleLineMatchStr = r"\s{0,3}(#{1,6})\s{1,}(.*)"
+    # FIXME: Seems level 1 is not found
+    listLineMatchStr = r"(\s{0,})(\d{1,}\.|[+*-])\s{1,}(.*)"
     
     def __init__(self, title: str, text: str):
         """
@@ -21,37 +25,81 @@ class MDSection(object):
         """
         self.title = title
         self.text = text
-        self.textList = text.split('\n')
+        self.textList = text.strip('\n').split('\n')
+        self.nonSubSectionText = ''
         self.nonSubSectionTextList = []
         self.SubSection = []
         self.segment()
     
+    def _getTitleLevel(self, line):
+        """Get the level of the title
+        """
+        titleMatch = re.match(self.titleLineMatchStr, line)
+        if titleMatch:
+            return len(titleMatch.groups()[0])
+        else:
+            return None
+    
+    def _getListLevel(self, line, indent=2):
+        """Get the level of the numbered list
+        """
+        listmatch = re.match(self.listLineMatchStr, line)
+        if listmatch:
+            return len(listmatch.groups()[0])//indent
+        else:
+            return None
+    
     def segment(self):
         """Segment the text into sub-sections
         """
-        titleLines = []  # Title Line are stored as (Level, index)
-        for index in range(len(self.textList)):
-            line = self.textList[index]
-            titleMatch = re.match(self.titleLineMatchStr, line)
-            if titleMatch:
-                # (Level, index)
-                titleLines.append((len(titleMatch.groups()[0]), index))
-        if titleLines:
-            self.nonSubSectionTextList = self.textList[:titleLines[0][1]]
-        else:
-            self.nonSubSectionTextList = self.textList
-            return
-        maxLevel = min([level for level, _ in titleLines])
+        maxLevel = 6  # The maximum level of the title
         lastMaxLevelLine = None
-        for titleLine in titleLines:
-            if titleLine[0] == maxLevel:
+        for line in self.textList:
+            if self._getTitleLevel(line) and self._getTitleLevel(line) <= maxLevel:
+                maxLevel = self._getTitleLevel(line)
                 if lastMaxLevelLine:
-                    title = re.match(self.titleLineMatchStr, self.textList[lastMaxLevelLine[1]]).groups()[1]
-                    self.SubSection.append(MDSection(title, '\n'.join(self.textList[lastMaxLevelLine[1]+1:titleLine[1]])))
-                lastMaxLevelLine = titleLine
-            if titleLine == titleLines[-1] and lastMaxLevelLine:
-                title = re.match(self.titleLineMatchStr, self.textList[lastMaxLevelLine[1]]).groups()[1]
-                self.SubSection.append(MDSection(title, '\n'.join(self.textList[lastMaxLevelLine[1]+1:])))
+                    # FIXME: mismatch using .index when there are multiple same lines
+                    title = re.match(self.titleLineMatchStr, lastMaxLevelLine).groups()[1]
+                    self.SubSection.append(MDSection(title, '\n'.join(self.textList[
+                                                        self.textList.index(lastMaxLevelLine)+1:
+                                                        self.textList.index(line)])))
+                lastMaxLevelLine = line
+            if lastMaxLevelLine is None:
+                self.nonSubSectionTextList.append(line)
+            if line == self.textList[-1] and lastMaxLevelLine:
+                title = re.match(self.titleLineMatchStr, lastMaxLevelLine).groups()[1]
+                self.SubSection.append(MDSection(title, '\n'.join(self.textList[self.textList.index(lastMaxLevelLine)+1:])))
+        self.nonSubSectionText = '\n'.join(self.nonSubSectionTextList)
+
+    def textProcess(self, text):
+        """Process the text elements (e.g. list, table, etc.)
+        """
+        code_match = re.findall(r"(```.*?```)", text, re.S)
+        latex_match = re.findall(r"(\$\$.*?\$\$)", text, re.S)
+        lines = text.split('\n')
+        outputList = []
+        while lines:
+            if code_match and lines and lines[0] in code_match[0]:
+                while lines and lines[0] in code_match[0]:
+                    lines.pop(0)
+                outputList.append(code_match.pop(0))
+            elif latex_match and lines and lines[0] in latex_match[0]:
+                while lines and lines[0] in latex_match[0]:
+                    lines.pop(0)
+                outputList.append(latex_match.pop(0))
+            elif lines:
+                if re.match(r'[\s\t]*$', lines[0]):  # Empty line
+                    lines.pop(0)
+                else:
+                    line = lines.pop(0)
+                    level = self._getListLevel(line)
+                    if level:
+                        topictitle = "\t"*level + re.match(self.listLineMatchStr, line).groups()[2]
+                    else:
+                        topictitle = line
+                    outputList.append(topictitle)
+        
+        return outputList
     
     def printSubSections(self, indent=4):
         print(" "*indent, self.title)
@@ -62,8 +110,7 @@ class MDSection(object):
         """Convert the section to xmind
         """
         topic = parentTopic.addSubTopicbyTitle(self.title)
-        for line in self.nonSubSectionTextList:
-            topic.addSubTopicbyTitle(line)
+        topic.addSubTopicbyIndentedList(self.textProcess(self.nonSubSectionText))
         for subSection in self.SubSection:
             subSection.toXmind(topic)
   

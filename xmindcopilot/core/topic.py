@@ -441,25 +441,24 @@ class TopicElement(WorkbookMixinElement):
         :param content_list: list of string
         :param index: insert index
         """
-        last_indent = -1
-        ptr = self
-        for item in content_list:
+        minIndent = None
+        last = None
+        for i in range(len(content_list)):
+            item = content_list[i]
             indent = re.match(r'[\t]{0,}', item).group().count('\t')
             if indent == 0:
                 pindex = index
             else:
                 pindex = -1
-            if indent > last_indent:
-                ptr = ptr.addSubTopicbyTitle(item.strip('\t'), pindex)
-            elif indent == last_indent:
-                ptr = ptr.getParentTopic().addSubTopicbyTitle(item.strip('\t'), pindex)
-            elif indent < last_indent:
-                for i in range(last_indent - indent):
-                    ptr = ptr.getParentTopic()
-                ptr = ptr.getParentTopic().addSubTopicbyTitle(item.strip('\t'), pindex)
-            last_indent = indent
-            if indent == 0 and index >= 0:
-                index += 1
+            if minIndent is None or indent <= minIndent:
+                minIndent = indent
+                if last is not None:
+                    subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), pindex)
+                    subtopic.addSubTopicbyIndentedList(content_list[last+1:i], pindex)
+                last = i
+            if i == len(content_list) - 1:
+                subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), pindex)
+                subtopic.addSubTopicbyIndentedList(content_list[last+1:], pindex)
 
     def addSubTopicbyImage(self, image_path, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(),

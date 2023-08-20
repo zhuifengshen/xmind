@@ -50,9 +50,23 @@ class TestXmindShrink(unittest.TestCase):
 
 
 class TestXmindFmtConvert(unittest.TestCase):
-    def testMardwon2Xmind(self):
+    def testMarkdown2Xmind(self):
         file_path = os.path.join(os.path.dirname(__file__), "TestTemplate.md")
         xmind_path = os.path.join(os.path.dirname(__file__), "tmp", "TestMd2Xmind.xmind")
+        if os.path.isfile(xmind_path):
+            os.remove(xmind_path)
+        workbook = XmindCopilot.load(xmind_path)
+        rootTopic = workbook.getPrimarySheet().getRootTopic()
+        markdowntext = open(file_path, 'r', encoding='utf-8').read()
+        MarkDown2Xmind(rootTopic).convert2xmind(markdowntext)
+        XmindCopilot.save(workbook)
+        self.assertTrue(True)
+    
+    def testMarkdownList2Xmind(self):
+        file_path = os.path.join(os.path.dirname(__file__), "TestIndentList.md")
+        xmind_path = os.path.join(os.path.dirname(__file__), "tmp", "TestMdList2Xmind.xmind")
+        if os.path.isfile(xmind_path):
+            os.remove(xmind_path)
         workbook = XmindCopilot.load(xmind_path)
         rootTopic = workbook.getPrimarySheet().getRootTopic()
         markdowntext = open(file_path, 'r', encoding='utf-8').read()
