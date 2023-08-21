@@ -4,9 +4,9 @@
 """
 XmindCopilot.core.loader
 """
-from XmindCopilot.core.comments import CommentsBookDocument
-from XmindCopilot.core.styles import StylesBookDocument
-from XmindCopilot.core.manifest import ManifestBookDocument
+from .comments import CommentsBookDocument
+from .styles import StylesBookDocument
+from .manifest import ManifestBookDocument
 from . import const
 from .workbook import WorkbookDocument
 from .. import utils

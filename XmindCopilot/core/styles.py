@@ -4,7 +4,7 @@
 """
 XmindCopilot.core.styles implements encapsulation of the XMind styles.xml.
 """
-from XmindCopilot.core import Document, const, Element
+from . import Document, const, Element
 
 
 class StylesBookDocument(Document):

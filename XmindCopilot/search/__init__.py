@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import XmindCopilot
-from XmindCopilot.core import const
+from XmindCopilot.XmindCopilot.core import const
 # from XmindCopilot.core.topic import TopicElement
 # from XmindCopilot.core.topic import TopicsElement
 # from XmindCopilot.utils import remove_duplicates

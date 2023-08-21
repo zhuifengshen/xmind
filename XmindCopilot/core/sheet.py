@@ -4,7 +4,7 @@
 """
 XmindCopilot.core.sheet command XMind sheets manipulation
 """
-from XmindCopilot import utils
+from .. import utils
 from . import const
 from .mixin import WorkbookMixinElement
 from .topic import TopicElement
