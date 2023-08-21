@@ -15,6 +15,7 @@ from .markerref import MarkerRefElement
 from .markerref import MarkerRefsElement
 from .markerref import MarkerId
 from ..fmt_cvt.latex_render import latex2img
+from ..fmt_cvt.md2xmind import MarkDown2Xmind
 from .. import utils
 import re
 import json
@@ -141,15 +142,17 @@ class TopicElement(WorkbookMixinElement):
     def setLatexEquation(self, latex_equation, align=None, height=None, width=None):
         """
         Set the equation as image of this topic
+        
+        **FIXME:** It seems the pyplot latex renderer does not support
+        $$Latex Block$$ and multi-line latex equation
         """
-        # FIXME: It seems the pyplot latex renderer does not support
-        # $$Latex Block$$ and multi-line latex equation
         latex_equation = latex_equation.replace("$$", "$")
         latex_equation = latex_equation.replace("\n", " ")
         latex_equation = latex_equation.replace("\\\\", "\\")
         im = latex2img(latex_equation)
         self.setImage(im, align, height, width)
 
+    # For Markdown to Xmind
     def convertTitle2Equation(self, align=None, height=None, width=None, recursive=False):
         """
         Convert title to latex equation
@@ -158,16 +161,35 @@ class TopicElement(WorkbookMixinElement):
         :param height: image svg:height. If it is None, it will be removed.
         :param width: image svg:width. If it is None, it will be removed.
         """
-        title = self.getTitle()
         if recursive:
             for c in self.getSubTopics():
                 c.convertTitle2Equation(align, height, width, recursive)
+        title = self.getTitle()
         if re.match(r'^\$.*?\$$', title, re.S):
             try:
                 self.setLatexEquation(title, align, height, width)
                 self.setTitle("")
             except:
                 print("Warning: convertTitle2Equation failed")
+
+    def convertTitle2WebImage(self, align=None, height=None, width=None, recursive=False):
+        if recursive:
+            for c in self.getSubTopics():
+                c.convertTitle2WebImage(align, height, width, recursive)
+        title = self.getTitle()
+        # FIXME:
+        # <img src="https://xxx.png" alt="image-20230706120022138" style="zoom:50%;" />
+        # ![]()
+        # are all should be supported
+        uriSearch = re.search(r"[\(\"](http[s]{0,1}://.*?)[\)\"]", title)
+        mdImgMatch = re.match(r'^!\[.*\]\((http[s]{0,1}://.*)\)', title)
+        htmlDivMatch = re.search(r"img", title) and uriSearch
+        if mdImgMatch or htmlDivMatch:
+            try:
+                self.setImage(uriSearch.group(1), align, height, width)
+                self.setTitle("")
+            except:
+                print("Warning: convertTitle2WebImage failed")
 
     def getMarkers(self):
         refs = self._get_markerrefs()
@@ -491,6 +513,9 @@ class TopicElement(WorkbookMixinElement):
             if i == len(content_list) - 1:
                 subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), pindex)
                 subtopic.addSubTopicbyIndentedList(content_list[last+1:], pindex)
+
+    def addSubTopicbyMarkDown(self, mdtext):
+        MarkDown2Xmind(self).convert2xmind(mdtext)
 
     def addSubTopicbyImage(self, image_path, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(),

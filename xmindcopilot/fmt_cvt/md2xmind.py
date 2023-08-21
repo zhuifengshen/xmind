@@ -1,9 +1,5 @@
 import re
 
-from pyparsing import Or
-from XmindCopilot.core.topic import TopicElement
-
-
 class MDTextSnippet(object):
     pass
 
@@ -106,12 +102,13 @@ class MDSection(object):
         for subSection in self.SubSection:
             subSection.printSubSections(indent+4)
     
-    def toXmind(self, parentTopic: TopicElement):
+    def toXmind(self, parentTopic):
         """Convert the section to xmind
         """
         topic = parentTopic.addSubTopicbyTitle(self.title)
         topic.addSubTopicbyIndentedList(self.textProcess(self.nonSubSectionText))
         topic.convertTitle2Equation(recursive=True)
+        topic.convertTitle2WebImage(recursive=True)
         for subSection in self.SubSection:
             subSection.toXmind(topic)
 
@@ -190,7 +187,7 @@ class MarkDown2Xmind(object):
         text = re.sub(r"[\n]+", "\n", text)
         mdSection = MDSection("test", text)
         mdSection.toXmind(self.topic)
-    
+
 
 if __name__ == "__main__":
     pass

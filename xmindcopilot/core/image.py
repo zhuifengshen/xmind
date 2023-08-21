@@ -9,6 +9,7 @@ from . import const
 from .mixin import WorkbookMixinElement
 from . import utils
 import os
+import re
 import shutil
 from PIL.Image import Image
 from typing import Optional, Union
@@ -59,10 +60,16 @@ class ImageElement(WorkbookMixinElement):
 
         :param img: image path or Image obj to set.
         """
+        
         # Delete origin image file
         if self._getImgAbsPath() and os.path.isfile(self._getImgAbsPath()):
             os.remove(self._getImgAbsPath())
 
+        # Handle Web img
+        if re.match("^http[s]{0,1}://.*$", img):
+            self.setAttribute(const.ATTR_IMG_SRC, img)
+            return
+        
         # Set image file
         attach_dir = self.getOwnerWorkbook().get_attachments_path()
         if type(img) == str:
@@ -72,15 +79,20 @@ class ImageElement(WorkbookMixinElement):
         media_type = "image/"+ext_name[1:]
         img_name = utils.generate_id()+ext_name
         save_path = os.path.join(attach_dir, img_name)
-        # Set xhtml:src Attr
-        attr_src = "xap:attachments/"+img_name
-        self.setAttribute(const.ATTR_IMG_SRC, attr_src)
-        self.getOwnerWorkbook().manifestbook.addManifest("attachments/"+img_name, media_type)
         # Copy image file
         if type(img) == str:
             shutil.copy(img, save_path)
         else:
             img.save(save_path, format='png')
+        
+        # Set xhtml:src Attr
+        attr_src = "xap:attachments/"+img_name
+        self.setAttribute(const.ATTR_IMG_SRC, attr_src)
+        self.getOwnerWorkbook().manifestbook.addManifest("attachments/"+img_name, media_type)
+        
+        
+            
+        
 
     def setImage(self, img: Optional[Union[Image, str]] = None,
                  align=None, height=None, width=None):

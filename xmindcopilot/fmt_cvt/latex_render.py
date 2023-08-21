@@ -6,7 +6,8 @@ from PIL import Image
 import numpy as np
 import matplotlib.font_manager as mfm
 from matplotlib import mathtext
-from sympy import preview
+# from sympy import preview
+
 
 def latex2img(text, size=32, color=(0.0, 0.0, 0.0), out=None, **kwds):
     """
@@ -52,5 +53,5 @@ def latex2img(text, size=32, color=(0.0, 0.0, 0.0), out=None, **kwds):
         im.save(out)
         # print('File is saved to %s' % out)
 
-def latex2img_sympy(text):
-    preview(r'$$\int_0^1 e^x\,dx$$', viewer='file', filename='test.png', euler=False)
+# def latex2img_sympy(text):
+#     preview(r'$$\int_0^1 e^x\,dx$$', viewer='file', filename='test.png', euler=False)
