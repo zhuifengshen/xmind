@@ -10,7 +10,8 @@ from .mixin import WorkbookMixinElement
 from . import utils
 import os
 import shutil
-
+from PIL.Image import Image
+from typing import Optional, Union
 
 class ImageElement(WorkbookMixinElement):
     TAG_NAME = const.TAG_IMAGE
@@ -52,11 +53,11 @@ class ImageElement(WorkbookMixinElement):
         self.setAttribute(const.ATTR_IMG_HEIGHT, height)
         self.setAttribute(const.ATTR_IMG_WIDTH, width)
 
-    def _setImageFile(self, img_path: str):
+    def _setImageFile(self, img: Union[Image, str]):
         """
         Set image file
 
-        :param img_path: file path of image to be set
+        :param img: image path or Image obj to set.
         """
         # Delete origin image file
         if self._getImgAbsPath() and os.path.isfile(self._getImgAbsPath()):
@@ -64,7 +65,10 @@ class ImageElement(WorkbookMixinElement):
 
         # Set image file
         attach_dir = self.getOwnerWorkbook().get_attachments_path()
-        ext_name = os.path.splitext(img_path)[1]
+        if type(img) == str:
+            ext_name = os.path.splitext(img)[1]
+        else:
+            ext_name = ".png"
         media_type = "image/"+ext_name[1:]
         img_name = utils.generate_id()+ext_name
         save_path = os.path.join(attach_dir, img_name)
@@ -73,17 +77,21 @@ class ImageElement(WorkbookMixinElement):
         self.setAttribute(const.ATTR_IMG_SRC, attr_src)
         self.getOwnerWorkbook().manifestbook.addManifest("attachments/"+img_name, media_type)
         # Copy image file
-        shutil.copy(img_path, save_path)
+        if type(img) == str:
+            shutil.copy(img, save_path)
+        else:
+            img.save(save_path, format='png')
 
-    def setImage(self, img_path=None, align=None, height=None, width=None):
+    def setImage(self, img: Optional[Union[Image, str]] = None,
+                 align=None, height=None, width=None):
         """
         Set the image and its attr
 
-        :param img_path: file path of image to be set. If src is not None, it WON'T be changed.
+        :param img: image path or Image obj to set. If img is None, original img will be reserved.
         :param align: image align (["top", "bottom", "left", "right"]). if it is None, it will be removed(Defaults to aligning top).
         :param height: image svg:height. If it is None, it will be removed.
         :param width: image svg:width. If it is None, it will be removed.
         """
-        if img_path:
-            self._setImageFile(img_path)
+        if img:
+            self._setImageFile(img)
         self._setImgAttribute(align=align, height=height, width=width)

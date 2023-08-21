@@ -111,9 +111,10 @@ class MDSection(object):
         """
         topic = parentTopic.addSubTopicbyTitle(self.title)
         topic.addSubTopicbyIndentedList(self.textProcess(self.nonSubSectionText))
+        topic.convertTitle2Equation(recursive=True)
         for subSection in self.SubSection:
             subSection.toXmind(topic)
-  
+
 
 class MarkDown2Xmind(object):
     

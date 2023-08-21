@@ -14,6 +14,7 @@ from .labels import LabelsElement, LabelElement
 from .markerref import MarkerRefElement
 from .markerref import MarkerRefsElement
 from .markerref import MarkerId
+from ..fmt_cvt.latex_render import latex2img
 from .. import utils
 import re
 import json
@@ -122,11 +123,11 @@ class TopicElement(WorkbookMixinElement):
         if image_element:
             return image_element._getImgAttribute()
 
-    def setImage(self, imgpath=None, align=None, height=None, width=None):
+    def setImage(self, img=None, align=None, height=None, width=None):
         """
         Set the image and its attr of this topic
 
-        :param img_path: file path of image to be set. If src is not None, it WON'T be changed.
+        :param img: image path or Image obj to set. If img is None, original img will be reserved.
         :param align: image align (["top", "bottom", "left", "right"]). if it is None, it will be removed(Defaults to aligning top).
         :param height: image svg:height. If it is None, it will be removed.
         :param width: image svg:width. If it is None, it will be removed.
@@ -135,7 +136,38 @@ class TopicElement(WorkbookMixinElement):
         if not image_element:
             image_element = ImageElement(None, self.getOwnerWorkbook())
             self.appendChild(image_element)
-        image_element.setImage(imgpath, align, height, width)
+        image_element.setImage(img, align, height, width)
+
+    def setLatexEquation(self, latex_equation, align=None, height=None, width=None):
+        """
+        Set the equation as image of this topic
+        """
+        # FIXME: It seems the pyplot latex renderer does not support
+        # $$Latex Block$$ and multi-line latex equation
+        latex_equation = latex_equation.replace("$$", "$")
+        latex_equation = latex_equation.replace("\n", " ")
+        latex_equation = latex_equation.replace("\\\\", "\\")
+        im = latex2img(latex_equation)
+        self.setImage(im, align, height, width)
+
+    def convertTitle2Equation(self, align=None, height=None, width=None, recursive=False):
+        """
+        Convert title to latex equation
+
+        :param align: image align (["top", "bottom", "left", "right"]). if it is None, it will be removed(Defaults to aligning top).
+        :param height: image svg:height. If it is None, it will be removed.
+        :param width: image svg:width. If it is None, it will be removed.
+        """
+        title = self.getTitle()
+        if recursive:
+            for c in self.getSubTopics():
+                c.convertTitle2Equation(align, height, width, recursive)
+        if re.match(r'^\$.*?\$$', title, re.S):
+            try:
+                self.setLatexEquation(title, align, height, width)
+                self.setTitle("")
+            except:
+                print("Warning: convertTitle2Equation failed")
 
     def getMarkers(self):
         refs = self._get_markerrefs()
