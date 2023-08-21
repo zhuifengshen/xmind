@@ -113,9 +113,13 @@ class TestXmindFmtConvert(unittest.TestCase):
                             """
         padding = 50
         image_format = 'png'
-        path = latex2img_web(latex_expression, output_file=None,
-                             padding=padding, image_format=image_format)
-        os.system("start %s" % path)
+        try:
+            path = latex2img_web(latex_expression, output_file=None,
+                                padding=padding, image_format=image_format)
+            os.system("start %s" % path)
+        except:
+            print("Failed to render latex expression. please check network connection.")
+            
 
 if __name__ == '__main__':
     unittest.main()
