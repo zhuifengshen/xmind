@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.markerref
+    XmindCopilot.core.markerref
 """
 from . import const
 from .mixin import WorkbookMixinElement

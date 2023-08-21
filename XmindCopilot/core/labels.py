@@ -3,7 +3,7 @@
 
 
 """
-    xmind.core.labels
+    XmindCopilot.core.labels
 """
 from . import const
 from .mixin import TopicMixinElement

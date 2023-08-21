@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.relationship
+    XmindCopilot.core.relationship
 """
 from XmindCopilot import utils
 from . import const

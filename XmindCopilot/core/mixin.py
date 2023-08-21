@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.mixin
+    XmindCopilot.core.mixin
 """
 from . import const
 from . import Element

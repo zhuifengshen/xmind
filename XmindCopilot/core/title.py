@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.title
+    XmindCopilot.core.title
 
 """
 from . import const

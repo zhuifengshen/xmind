@@ -2,7 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 """
-xmind.core.comments implements encapsulation of the XMind comments.xml.
+XmindCopilot.core.comments implements encapsulation of the XMind comments.xml.
 """
 import random
 

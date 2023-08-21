@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.position
+    XmindCopilot.core.position
 """
 from . import const
 from .mixin import WorkbookMixinElement

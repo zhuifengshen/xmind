@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-xmind.core.loader
+XmindCopilot.core.loader
 """
 from XmindCopilot.core.comments import CommentsBookDocument
 from XmindCopilot.core.styles import StylesBookDocument

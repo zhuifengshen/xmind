@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.utils provide a handy way for internal used by xmind,
+    XmindCopilot.utils provide a handy way for internal used by xmind,
     and excepted that function defined here will be useful to others.
 
 """

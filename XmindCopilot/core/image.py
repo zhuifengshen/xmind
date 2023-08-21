@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.image
+    XmindCopilot.core.image
 
 """
 from . import const

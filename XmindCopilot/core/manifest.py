@@ -2,7 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 """
-xmind.core.manifest implements encapsulation of the XMind META-INF/manifest.xml.
+XmindCopilot.core.manifest implements encapsulation of the XMind META-INF/manifest.xml.
 """
 import random
 

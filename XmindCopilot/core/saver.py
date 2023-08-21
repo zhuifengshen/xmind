@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.saver
+    XmindCopilot.core.saver
 """
 import codecs
 import os

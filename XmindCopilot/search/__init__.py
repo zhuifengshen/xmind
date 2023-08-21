@@ -3,9 +3,9 @@
 
 import XmindCopilot
 from XmindCopilot.core import const
-# from xmind.core.topic import TopicElement
-# from xmind.core.topic import TopicsElement
-# from xmind.utils import remove_duplicates
+# from XmindCopilot.core.topic import TopicElement
+# from XmindCopilot.core.topic import TopicsElement
+# from XmindCopilot.utils import remove_duplicates
 import glob
 import re
 import os

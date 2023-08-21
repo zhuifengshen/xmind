@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-xmind.core.sheet command XMind sheets manipulation
+XmindCopilot.core.sheet command XMind sheets manipulation
 """
 from XmindCopilot import utils
 from . import const

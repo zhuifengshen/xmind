@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind
+    XmindCopilot
 """
 __version__ = "0.1.0"
 from .core.loader import WorkbookLoader

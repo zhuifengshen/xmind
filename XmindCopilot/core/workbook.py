@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-xmind.core.workbook implements the command XMind manipulations.
+XmindCopilot.core.workbook implements the command XMind manipulations.
 """
 import json
 import os

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.topic
+    XmindCopilot.core.topic
 """
 from . import const
 from .mixin import WorkbookMixinElement

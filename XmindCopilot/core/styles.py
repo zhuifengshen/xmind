@@ -2,7 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 """
-xmind.core.styles implements encapsulation of the XMind styles.xml.
+XmindCopilot.core.styles implements encapsulation of the XMind styles.xml.
 """
 from XmindCopilot.core import Document, const, Element
 

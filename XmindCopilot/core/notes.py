@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    xmind.core.notes
+    XmindCopilot.core.notes
 """
 from . import const
 from .mixin import TopicMixinElement
@@ -46,7 +46,7 @@ class PlainNotes(_NoteContentElement):
 
     :param content: utf8 plain text.
     :param node:    `xml.dom.Element` object`
-    :param ownerTopic:  `xmind.core.topic.TopicElement` object
+    :param ownerTopic:  `XmindCopilot.core.topic.TopicElement` object
 
     """
 
