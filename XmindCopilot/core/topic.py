@@ -553,7 +553,7 @@ class TopicElement(WorkbookMixinElement):
         for t in topics:
             if recursive:
                 t.removeSubTopicWithEmptyTitle(recursive)
-            if (t.getTitle() is None or re.match('[\t\s]{0,}', t.getTitle())) and t.getImage() is None:
+            if (t.getTitle() is None or re.match(r'[\t\s]{0,}', t.getTitle())) and t.getImage() is None:
                 t.removeTopic()
 
     def moveTopic(self, index):

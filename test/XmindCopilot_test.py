@@ -18,6 +18,10 @@ TEST_TEMPLATE_XMIND = os.path.join(
 TEST_TEMPLATE_MD = os.path.join(os.path.dirname(__file__), "TestTemplate.md")
 TEST_TEMPLATE_MDList = os.path.join(os.path.dirname(__file__), "TestIndentList.md")
 
+if not os.path.isdir(TMP_DIR):
+    os.mkdir(TMP_DIR)
+
+
 
 class TestXmindCopilot(unittest.TestCase):
     def testXmindLoad(self):
