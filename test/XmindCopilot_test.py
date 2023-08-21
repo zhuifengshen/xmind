@@ -8,8 +8,9 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 import XmindCopilot
 from XmindCopilot.search import topic_search
 from XmindCopilot.file_shrink import xmind_shrink
-from XmindCopilot.fmt_cvt.latex_render import latex2img
 from XmindCopilot.fmt_cvt.md2xmind import MarkDown2Xmind
+from XmindCopilot.fmt_cvt.latex_render import latex2img
+from XmindCopilot.fmt_cvt.latex_render import latex2img_web
 
 TMP_DIR = os.path.join(os.path.dirname(__file__), "tmp")
 TEST_TEMPLATE_XMIND = os.path.join(
@@ -93,6 +94,28 @@ class TestXmindFmtConvert(unittest.TestCase):
         im = latex2img(text, size=48, color=(0.9, 0.1, 0.1))
         # im.show()
 
+    def testLatexRendererWeb(self):
+        # Example usage
+        # latex_expression = r"a^2+b^2=c^2"
+        latex_expression = r"""
+                            $$
+                            \dot{X} =
+                            \begin{bmatrix}
+                            0 & 1\\
+                            -\frac{K}{m} & -D\\
+                            \end{bmatrix}
+                            X + 
+                            \begin{bmatrix}
+                            0 \\
+                            -g
+                            \end{bmatrix}
+                            $$
+                            """
+        padding = 50
+        image_format = 'png'
+        path = latex2img_web(latex_expression, output_file=None,
+                             padding=padding, image_format=image_format)
+        os.system("start %s" % path)
 
 if __name__ == '__main__':
     unittest.main()

@@ -66,7 +66,7 @@ class ImageElement(WorkbookMixinElement):
             os.remove(self._getImgAbsPath())
 
         # Handle Web img
-        if re.match("^http[s]{0,1}://.*$", img):
+        if type(img) is str and re.match("^http[s]{0,1}://.*$", img):
             self.setAttribute(const.ATTR_IMG_SRC, img)
             return
         

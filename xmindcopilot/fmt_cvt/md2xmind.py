@@ -107,6 +107,7 @@ class MDSection(object):
         """
         topic = parentTopic.addSubTopicbyTitle(self.title)
         topic.addSubTopicbyIndentedList(self.textProcess(self.nonSubSectionText))
+        # FIXME: Maybe it is a better choice to remove these functions from TopicElement
         topic.convertTitle2Equation(recursive=True)
         topic.convertTitle2WebImage(recursive=True)
         for subSection in self.SubSection:

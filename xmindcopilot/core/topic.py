@@ -14,7 +14,7 @@ from .labels import LabelsElement, LabelElement
 from .markerref import MarkerRefElement
 from .markerref import MarkerRefsElement
 from .markerref import MarkerId
-from ..fmt_cvt.latex_render import latex2img
+from ..fmt_cvt.latex_render import latex2img_web
 from ..fmt_cvt.md2xmind import MarkDown2Xmind
 from .. import utils
 import re
@@ -143,15 +143,20 @@ class TopicElement(WorkbookMixinElement):
         """
         Set the equation as image of this topic
         
-        **FIXME:** It seems the pyplot latex renderer does not support
+        FIXME: It seems the pyplot latex renderer does not support
         $$Latex Block$$ and multi-line latex equation
         """
-        latex_equation = latex_equation.replace("$$", "$")
-        latex_equation = latex_equation.replace("\n", " ")
-        latex_equation = latex_equation.replace("\\\\", "\\")
-        im = latex2img(latex_equation)
-        self.setImage(im, align, height, width)
-
+        # latex_equation = latex_equation.replace("$$", "$")
+        # latex_equation = latex_equation.replace("\n", " ")
+        # latex_equation = latex_equation.replace("\\\\", "\\")
+        try:
+            im = latex2img_web(latex_equation)
+            self.setImage(im, align, height, width)
+            return True
+        except:
+            print("Warning: setLatexEquation failed, please check network connection")
+            return False
+            
     # For Markdown to Xmind
     def convertTitle2Equation(self, align=None, height=None, width=None, recursive=False):
         """
@@ -166,11 +171,9 @@ class TopicElement(WorkbookMixinElement):
                 c.convertTitle2Equation(align, height, width, recursive)
         title = self.getTitle()
         if re.match(r'^\$.*?\$$', title, re.S):
-            try:
-                self.setLatexEquation(title, align, height, width)
+            if self.setLatexEquation(title, align, height, width):
                 self.setTitle("")
-            except:
-                print("Warning: convertTitle2Equation failed")
+
 
     def convertTitle2WebImage(self, align=None, height=None, width=None, recursive=False):
         if recursive:
@@ -190,6 +193,8 @@ class TopicElement(WorkbookMixinElement):
                 self.setTitle("")
             except:
                 print("Warning: convertTitle2WebImage failed")
+
+
 
     def getMarkers(self):
         refs = self._get_markerrefs()
