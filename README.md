@@ -2,24 +2,6 @@
 
 **[XMindCopilot](https://github.com/MasterYip/XmindCopilot)**是一款思维导图辅助工具，支持xmind创建、编辑、压缩、格式互转、多文件内容检索等功能。A mindmap tool that provides assistance in creating, editing, compressing, format conversion, and multi-file content search for XMind files.
 
-# Xmind
-
-### 一、安装方式
-```
-pip3 install XMind  
-
-or
-
-pip3 install xmind
-```
-
-
-### 二、版本升级
-```
-pip3 install -U XMind
-```
-
-
 ### 三、使用方式
 
 #### 1、创建XMind文件
