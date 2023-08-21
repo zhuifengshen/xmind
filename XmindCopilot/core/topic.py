@@ -505,22 +505,24 @@ class TopicElement(WorkbookMixinElement):
         for i in range(len(content_list)):
             item = content_list[i]
             indent = re.match(r'[\t]{0,}', item).group().count('\t')
-            if indent == 0:
-                pindex = index
-            else:
-                pindex = -1
+            # if indent == 0:
+            #     pindex = index
+            # else:
+            #     pindex = -1
             if minIndent is None or indent <= minIndent:
                 minIndent = indent
                 if last is not None:
-                    subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), pindex)
-                    subtopic.addSubTopicbyIndentedList(content_list[last+1:i], pindex)
+                    subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), index)
+                    if index >= 0:
+                        index += 1
+                    subtopic.addSubTopicbyIndentedList(content_list[last+1:i], -1)
                 last = i
             if i == len(content_list) - 1:
-                subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), pindex)
-                subtopic.addSubTopicbyIndentedList(content_list[last+1:], pindex)
+                subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), index)
+                subtopic.addSubTopicbyIndentedList(content_list[last+1:], -1)
 
-    def addSubTopicbyMarkDown(self, mdtext, cvtEquation=False, cvtWebImage=False):
-        MarkDown2Xmind(self).convert2xmind(mdtext, cvtEquation, cvtWebImage)
+    def addSubTopicbyMarkDown(self, mdtext, cvtEquation=False, cvtWebImage=False, index=-1):
+        MarkDown2Xmind(self).convert2xmind(mdtext, cvtEquation, cvtWebImage, index)
 
     def addSubTopicbyImage(self, image_path, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(),
@@ -553,7 +555,7 @@ class TopicElement(WorkbookMixinElement):
         for t in topics:
             if recursive:
                 t.removeSubTopicWithEmptyTitle(recursive)
-            if (t.getTitle() is None or re.match(r'[\t\s]{0,}', t.getTitle())) and t.getImage() is None:
+            if (t.getTitle() is None or re.match(r'^[\t\s]{0,}$', t.getTitle())) and t.getImage() is None:
                 t.removeTopic()
 
     def moveTopic(self, index):
