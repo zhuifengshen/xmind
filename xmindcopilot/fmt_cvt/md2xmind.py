@@ -102,16 +102,18 @@ class MDSection(object):
         for subSection in self.SubSection:
             subSection.printSubSections(indent+4)
     
-    def toXmind(self, parentTopic):
+    def toXmind(self, parentTopic, cvtEquation=False, cvtWebImage=False):
         """Convert the section to xmind
         """
         topic = parentTopic.addSubTopicbyTitle(self.title)
         topic.addSubTopicbyIndentedList(self.textProcess(self.nonSubSectionText))
         # FIXME: Maybe it is a better choice to remove these functions from TopicElement
-        topic.convertTitle2Equation(recursive=True)
-        topic.convertTitle2WebImage(recursive=True)
+        if cvtEquation:
+            topic.convertTitle2Equation(recursive=True)
+        if cvtWebImage:
+            topic.convertTitle2WebImage(recursive=True)
         for subSection in self.SubSection:
-            subSection.toXmind(topic)
+            subSection.toXmind(topic, cvtEquation, cvtWebImage)
 
 
 class MarkDown2Xmind(object):
@@ -158,7 +160,7 @@ class MarkDown2Xmind(object):
     def reset(self):
         self.titleptr = []
     
-    def convert2xmind(self, text):
+    def convert2xmind(self, text, cvtEquation=False, cvtWebImage=False):
         """Convert the given text."""
         if not self.topic:
             print("Please set the topic first")
@@ -187,7 +189,7 @@ class MarkDown2Xmind(object):
         # Remove multiple empty lines
         text = re.sub(r"[\n]+", "\n", text)
         mdSection = MDSection("test", text)
-        mdSection.toXmind(self.topic)
+        mdSection.toXmind(self.topic, cvtEquation, cvtWebImage)
 
 
 if __name__ == "__main__":

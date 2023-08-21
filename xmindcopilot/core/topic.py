@@ -519,8 +519,8 @@ class TopicElement(WorkbookMixinElement):
                 subtopic = self.addSubTopicbyTitle(content_list[last].strip('\t'), pindex)
                 subtopic.addSubTopicbyIndentedList(content_list[last+1:], pindex)
 
-    def addSubTopicbyMarkDown(self, mdtext):
-        MarkDown2Xmind(self).convert2xmind(mdtext)
+    def addSubTopicbyMarkDown(self, mdtext, cvtEquation=False, cvtWebImage=False):
+        MarkDown2Xmind(self).convert2xmind(mdtext, cvtEquation, cvtWebImage)
 
     def addSubTopicbyImage(self, image_path, index=-1):
         return self.addSubTopic(TopicElement(ownerWorkbook=self.getOwnerWorkbook(),
