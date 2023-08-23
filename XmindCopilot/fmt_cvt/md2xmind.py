@@ -67,55 +67,70 @@ class MDSection(object):
                 self.SubSection.append(MDSection(title, '\n'.join(self.textList[self.textList.index(lastMaxLevelLine)+1:])))
         self.nonSubSectionText = '\n'.join(self.nonSubSectionTextList)
 
-    def textProcess(self, text):
-        """Process the text elements (e.g. list, table, etc.)
+    def elementSplit(self, text):
+        """
+        Split the markdown text into elements and process textline indentation.
+        For example: code block, equation block, multilevel-list, table(not implemented), etc.
         """
         code_match = re.findall(r"(```.*?```)", text, re.S)
         latex_match = re.findall(r"(\$\$.*?\$\$)", text, re.S)
         lines = text.split('\n')
         outputList = []
         while lines:
-            if code_match and lines and lines[0] in code_match[0]:
+            if code_match and lines and lines[0] in code_match[0]:  # Code block
                 while lines and lines[0] in code_match[0]:
                     lines.pop(0)
                 outputList.append(code_match.pop(0))
-            elif latex_match and lines and lines[0] in latex_match[0]:
+            elif latex_match and lines and lines[0] in latex_match[0]:  # Latex block
                 while lines and lines[0] in latex_match[0]:
                     lines.pop(0)
                 outputList.append(latex_match.pop(0))
             elif lines:
                 if re.match(r'[\s\t]*$', lines[0]):  # Empty line
                     lines.pop(0)
-                else:
+                else:  # Indent handling
                     line = lines.pop(0)
                     level = self._getListLevel(line)
-                    if level:
+                    if level is not None:  # Note: Including the case of level 0
                         topictitle = "\t"*level + re.match(self.listLineMatchStr, line).groups()[2]
                     else:
                         topictitle = line
                     outputList.append(topictitle)
-        
         return outputList
     
-    def printSubSections(self, indent=4):
-        print(" "*indent, self.title)
-        for subSection in self.SubSection:
-            subSection.printSubSections(indent+4)
-    
-    def toXmind(self, parentTopic, cvtEquation=False, cvtWebImage=False, index=-1):
+    def toXmind(self, parentTopic, cvtEquation=False, cvtWebImage=False, cvtHyperLink=False, index=-1):
         """Convert the section to xmind
         """
         # topic = parentTopic.addSubTopicbyTitle(self.title)
         topic = parentTopic
-        topic.addSubTopicbyIndentedList(self.textProcess(self.nonSubSectionText), index)
+        topic.addSubTopicbyIndentedList(self.elementSplit(self.nonSubSectionText), index)
         # FIXME: Maybe it is a better choice to remove these functions from TopicElement
         if cvtEquation:
             topic.convertTitle2Equation(recursive=True)
         if cvtWebImage:
             topic.convertTitle2WebImage(recursive=True)
+        if cvtHyperLink:
+            topic.convertTitle2HyperLink(recursive=True)
         for subSection in self.SubSection:
             subSection.toXmind(topic, cvtEquation, cvtWebImage)
 
+    def toXmindText(self, removeHyperlink=True, parentIndent=0):
+        """Convert the section to xmindtextlist
+        """
+        textList = []
+        for line in self.elementSplit(self.nonSubSectionText):
+            if removeHyperlink:
+                line = re.sub(r"\[(.*?)\]\(.*?\)", r"\1", line)
+            textList.append("\t"*parentIndent + line)
+        for subSection in self.SubSection:
+            textList = textList + subSection.toXmindText(parentIndent+1)
+        return textList
+    
+    # Debug
+    def printSubSections(self, indent=4):
+        print(" "*indent, self.title)
+        for subSection in self.SubSection:
+            subSection.printSubSections(indent+4)
 
 class MarkDown2Xmind(object):
     
@@ -124,7 +139,6 @@ class MarkDown2Xmind(object):
     
     def __init__(self, topic=None):
         self.topic = topic
-        self.reset()
     
     def _detab_line(self, line):
         r"""Recusively convert tabs to spaces in a single line.
@@ -158,16 +172,7 @@ class MarkDown2Xmind(object):
             output.append(self._detab_line(line))
         return '\n'.join(output)
     
-    def reset(self):
-        self.titleptr = []
-    
-    def convert2xmind(self, text, cvtEquation=False, cvtWebImage=False, index=-1):
-        """Convert the given text."""
-        if not self.topic:
-            print("Please set the topic first")
-            return
-        self.reset()
-
+    def preProcess(self, text):
         if not isinstance(text, str):
             # TODO: perhaps shouldn't presume UTF-8 for string input?
             text = str(text, 'utf-8')
@@ -189,9 +194,25 @@ class MarkDown2Xmind(object):
         text = self._ws_only_line_re.sub("", text)
         # Remove multiple empty lines
         text = re.sub(r"[\n]+", "\n", text)
+        return text
+    
+    def convert2xmind(self, text, cvtEquation=False, cvtWebImage=False, index=-1):
+        """Convert the given text."""
+        if not self.topic:
+            print("Please set the topic first")
+            return
+        text = self.preProcess(text)
         mdSection = MDSection("", text)
         mdSection.toXmind(self.topic, cvtEquation, cvtWebImage, index=index)
 
+    def convert2xmindtext(self, text):
+        """Convert the given text."""
+        text = self.preProcess(text)
+        mdSection = MDSection("", text)
+        textList = mdSection.toXmindText()
+        for item in textList:
+            item.replace("\n", "\r")
+        return "\n".join(textList)
 
 if __name__ == "__main__":
     pass

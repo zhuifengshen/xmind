@@ -174,11 +174,17 @@ class TopicElement(WorkbookMixinElement):
             if self.setLatexEquation(title, align, height, width):
                 self.setTitle("")
 
-
     def convertTitle2WebImage(self, align=None, height=None, width=None, recursive=False):
+        """Convert title to web image
+        :param align: image align (["top", "bottom", "left", "right"]). if it is None, it will be removed(Defaults to aligning top).
+        :param height: image svg:height. If it is None, it will be removed.
+        :param width: image svg:width. If it is None, it will be removed.
+        :param recursive: if convert sub topics
+        """
         if recursive:
             for c in self.getSubTopics():
                 c.convertTitle2WebImage(align, height, width, recursive)
+                
         title = self.getTitle()
         # FIXME:
         # <img src="https://xxx.png" alt="image-20230706120022138" style="zoom:50%;" />
@@ -194,8 +200,21 @@ class TopicElement(WorkbookMixinElement):
             except:
                 print("Warning: convertTitle2WebImage failed")
 
-
-
+    def convertTitleWithHyperlink(self, recursive=False):
+        """
+        Convert the title with hyperlink to xmind hyperlink
+        The hyperlink format is [title](url)
+        """
+        if recursive:
+            for c in self.getSubTopics():
+                c.convertTitleWithHyperlink(recursive)
+        title = self.getTitle()
+        strmatch = re.search(r'\[(.*)\]\((.*)\)', title)
+        if strmatch:
+            url = strmatch.group(2)
+            self.setURLHyperlink(url)
+            self.setTitle(re.sub(r'\[(.*)\]\((.*)\)', r'\1', title))
+            
     def getMarkers(self):
         refs = self._get_markerrefs()
         if not refs:
