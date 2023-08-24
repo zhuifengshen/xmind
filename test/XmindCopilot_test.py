@@ -71,8 +71,10 @@ class TestXmindFmtConvert(unittest.TestCase):
         workbook = XmindCopilot.load(xmind_path)
         rootTopic = workbook.getPrimarySheet().getRootTopic()
         markdowntext = open(file_path, 'r', encoding='utf-8').read()
-        rootTopic.addSubTopicbyMarkDown(markdowntext)
-        # MarkDown2Xmind(rootTopic).convert2xmind(markdowntext)
+        # rootTopic.addSubTopicbyMarkDown(markdowntext)
+        # rootTopic.convertTitle2WebImage(recursive=True)
+        MarkDown2Xmind(rootTopic).convert2xmind(markdowntext, cvtWebImage=True, cvtHyperLink=True)
+        MarkDown2Xmind(rootTopic).printSubSections(markdowntext)
         XmindCopilot.save(workbook)
         self.assertTrue(True)
 

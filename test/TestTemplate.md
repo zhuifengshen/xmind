@@ -4,6 +4,8 @@
 
 ### 机器人物理模型参数整定
 
+![img](https://picx.zhimg.com/80/v2-59cb6e0776621d19353d5e5c0744751f_720w.webp?source=1940ef5c)
+
 通过SolidWorks进行机器人的建模，然后可以通过solidworks导出机器人的urdf和相应的质量惯量参数，但是可能不太准，需要通过称重的方式进行校准。可以通过进行重力补偿控制的方式进行机器人物理模型参数的验证。但是这中间会涉及到摩擦力的处理，现在还没有对机器人关节处的摩擦力进行建模
 
 ###  机器人运动中的 Equation of Motion
@@ -269,3 +271,22 @@ $$
 #### 动平衡
 
 initial thought: 如果只是小幅度的扰动就都在 controller 的鲁棒性范围内，但是如果涉及大幅度的扰动就要通过轨迹规划来实现机器人的迈步的减少动量的范畴，通过 MPC 实现
+
+# 二、函数
+
+## 1、get获取原始指针
+
+```cpp
+std::unique_ptr<int> a = std::make_unique<int>(666); int* b = a.get();std::cout << b << std::endl;
+```
+
+## 2、reset释放智能指针
+
+```cpp
+std::unique_ptr<int> a = std::make_unique<int>(666); //释放内存，同时将a置0，所以不会出现悬挂指针的问题a.reset();std::cout << a << std::endl;
+```
+
+## 3、release将指针置0
+```
+std::unique_ptr<int> a = std::make_unique<int>(666); // 虽然这个函数名叫release，但是并不会真的释放内存，只是把指针置0// 而原来的那片装着666的内存依然存在，但是该函数会返回装着666的内存地址// 综上：相当于先get，然后再resetint* b = a.release();std::cout << a << std::endl;std::cout << b << std::endl;
+```

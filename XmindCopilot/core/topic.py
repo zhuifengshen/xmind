@@ -170,9 +170,10 @@ class TopicElement(WorkbookMixinElement):
             for c in self.getSubTopics():
                 c.convertTitle2Equation(align, height, width, recursive)
         title = self.getTitle()
-        if re.match(r'^\$.*?\$$', title, re.S):
-            if self.setLatexEquation(title, align, height, width):
-                self.setTitle("")
+        if title:
+            if re.match(r'^\$.*?\$$', title, re.S):
+                if self.setLatexEquation(title, align, height, width):
+                    self.setTitle("")
 
     def convertTitle2WebImage(self, align=None, height=None, width=None, recursive=False):
         """Convert title to web image
@@ -184,21 +185,21 @@ class TopicElement(WorkbookMixinElement):
         if recursive:
             for c in self.getSubTopics():
                 c.convertTitle2WebImage(align, height, width, recursive)
-                
         title = self.getTitle()
-        # FIXME:
-        # <img src="https://xxx.png" alt="image-20230706120022138" style="zoom:50%;" />
-        # ![]()
-        # are all should be supported
-        uriSearch = re.search(r"[\(\"](http[s]{0,1}://.*?)[\)\"]", title)
-        mdImgMatch = re.match(r'^!\[.*\]\((http[s]{0,1}://.*)\)', title)
-        htmlDivMatch = re.search(r"img", title) and uriSearch
-        if mdImgMatch or htmlDivMatch:
-            try:
-                self.setImage(uriSearch.group(1), align, height, width)
-                self.setTitle("")
-            except:
-                print("Warning: convertTitle2WebImage failed")
+        if title:
+            # FIXME:
+            # <img src="https://xxx.png" alt="image-20230706120022138" style="zoom:50%;" />
+            # ![]()
+            # are all should be supported
+            uriSearch = re.search(r"[\(\"](http[s]{0,1}://.*?)[\)\"]", title)
+            mdImgMatch = re.match(r'^!\[.*\]\((http[s]{0,1}://.*)\)', title)
+            htmlDivMatch = re.search(r"img", title) and uriSearch
+            if mdImgMatch or htmlDivMatch:
+                try:
+                    self.setImage(uriSearch.group(1), align, height, width)
+                    self.setTitle("")
+                except:
+                    print("Warning: convertTitle2WebImage failed")
 
     def convertTitleWithHyperlink(self, recursive=False):
         """
@@ -209,11 +210,12 @@ class TopicElement(WorkbookMixinElement):
             for c in self.getSubTopics():
                 c.convertTitleWithHyperlink(recursive)
         title = self.getTitle()
-        strmatch = re.search(r'\[(.*)\]\((.*)\)', title)
-        if strmatch:
-            url = strmatch.group(2)
-            self.setURLHyperlink(url)
-            self.setTitle(re.sub(r'\[(.*)\]\((.*)\)', r'\1', title))
+        if title:
+            strmatch = re.search(r'\[(.*)\]\((.*)\)', title)
+            if strmatch:
+                url = strmatch.group(2)
+                self.setURLHyperlink(url)
+                self.setTitle(re.sub(r'\[(.*)\]\((.*)\)', r'\1', title))
             
     def getMarkers(self):
         refs = self._get_markerrefs()

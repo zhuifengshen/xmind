@@ -49,22 +49,20 @@ class MDSection(object):
         """Segment the text into sub-sections
         """
         maxLevel = 6  # The maximum level of the title
-        lastMaxLevelLine = None
-        for line in self.textList:
+        lasti = None
+        for i in range(len(self.textList)):
+            line = self.textList[i]
             if self._getTitleLevel(line) and self._getTitleLevel(line) <= maxLevel:
                 maxLevel = self._getTitleLevel(line)
-                if lastMaxLevelLine:
-                    # FIXME: mismatch using .index when there are multiple same lines
-                    title = re.match(self.titleLineMatchStr, lastMaxLevelLine).groups()[1]
-                    self.SubSection.append(MDSection(title, '\n'.join(self.textList[
-                                                        self.textList.index(lastMaxLevelLine)+1:
-                                                        self.textList.index(line)])))
-                lastMaxLevelLine = line
-            if lastMaxLevelLine is None:
+                if lasti is not None:
+                    title = re.match(self.titleLineMatchStr, self.textList[lasti]).groups()[1]
+                    self.SubSection.append(MDSection(title, '\n'.join(self.textList[lasti+1:i])))
+                lasti = i
+            if lasti is None:
                 self.nonSubSectionTextList.append(line)
-            if line == self.textList[-1] and lastMaxLevelLine:
-                title = re.match(self.titleLineMatchStr, lastMaxLevelLine).groups()[1]
-                self.SubSection.append(MDSection(title, '\n'.join(self.textList[self.textList.index(lastMaxLevelLine)+1:])))
+            if i == len(self.textList)-1 and lasti is not None:
+                title = re.match(self.titleLineMatchStr, self.textList[lasti]).groups()[1]
+                self.SubSection.append(MDSection(title, '\n'.join(self.textList[lasti+1:])))
         self.nonSubSectionText = '\n'.join(self.nonSubSectionTextList)
 
     def elementSplit(self, text):
@@ -112,7 +110,7 @@ class MDSection(object):
         if cvtWebImage:
             topic.convertTitle2WebImage(recursive=True)
         if cvtHyperLink:
-            topic.convertTitle2HyperLink(recursive=True)
+            topic.convertTitleWithHyperlink(recursive=True)
         for subSection in self.SubSection:
             subSection.toXmind(topic, cvtEquation, cvtWebImage, cvtHyperLink)
 
@@ -120,12 +118,14 @@ class MDSection(object):
         """Convert the section to xmindtextlist
         """
         textList = []
+        if self.title:
+            textList.append("\t"*parentIndent + self.title)
         for line in self.elementSplit(self.nonSubSectionText):
             if removeHyperlink:
                 line = re.sub(r"\[(.*?)\]\(.*?\)", r"\1", line)
-            textList.append("\t"*parentIndent + line)
+            textList.append("\t"*(parentIndent+1) + line)
         for subSection in self.SubSection:
-            textList = textList + subSection.toXmindText(parentIndent+1)
+            textList = textList + subSection.toXmindText(parentIndent=parentIndent+1)
         return textList
     
     # Debug
@@ -198,14 +198,14 @@ class MarkDown2Xmind(object):
         text = re.sub(r"[\n]+", "\n", text)
         return text
     
-    def convert2xmind(self, text, cvtEquation=False, cvtWebImage=False, index=-1):
+    def convert2xmind(self, text, cvtEquation=False, cvtWebImage=False, cvtHyperLink=False, index=-1):
         """Convert the given text."""
         if not self.topic:
             print("Please set the topic first")
             return
         text = self.preProcess(text)
         mdSection = MDSection("", text)
-        mdSection.toXmind(self.topic, cvtEquation, cvtWebImage, index=index)
+        mdSection.toXmind(self.topic, cvtEquation, cvtWebImage, cvtHyperLink, index=index)
 
     def convert2xmindtext(self, text):
         """Convert the given text."""
