@@ -14,7 +14,7 @@ class MDSection(object):
     # FIXME: Seems level 1 is not found
     listLineMatchStr = r"(\s{0,})(\d{1,}\.|[+*-])\s{1,}(.*)"
     
-    def __init__(self, title: str, text: str):
+    def __init__(self, title: str = "", text: str = ""):
         """
         :param title: Title
         :param text: Text (Should not contain title)
@@ -101,8 +101,10 @@ class MDSection(object):
     def toXmind(self, parentTopic, cvtEquation=False, cvtWebImage=False, cvtHyperLink=False, index=-1):
         """Convert the section to xmind
         """
-        # topic = parentTopic.addSubTopicbyTitle(self.title)
-        topic = parentTopic
+        if self.title:  # For the non-Root section
+            topic = parentTopic.addSubTopicbyTitle(self.title)
+        else:  # For the Root section (if title is not given, directly add the subsection to the parent topic)
+            topic = parentTopic
         topic.addSubTopicbyIndentedList(self.elementSplit(self.nonSubSectionText), index)
         # FIXME: Maybe it is a better choice to remove these functions from TopicElement
         if cvtEquation:
@@ -112,7 +114,7 @@ class MDSection(object):
         if cvtHyperLink:
             topic.convertTitle2HyperLink(recursive=True)
         for subSection in self.SubSection:
-            subSection.toXmind(topic, cvtEquation, cvtWebImage)
+            subSection.toXmind(topic, cvtEquation, cvtWebImage, cvtHyperLink)
 
     def toXmindText(self, removeHyperlink=True, parentIndent=0):
         """Convert the section to xmindtextlist
@@ -213,6 +215,12 @@ class MarkDown2Xmind(object):
         for item in textList:
             item.replace("\n", "\r")
         return "\n".join(textList)
+
+    def printSubSections(self, text):
+        """Print the sub-sections of the given text."""
+        text = self.preProcess(text)
+        mdSection = MDSection("", text)
+        mdSection.printSubSections()
 
 if __name__ == "__main__":
     pass
