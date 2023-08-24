@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KaTeX Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+</head>
+<body>
+    <h1>KaTeX Example</h1>
+    
+    <p>Rendered equation:</p>
+    <div id="equation"></div>
+    
+    <script>
+        // Your LaTeX equation
+        var latexEquation = "\\frac{1}{2} \\cdot \\sqrt{x^2 + y^2}";
+
+        // Render the equation using KaTeX
+        var equationDiv = document.getElementById("equation");
+        katex.render(latexEquation, equationDiv);
+    </script>
+</body>
+</html>
